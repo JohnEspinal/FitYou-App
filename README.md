@@ -1,27 +1,50 @@
-# FitYouApp
+# FitYou
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
+---
 
-## Development server
+![avatar](/src/assets/photos/FitYouIcon.ico)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Descripcion
 
-## Code scaffolding
+FitYou es un sistema que podrá presentarle a sus usuarios las mejores opciones de planes telefónicos, de internet y telecable acorde a las necesidades que tengan, de forma que estos puedan seleccionar y ver a detalle aquel que más se adapte a lo que buscan, para lo cual podrán disponer de filtros, ordenar por diferentes campos, ver detalle de cada plan, comparar planes, entre otras funcionalidades.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requerimientos
 
-## Build
+_N/A_
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Instalacion
 
-## Running unit tests
+_N/A_
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Configuracion
 
-## Running end-to-end tests
+_N/A_
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Agile Methodology
 
-## Further help
+Scrum
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Tecnologias
+
+- C#
+- ASP.NET MVC
+- Entity Framework
+- Microsoft Sql Server
+- Angular
+
+## Solución de problemas
+
+_N/A_
+
+## Preguntas frecuentes
+
+_N/A_
+
+## Desarrolladores
+
+- John Espinal - **Desarrollador Full Stack / Soporte**
+- Victor Calderón - **Desarrollador Full Stack / Soporte**
+- José Marte - **Desarrollador Front-End**
+- Diego Beras - **Desarrollador Back-End / DBA**
+- Oscar Veloz - **Desarrollador Back-End**
+- Jean Carlos Mendoza - **Analista QA**
