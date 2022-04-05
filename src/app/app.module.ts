@@ -3,21 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ErrorComponentComponent } from './shared/error-component/error-component.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ButtonModule } from 'primeng/button';
 import { PlansModule } from './plans/plans.module';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ErrorComponentComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    PlansModule
+    PlansModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

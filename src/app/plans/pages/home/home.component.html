@@ -1,16 +1,79 @@
-<p-menubar [model]="items">
-    <ng-template pTemplate="start">
-        <img src="assets/showcase/images/primeng.svg" height="40" class="mr-2">
-    </ng-template>
-    <ng-template pTemplate="end">
-        <input type="text" pInputText placeholder="Search">
-    </ng-template>
-</p-menubar>
+<div class="grid">
+    <div style="background-image: url('assets/photos/background.png');" class="background col p-0">
+        <div class="grid">
+            <div class="col mt-8" style="font-size: larger; text-align: center; font-family: 'Baloo Bhaina 2', cursive;">
+                <h1>
+                    FitYou Web
+                </h1>
+                <p class="mb-5" style="font-size: larger;">
+                    La mejor solución para tí, está en tus manos, está en FitYou
+                </p>
+                <button icon="pi pi-book" pButton class="p-button-text p-button-outlined p-button-secondary" label="Leer más...">
 
-<button pButton label="Click me" class="p-button-info" (click)="goToAboutUs()">
+                </button>
 
-</button>
+                <span style="margin: 15px;"></span>
 
+                <button pButton icon="pi pi-clone" class="p-button-raised p-button-secondary" label="Comparar">
+
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="grid">
+    <div class="col-5" style="text-align:center;">
+        <img class="mt-8" src="assets/icons/read.png" style="width: 200px;">
+    </div>
+    <div class="col-2" style="text-align:center;">
+        <img class="mt-8" src="assets/icons/compare.png" style="width: 200px;" alt="">
+    </div>
+    <div class="col-5" style="text-align:center;">
+        <img class="mt-8" src="assets/icons/choose.png" style="width: 200px;" alt="">
+    </div>
+
+    <div class="col-5" style="text-align: center;">
+        <div style="margin-left: 150px; margin-right: 150px;">
+            <h3>Conoce</h3>
+        <span class="par">
+            Aspiramos a brindarle al usuario cliente la informacion necesaria para elegir el producto financiero idóneo, conforme a su perfil e intereses.
+        </span>
+        </div>
+    </div>
+    <div class="col-2" style="text-align: center;">
+        <div>
+            <h3>Compara</h3>
+        <span class="par">
+            Buscamos dinamizar el mercado financiero exponiendo los productos disponibles y motivando a las instituciones financieras a mejorar su oferta.
+        </span>
+        </div>
+    </div>
+    <div class="col-5" style="text-align: center;">
+        <div style="margin-left: 150px; margin-right: 150px;">
+            <h3>Elige</h3>
+        <span class="par">
+            Motivamos a que el usuario financiero dominicano esté cada vez más informado y sea más proactivo y exigente al decidir sobre sus productos financieros.
+        </span>
+        </div>
+    </div>
+
+    <!-- <div class="col-5" style="text-align: center;">
+        <div style="margin-left: 100px; margin-right: 100px;">
+            <span>
+                Aspiramos a brindarle al usuario cliente la informacion necesaria para elegir el producto financiero idóneo, conforme a su perfil e intereses.
+            </span>
+        </div>
+    </div>
+    <div class="col-2" style="text-align: center;">
+        <h3>Comspanara</h3>
+    </div>
+    <div class="col-5" style="text-align: center;">
+        <h3>Elige</h3>
+    </div> -->
+    
+</div>
 
 
 <h1>Footer</h1>

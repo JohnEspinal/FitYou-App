@@ -6,6 +6,7 @@ import { AddPlanComponent } from './pages/add-plan/add-plan.component';
 import { ListComponent } from './pages/list/list.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { PlanComparisonComponent } from './pages/plan-comparison/plan-comparison.component';
+import { PlansRoutingModule } from './plans-routing.module';
 
 
 
@@ -19,7 +20,8 @@ import { PlanComparisonComponent } from './pages/plan-comparison/plan-comparison
   ],
   imports: [
     CommonModule,
-    PrimeNgModule
+    PrimeNgModule,
+    PlansRoutingModule
   ]
 })
 export class PlansModule { }

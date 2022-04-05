@@ -6,6 +6,18 @@ import { PlanService } from '../../services/plans.service';
     selector: 'app-home',
     templateUrl: './home.component.html',
     styles: [
+        `
+        .background{
+            width: 100%;
+            height: 400px;
+        }
+
+        .par{
+            line-height: 20px; 
+            font-stretch: extra-expanded;
+        }
+
+        `
     ]
 })
 export class HomeComponent implements OnInit {
@@ -34,26 +46,20 @@ export class HomeComponent implements OnInit {
             )
         this.items = [
             {
-                label: 'File',
-                items: [{
-                    label: 'New',
-                    icon: 'pi pi-fw pi-plus',
-                    items: [
-                        { label: 'Project' },
-                        { label: 'Other' },
-                    ]
-                },
-                { label: 'Open' },
-                { label: 'Quit' }
-                ]
+                label: 'Home',
+                icon: 'pi pi-home'
             },
             {
-                label: 'Edit',
-                icon: 'pi pi-fw pi-pencil',
-                items: [
-                    { label: 'Delete', icon: 'pi pi-fw pi-trash' },
-                    { label: 'Refresh', icon: 'pi pi-fw pi-refresh' }
-                ]
+                label: 'Plans',
+                icon: 'pi pi-comments'
+            },
+            {
+                label: 'Project details',
+                icon: 'pi pi-users'
+            },
+            {
+                label: 'About',
+                icon: 'pi pi-briefcase'
             }
         ];
     }

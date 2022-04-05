@@ -5,7 +5,12 @@ import { HomeComponent } from './plans/pages/home/home.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'plans',
+    loadChildren: () => import('./plans/plans.module').then( m => m.PlansModule)
   }
 ];
 
