@@ -18,20 +18,20 @@ export class NavbarComponent implements OnInit {
     
         this.items = [
             {
-                label: 'Home',
+                label: 'Inicio',
                 icon: 'pi pi-home'
             },
             {
-                label: 'Plans',
+                label: 'Planes',
                 icon: 'pi pi-comments'
             },
             {
-                label: 'Project details',
-                icon: 'pi pi-users'
+                label: 'Detalles de proyecto',
+                icon: 'pi pi-briefcase'
             },
             {
-                label: 'About',
-                icon: 'pi pi-briefcase'
+                label: 'Acerca de',
+                icon: 'pi pi-users'
             }
         ];
   }

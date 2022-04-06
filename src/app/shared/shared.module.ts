@@ -3,16 +3,19 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { ErrorComponent } from './error/error.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    ErrorComponent
+    ErrorComponent,
+    FooterComponent
   ],
   exports:[
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
