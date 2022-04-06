@@ -9,7 +9,7 @@ import { PlanService } from '../../services/plans.service';
         `
         .background{
             width: 100%;
-            height: 400px;
+            height: 600px;
         }
 
         .par{
