@@ -19,11 +19,29 @@ export class NavbarComponent implements OnInit {
         this.items = [
             {
                 label: 'Inicio',
-                icon: 'pi pi-home'
+                icon: 'pi pi-home',
+                routerLink: '/'
             },
             {
                 label: 'Planes',
-                icon: 'pi pi-comments'
+                icon: 'pi pi-comments',
+                items: [
+                    {
+                        label: 'Ver planes',
+                        icon: 'pi pi-bars',
+                        routerLink: '/plans/all'
+                    },
+                    {
+                        label: 'Agregar',
+                        icon: 'pi pi-plus',
+                        routerLink: '/plans/add'
+                    }
+                ]
+            },
+            {
+                label: 'Comparar',
+                icon: 'pi pi-briefcase',
+                routerLink: '/plans/comparison'
             },
             {
                 label: 'Detalles de proyecto',
