@@ -34,6 +34,12 @@ export class HomeComponent implements OnInit {
                     console.log(resp);
                 }
             )
+            this.plansService.getCompany()
+            .subscribe(
+                resp => {
+                    console.log(resp);
+                }
+            )
     }
 
     ngOnInit() {
@@ -44,6 +50,13 @@ export class HomeComponent implements OnInit {
                     console.log(resp);
                 }
             )
+            this.plansService.getCompany()
+            .subscribe(
+                resp => {
+                    console.log(resp);
+                }
+            )
+        
         this.items = [
             {
                 label: 'Home',
