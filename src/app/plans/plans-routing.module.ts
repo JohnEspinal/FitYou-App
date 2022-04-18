@@ -32,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'getPlans'
+        redirectTo: 'all'
       }
     ]
   }
