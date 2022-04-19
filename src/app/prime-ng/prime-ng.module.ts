@@ -3,6 +3,13 @@ import {ButtonModule} from 'primeng/button';
 import {MenubarModule} from 'primeng/menubar';
 import {InputTextModule} from 'primeng/inputtext';
 import {ImageModule} from 'primeng/image';
+import {CardModule} from 'primeng/card';
+import {DataViewModule} from 'primeng/dataview';
+import {PanelModule} from 'primeng/panel';
+import {DialogModule} from 'primeng/dialog';
+import {RatingModule} from 'primeng/rating';
+import {RippleModule} from 'primeng/ripple';
+import {DropdownModule} from 'primeng/dropdown';
 
 // import {MenuItem} from 'primeng/api';
 
@@ -11,7 +18,14 @@ import {ImageModule} from 'primeng/image';
     ButtonModule,
     MenubarModule,
     InputTextModule,
-    ImageModule
+    ImageModule,
+    CardModule,
+    DataViewModule,
+    PanelModule,
+    DialogModule,
+    RatingModule,
+    RippleModule,
+    DropdownModule,
   ]
 })
 export class PrimeNgModule { }

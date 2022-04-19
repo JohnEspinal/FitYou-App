@@ -19,11 +19,13 @@ export class NavbarComponent implements OnInit {
         this.items = [
             {
                 label: 'Home',
-                icon: 'pi pi-home'
+                icon: 'pi pi-home',
+                url: '/'
             },
             {
                 label: 'Plans',
-                icon: 'pi pi-comments'
+                icon: 'pi pi-comments',
+                url: '/plans'
             },
             {
                 label: 'Project details',
