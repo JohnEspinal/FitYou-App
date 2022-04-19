@@ -6,6 +6,8 @@ import {ImageModule} from 'primeng/image';
 import {CalendarModule} from 'primeng/calendar';
 import {TreeSelectModule } from 'primeng/treeselect';
 import {CheckboxModule} from 'primeng/checkbox';
+import {CardModule} from 'primeng/card';
+import {TableModule} from 'primeng/table';
 // import {MenuItem} from 'primeng/api';
 
 @NgModule({
@@ -16,7 +18,9 @@ import {CheckboxModule} from 'primeng/checkbox';
     ImageModule,
     CalendarModule,
     TreeSelectModule,
-    CheckboxModule
+    CheckboxModule,
+    CardModule,
+    TableModule,
   ]
 })
 export class PrimeNgModule { }

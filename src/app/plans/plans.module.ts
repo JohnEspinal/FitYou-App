@@ -8,6 +8,7 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { PlanComparisonComponent } from './pages/plan-comparison/plan-comparison.component';
 import { PlansRoutingModule } from './plans-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CompanyComponent } from './pages/company/company.component';
 
 
 
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ViewPlanComponent,
     AddPlanComponent,
     ListComponent,
-    PlanComparisonComponent
+    PlanComparisonComponent,
+    CompanyComponent
    
   ],
   imports: [
