@@ -50,6 +50,11 @@ export class NavbarComponent implements OnInit {
             {
                 label: 'Acerca de',
                 icon: 'pi pi-users'
+            },
+            {
+                label: 'Compañias',
+                icon: 'pi pi-briefcase',
+                routerLink: '/plans/company'
             }
         ];
   }
