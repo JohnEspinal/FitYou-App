@@ -10,6 +10,10 @@ const routes: Routes = [
     pathMatch: 'prefix'
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule)
+  },
+  {
     path: 'plans',
     loadChildren: () => import('./plans/plans.module').then( m => m.PlansModule)
   },

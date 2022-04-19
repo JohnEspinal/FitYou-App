@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -26,5 +26,9 @@ export class PlanService {
     return this.http.post("https://localhost:44384/api/PostPlan", plan);
   }
 
+  
+  deleteCompany(id : number) : Observable<string>{
+    return this.http.delete<string>(`https://localhost:44384/api/deleteCompany/${id}`);
+  }
 
 }
