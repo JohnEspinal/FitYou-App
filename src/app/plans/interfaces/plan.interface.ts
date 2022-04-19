@@ -28,3 +28,19 @@ export interface Plan {
 }
 
 
+export interface PlanPost {
+    Title:           string;
+    Description:     string;
+    TypeOfPlan:      string;
+    CreateDate:      Date;
+    ActiveTime:      string;
+    Price:           number;
+    Currency:        string;
+    AdministratorId: number;
+    CompanyId:       number;
+    InternetId?:     number;
+    TelecableId?:     number;
+    TelephoneId?:     number;
+    
+}
+
