@@ -18,7 +18,7 @@ export interface Plan {
     Title:           string;
     Description:     string;
     TypeOfPlan:      string;
-    CreateDate:      Date;
+    CreateDate:      string;
     ActiveTime:      string;
     Price:           number;
     Currency:        string;
@@ -43,4 +43,3 @@ export interface PlanPost {
     TelephoneId?:     number;
     
 }
-
