@@ -1,1 +1,110 @@
-<p>add-plan works!</p>
+<h1>Agregar Plan</h1>
+<hr/>
+
+<form [formGroup]="myForm">
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-briefcase"></i></span>
+                <input  type="text" 
+                        pInputText 
+                        placeholder="Titulo"
+                        formControlName="title">         
+            </div>
+        </div>
+        
+        <div class="col-12 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-sliders-v"></i></span>
+                <input  type="text" pInputText 
+                        placeholder="Tipo de plan"
+                        formControlName="typeOfPlan">        
+            </div>
+        </div>
+                
+        <div class="col-12 md:col-4">
+            <span class="p-inputgroup"></span>
+            <p-calendar  id="date1" 
+                        [showIcon]="true" 
+                        [readonlyInput]="true" 
+                        [required]="true" 
+                        formControlName="createDate"></p-calendar>
+        </div>
+    </div>
+    
+    <div class="grid p-fluid">
+        <div class="col-12 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-clock"></i></span>
+                <input  type="text" pInputText 
+                        placeholder="Tiempo activo"
+                        formControlName="activeTime">         
+            </div>
+        </div>
+        
+        <div class="col-12 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">$</span>
+                <input  type="number" 
+                        pInputText placeholder="Precio"
+                        formControlName="price">        
+            </div>
+        </div>
+                
+        <div class="col-9 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                <input  type="text" pInputText 
+                        placeholder="Compañia"
+                        formControlName="companyId">         
+            </div>
+        </div>
+
+        <div class="col-9 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                <input  type="text" pInputText 
+                        placeholder="Currency"
+                        formControlName="currency">         
+            </div>
+        </div>
+        <div class="col-9 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                <input  type="text" pInputText 
+                        placeholder="Description"
+                        formControlName="description">         
+            </div>
+        </div>
+
+        <div class="col-9 md:col-4">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                <input  type="text" pInputText 
+                        placeholder="AdministratorId"
+                        formControlName="AdministratorId">         
+            </div>
+        </div>
+
+        
+    </div>
+
+    
+    <div class="row">
+
+        <div class="col-2 flex-auto" *ngFor="let item of company" >
+            <p-checkbox aria-selected="true" name="groupname" inputId="company" value="item.Id" ></p-checkbox>
+            <label for="company"> {{item.Name}}</label>
+        </div>
+
+    </div>
+
+    <!-- <pre>{{myForm.value | json}}</pre> -->
+
+    <div class="row mt-5">
+        <div class="col">
+            <button (click)="agregar()" pButton label="Agregar" icon="pi pi-check"></button>
+        </div>
+    </div>
+</form>
+

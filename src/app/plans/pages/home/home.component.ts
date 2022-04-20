@@ -9,7 +9,7 @@ import { PlanService } from '../../services/plans.service';
         `
         .background{
             width: 100%;
-            height: 400px;
+            height: 600px;
         }
 
         .par{
@@ -22,13 +22,17 @@ import { PlanService } from '../../services/plans.service';
 })
 export class HomeComponent implements OnInit {
 
-    items: MenuItem[] = [];
-
     constructor(private plansService: PlanService) {
     }
 
     goToAboutUs() {
         this.plansService.getPlans()
+            .subscribe(
+                resp => {
+                    console.log(resp);
+                }
+            )
+            this.plansService.getCompany()
             .subscribe(
                 resp => {
                     console.log(resp);
@@ -44,24 +48,6 @@ export class HomeComponent implements OnInit {
                     console.log(resp);
                 }
             )
-        this.items = [
-            {
-                label: 'Home',
-                icon: 'pi pi-home'
-            },
-            {
-                label: 'Plans',
-                icon: 'pi pi-comments'
-            },
-            {
-                label: 'Project details',
-                icon: 'pi pi-users'
-            },
-            {
-                label: 'About',
-                icon: 'pi pi-briefcase'
-            }
-        ];
     }
 
 }

@@ -11,6 +11,10 @@ import {RatingModule} from 'primeng/rating';
 import {RippleModule} from 'primeng/ripple';
 import {DropdownModule} from 'primeng/dropdown';
 
+import {CalendarModule} from 'primeng/calendar';
+import {TreeSelectModule } from 'primeng/treeselect';
+import {CheckboxModule} from 'primeng/checkbox';
+import {TableModule} from 'primeng/table';
 // import {MenuItem} from 'primeng/api';
 
 @NgModule({
@@ -26,6 +30,11 @@ import {DropdownModule} from 'primeng/dropdown';
     RatingModule,
     RippleModule,
     DropdownModule,
+    CalendarModule,
+    TreeSelectModule,
+    CheckboxModule,
+    CardModule,
+    TableModule,
   ]
 })
 export class PrimeNgModule { }

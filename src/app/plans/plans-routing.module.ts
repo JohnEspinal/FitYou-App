@@ -4,6 +4,7 @@ import { ListComponent } from './pages/list/list.component';
 import { AddPlanComponent } from './pages/add-plan/add-plan.component';
 import { PlanComparisonComponent } from './pages/plan-comparison/plan-comparison.component';
 import { ViewPlanComponent } from './pages/view-plan/view-plan.component';
+import { CompanyComponent } from './pages/company/company.component';
 
 
 const routes: Routes = [
@@ -31,8 +32,12 @@ const routes: Routes = [
         component: ViewPlanComponent
       },
       {
+        path:'company',
+        component: CompanyComponent
+      },
+      {
         path: '**',
-        redirectTo: 'getPlans'
+        redirectTo: 'all'
       }
     ]
   }
