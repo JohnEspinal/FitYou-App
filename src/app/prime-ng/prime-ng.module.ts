@@ -3,6 +3,16 @@ import {ButtonModule} from 'primeng/button';
 import {MenubarModule} from 'primeng/menubar';
 import {InputTextModule} from 'primeng/inputtext';
 import {ImageModule} from 'primeng/image';
+import {DataViewModule} from 'primeng/dataview';
+import {PanelModule} from 'primeng/panel';
+import {DialogModule} from 'primeng/dialog';
+import {RatingModule} from 'primeng/rating';
+import {RippleModule} from 'primeng/ripple';
+import {DropdownModule} from 'primeng/dropdown';
+
+import {CalendarModule} from 'primeng/calendar';
+import {TreeSelectModule } from 'primeng/treeselect';
+import {CheckboxModule} from 'primeng/checkbox';
 import {CalendarModule} from 'primeng/calendar';
 import {TreeSelectModule } from 'primeng/treeselect';
 import {CheckboxModule} from 'primeng/checkbox';
@@ -16,6 +26,13 @@ import {TableModule} from 'primeng/table';
     MenubarModule,
     InputTextModule,
     ImageModule,
+    CardModule,
+    DataViewModule,
+    PanelModule,
+    DialogModule,
+    RatingModule,
+    RippleModule,
+    DropdownModule,
     CalendarModule,
     TreeSelectModule,
     CheckboxModule,
