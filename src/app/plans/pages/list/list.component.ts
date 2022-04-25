@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../interfaces/product.interface';
-import {Plan} from "../../interfaces/plan.interface"
+
+import {Plan, Product} from "../../interfaces/plan.interface"
 import {SelectItem} from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
+import { PlanService } from '../../services/plans.service';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +13,7 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class ListComponent implements OnInit {
 
-  plans: Plan[] = [{
+  products: Plan[] = [{
     Id:12,
     Title:"Internet Movil 50GB",
     Description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -23,11 +24,10 @@ export class ListComponent implements OnInit {
     Currency:"DOP",
     Administrator:null,
     AdministratorId:1,
-    Company:null,
     CompanyId:1
 
   }]
-  products: Product[] = [{
+  productss: Product[] = [{
 
     id:"123",
     code:"123",
@@ -196,10 +196,20 @@ export class ListComponent implements OnInit {
 
   sortField: string = "";
 
-  constructor( private primengConfig: PrimeNGConfig) { }
+  constructor(  private primengConfig: PrimeNGConfig,
+                private plansService: PlanService) { }
 
   ngOnInit() {
       // this.productService.getProducts().then(data => this.products = data);
+      
+    this.plansService.getPlans()
+      .subscribe(
+        resp => {
+          this.products = resp;
+          console.log(resp)
+        }
+      )
+      
 
       this.sortOptions = [
         {label: 'Price High to Low', value: '!price'},

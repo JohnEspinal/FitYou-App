@@ -95,24 +95,24 @@
         <p-card>
           <div class="product-list-item">
             <div class="product-list-detail">
-              <div class="product-name">{{ product.name }}</div>
-              <div class="product-description">{{ product.description }}</div>
+              <div class="product-name">{{ product.Title }}</div>
+              <div class="product-description">{{ product.Description }}</div>
               <i class="pi pi-tag product-category-icon"></i
-              ><span class="product-category">{{ product.category }}</span>
+              ><span class="product-category">{{ product.Title }}</span>
             </div>
             <div class="product-list-action">
-              <span class="product-price">${{ product.price }}</span>
+              <span class="product-price">${{ product.Title }}</span>
               <p-button
                 icon="pi pi-shopping-cart"
                 label="Add to Cart"
-                [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
+                [disabled]="product.Title === 'OUTOFSTOCK'"
               ></p-button>
               <span
                 [class]="
                   'product-badge status-' +
-                  product.inventoryStatus.toLowerCase()
+                  product.Title.toLowerCase()
                 "
-                >{{ product.inventoryStatus }}</span
+                >{{ product.Title }}</span
               >
             </div>
           </div>
@@ -125,21 +125,21 @@
           <div class="product-grid-item-top">
             <div>
               <i class="pi pi-tag product-category-icon"></i>
-              <span class="product-category">{{ product.category }}</span>
+              <span class="product-category">{{ product.Title }}</span>
             </div>
             <span
               [class]="
-                'product-badge status-' + product.inventoryStatus.toLowerCase()
+                'product-badge status-' + product.Title.toLowerCase()
               "
-              >{{ product.inventoryStatus }}</span
+              >{{ product.Title }}</span
             >
           </div>
           <div class="product-grid-item-content">
-            <div class="product-name">{{ product.name }}</div>
-            <div class="product-description">{{ product.description }}</div>
+            <div class="product-name">{{ product.Title }}</div>
+            <div class="product-description">{{ product.Description }}</div>
           </div>
           <div class="product-grid-item-bottom">
-            <span class="product-price">${{ product.price }}</span>
+            <span class="product-price">${{ product.Title }}</span>
             <p-button
               icon="pi pi-shopping-cart"
               [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"

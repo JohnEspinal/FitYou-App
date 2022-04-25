@@ -9,10 +9,6 @@ import {DialogModule} from 'primeng/dialog';
 import {RatingModule} from 'primeng/rating';
 import {RippleModule} from 'primeng/ripple';
 import {DropdownModule} from 'primeng/dropdown';
-
-import {CalendarModule} from 'primeng/calendar';
-import {TreeSelectModule } from 'primeng/treeselect';
-import {CheckboxModule} from 'primeng/checkbox';
 import {CalendarModule} from 'primeng/calendar';
 import {TreeSelectModule } from 'primeng/treeselect';
 import {CheckboxModule} from 'primeng/checkbox';
