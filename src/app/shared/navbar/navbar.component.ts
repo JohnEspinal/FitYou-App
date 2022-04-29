@@ -4,8 +4,7 @@ import { MenuItem } from 'primeng/api/menuitem';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class NavbarComponent implements OnInit {
 
@@ -55,6 +54,11 @@ export class NavbarComponent implements OnInit {
                 label: 'Compañias',
                 icon: 'pi pi-briefcase',
                 routerLink: '/plans/company'
+            },
+            {
+                label:'Mapa',
+                icon: 'pi pi-map',
+                routerLink:'map/map'
             }
         ];
   }
