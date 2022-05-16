@@ -17,7 +17,7 @@ export class AddPlanComponent implements OnInit {
 
   myForm: FormGroup = this.fb.group({
     title: [
-      'New plan from Angu',
+      'New plan',
       Validators.required
     ],
     typeOfPlan: [
@@ -49,7 +49,7 @@ export class AddPlanComponent implements OnInit {
       Validators.required
     ],
     description: [
-      'Hola soy la description',
+      'Descripcion del plan',
       Validators.required
     ]
   })
