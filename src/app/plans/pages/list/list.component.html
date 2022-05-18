@@ -1,68 +1,6 @@
-<!-- <div class="grid" style="margin: 50px">
-  <div class="col-2" style="text-align: center">
-    <div>
-      <p-card>
-        <ng-template pTemplate="header"> Planes </ng-template>
-        Descripcion de los planes
-        <ng-template pTemplate="footer"> price: $400 </ng-template>
-      </p-card>
-    </div>
-  </div>
-  <div class="col-2" style="text-align: center; width: 30rem">
-    <div>
-      <p-card>
-        <ng-template pTemplate="header"> Planes </ng-template>
-        Descripcion de los planes
-        <ng-template pTemplate="footer"> price: $400 </ng-template>
-      </p-card>
-    </div>
-  </div>
-  <div class="col-2" style="text-align: center">
-    <div>
-      <p-card>
-        <ng-template pTemplate="header"> Planes </ng-template>
-        Descripcion de los planes
-        <ng-template pTemplate="footer"> price: $400 </ng-template>
-      </p-card>
-    </div>
-  </div>
-  <div class="col-2" style="text-align: center">
-    <div>
-      <p-card>
-        <ng-template pTemplate="header"> Planes </ng-template>
-        Descripcion de los planes
-        <ng-template pTemplate="footer"> price: $400 </ng-template>
-      </p-card>
-    </div>
-  </div>
-  <div class="col-2" style="text-align: center">
-    <div>
-      <p-card>
-        <ng-template pTemplate="header"> Planes </ng-template>
-        Descripcion de los planes
-        <ng-template pTemplate="footer"> price: $400 </ng-template>
-      </p-card>
-    </div>
-  </div>
-  <div class="col-2" style="text-align: center">
-    <div>
-      <p-card>
-        <ng-template pTemplate="header"> Planes </ng-template>
-        Descripcion de los planes
-        <ng-template pTemplate="footer"> price: $400 </ng-template>
-      </p-card>
-    </div>
-  </div>
-  <div class="col-2" style="text-align: center">
-    <div>
-      <p-card>
-        <ng-template pTemplate="header"> Planes </ng-template>
-        Descripcion de los planes
-        <ng-template pTemplate="footer"> price: $400 </ng-template>
-      </p-card>
-    </div>
-  </div>
-</div> -->
+<div class="m-5">
+  <h1>Lista de planes</h1>
+
 
 <div class="card">
   <p-dataView
@@ -123,23 +61,25 @@
       <div class="p-col-12 p-md-4">
         <div class="product-grid-item card">
           <div class="product-grid-item-top">
-            <div>
-              <i class="pi pi-phone p-md-4"></i>
+            <!-- <div>
+              
               <span class="product-category">{{ product.Title }}</span>
-            </div>
-            <span
+            </div> -->
+            <!-- <span
               [class]="
                 'product-badge status-' + product.Title.toLowerCase()
               "
-              >{{ product.Title }}</span
-            >
+              >{{ product.Title }}</span> -->
           </div>
-          <div class="product-grid-item-content">
-            <div class="product-name">{{ product.Title }}</div>
+          <div  class="product-grid-item-content">
+            <div class="product-name"><i class="pi pi-phone p-md-4"></i>{{ product.Title }}</div>
+            <div class="m-5"> <h4>{{ product.Price | currency:'RD$ ' }}</h4> </div>
             <div class="product-description">{{ product.Description }}</div>
           </div>
         </div>
       </div>
     </ng-template>
   </p-dataView>
+</div>
+
 </div>

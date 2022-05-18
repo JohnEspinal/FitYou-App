@@ -98,7 +98,7 @@ export class AddPlanComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log(this.myForm);
     
   }
 
@@ -117,13 +117,33 @@ export class AddPlanComponent implements OnInit {
 
     console.log(newPlan);
 
+    this.myForm.reset({
+      Title: ''
+    });
+
+    console.log(this.myForm.value);
+
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('foo');
+      }, 300);
+    });
+
     this.Planservice.addPlan(newPlan)
       .subscribe(
-        resp => {console.log(resp)
-        Swal.fire("Creado!", `
+        resp => {
+          
+          console.log(resp)
+          Swal.fire("Creado!", `
           <h2>${this.myForm.value['title']}</h2>
           <p>Su plan fue creado satisfactoriamente!</p>
-        `, 'success')}
+          `, 'success',)
+            .then(
+              () => this.myForm.reset()
+            )
+
+        }
+
       )
 
   }

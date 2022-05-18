@@ -16,6 +16,10 @@ export class PlanService {
     return this.http.get<Plan[]>('https://localhost:44384/api/getPlans');
   }
 
+  getPlanById(id: number): Observable<Plan>{
+    return this.http.get<Plan>(`https://localhost:44384/api/GetPlanById/${id}`);
+  }
+
 
 
   getCompany(): Observable<Company[]>{
