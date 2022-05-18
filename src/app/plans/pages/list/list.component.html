@@ -69,7 +69,7 @@
     #dv
     [value]="products"
     [paginator]="true"
-    [rows]="9"
+    [rows]="3"
     filterBy="name"
     [sortField]="sortField"
     [sortOrder]="sortOrder"
@@ -91,7 +91,7 @@
       </div>
     </ng-template>
     <ng-template let-product pTemplate="listItem">
-      <div class="p-col-12">
+      <div class="p-col-12  p-md-4">
         <p-card>
           <div class="product-list-item">
             <div class="product-list-detail">
@@ -101,10 +101,10 @@
               ><span class="product-category">{{ product.Title }}</span>
             </div>
             <div class="product-list-action">
-              <span class="product-price">${{ product.Title }}</span>
+              <span class="product-price">{{ product.Title }}</span>
               <p-button
-                icon="pi pi-shopping-cart"
-                label="Add to Cart"
+                icon="pi pi-phone"
+                label="Planes"
                 [disabled]="product.Title === 'OUTOFSTOCK'"
               ></p-button>
               <span
@@ -124,7 +124,7 @@
         <div class="product-grid-item card">
           <div class="product-grid-item-top">
             <div>
-              <i class="pi pi-tag product-category-icon"></i>
+              <i class="pi pi-phone p-md-4"></i>
               <span class="product-category">{{ product.Title }}</span>
             </div>
             <span
@@ -137,13 +137,6 @@
           <div class="product-grid-item-content">
             <div class="product-name">{{ product.Title }}</div>
             <div class="product-description">{{ product.Description }}</div>
-          </div>
-          <div class="product-grid-item-bottom">
-            <span class="product-price">${{ product.Title }}</span>
-            <p-button
-              icon="pi pi-shopping-cart"
-              [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
-            ></p-button>
           </div>
         </div>
       </div>

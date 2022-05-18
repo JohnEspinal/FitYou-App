@@ -26,171 +26,37 @@ export class ListComponent implements OnInit {
     AdministratorId:1,
     CompanyId:1
 
+  },
+  {
+    Id:1,
+    Title:"Internet Movil 20GB",
+    Description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    TypeOfPlan:"M",
+    CreateDate:"2022-01-15T00:00:00",
+    ActiveTime:"Un mes",
+    Price:1400.00,
+    Currency:"DOP",
+    Administrator:null,
+    AdministratorId:1,
+    CompanyId:1
+
+  },
+  {
+    Id:3,
+    Title:"Internet Movil 200GB",
+    Description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    TypeOfPlan:"M",
+    CreateDate:"2022-01-15T00:00:00",
+    ActiveTime:"Un mes",
+    Price:1900.00,
+    Currency:"DOP",
+    Administrator:null,
+    AdministratorId:1,
+    CompanyId:1
+
   }]
-  productss: Product[] = [{
-
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },{
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },
-  {
-    id:"123",
-    code:"123",
-    name:"pedro",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },
-  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },
-  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  },  {
-    id:"123",
-    code:"123",
-    name:"jose",
-    description:"wefwerewrewrwerwerew",
-    price:123123,
-    quantity:12123123,
-    inventoryStatus:"string",
-    category:"string",
-    image:"string",
-    rating:123213213,
-
-  }];
 
   sortOptions: SelectItem[] = [];
-
 
   sortOrder: number = 0;
 
