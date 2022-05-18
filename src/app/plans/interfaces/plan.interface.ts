@@ -6,6 +6,11 @@ export interface Company {
     Name:           string;
 }
 
+export interface TypesOfPlans {
+    label: string;
+    value: string;
+}
+
 export interface CompanyDetail {
     Id:           number;
     CompanyId:    number;

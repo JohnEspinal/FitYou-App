@@ -1,60 +1,80 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanService } from '../../services/plans.service';
-import { Company, PlanPost } from '../../interfaces/plan.interface';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Company, PlanPost, TypesOfPlans } from '../../interfaces/plan.interface';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+
+
+
 
 @Component({
   selector: 'app-add-plan',
   templateUrl: './add-plan.component.html',
-  styles: [
+  styles: [`
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+  
+  `
   ]
 })
 export class AddPlanComponent implements OnInit {
 
-
+  MyRegex: RegExp = /\w{3}/;
   plan!: PlanPost;
+
+  companies!: Company[];
+
+  selectedCompany!: Company;
+
+  typeOfPlans: TypesOfPlans[] = [
+    { 
+      label: 'Internet',
+      value: 'I'
+    },
+    { 
+      label: 'Telecable',
+      value: 'C'
+    },
+    { 
+      label: 'Telefono',
+      value: 'T'
+    }
+  ]
+
 
   myForm: FormGroup = this.fb.group({
     title: [
-      'New plan from Angu',
+      '',
       Validators.required
     ],
     typeOfPlan: [
-      'M',
-      Validators.required
-    ],
-    createDate: [
-      '2022-04-13',
-      Validators.required
-    ],
-    activeTime: [
-      '4 meses',
-      Validators.required
+      '',
+      [Validators.required]
     ],
     price: [
-      7800,
-      Validators.required
+      0,
+      [Validators.required, Validators.min(1)]
     ],
     companyId: [
-      '1',
+      '',  // number
       Validators.required
     ],
     currency: [
-      'DOP',
-      Validators.required
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(3)]
     ],
     AdministratorId: [
-      '1',
+      1,
       Validators.required
     ],
     description: [
-      'Hola soy la description',
+      '',
       Validators.required
     ]
   })
   
-  company! : Company[];
 
   constructor(
     private fb: FormBuilder,
@@ -63,9 +83,18 @@ export class AddPlanComponent implements OnInit {
 
     this.Planservice.getCompany()
       .subscribe(
-        resp => this.company = resp
+        companies => {
+          this.companies = companies
+        }
       )
 
+  }
+
+  isFieldInvalid( fieldName: string ){
+
+    const control: AbstractControl = this.myForm.controls[fieldName];
+
+    return control.invalid && control.touched
   }
 
   ngOnInit(): void {
@@ -73,9 +102,22 @@ export class AddPlanComponent implements OnInit {
     
   }
 
-  agregar(){
-    console.log(this.plan);
-    this.Planservice.addPlan(this.myForm.value)
+
+
+  add(){
+
+    this.myForm.markAllAsTouched();
+
+    if(this.myForm.invalid){
+      return;
+    }
+
+
+    const newPlan: PlanPost = {...this.myForm.value, createDate: new Date().toLocaleDateString('en-CA')}
+
+    console.log(newPlan);
+
+    this.Planservice.addPlan(newPlan)
       .subscribe(
         resp => {console.log(resp)
         Swal.fire("Creado!", `

@@ -1,110 +1,97 @@
-<h1>Agregar Plan</h1>
-<hr/>
 
-<form [formGroup]="myForm">
-    <div class="grid p-fluid">
-        <div class="col-12 md:col-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-briefcase"></i></span>
-                <input  type="text" 
-                        pInputText 
-                        placeholder="Titulo"
-                        formControlName="title">         
-            </div>
-        </div>
-        
-        <div class="col-12 md:col-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-sliders-v"></i></span>
-                <input  type="text" pInputText 
-                        placeholder="Tipo de plan"
-                        formControlName="typeOfPlan">        
-            </div>
-        </div>
-                
-        <div class="col-12 md:col-4">
-            <span class="p-inputgroup"></span>
-            <p-calendar  id="date1" 
-                        [showIcon]="true" 
-                        [readonlyInput]="true" 
-                        [required]="true" 
-                        formControlName="createDate"></p-calendar>
-        </div>
-    </div>
-    
-    <div class="grid p-fluid">
-        <div class="col-12 md:col-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-clock"></i></span>
-                <input  type="text" pInputText 
-                        placeholder="Tiempo activo"
-                        formControlName="activeTime">         
-            </div>
-        </div>
-        
-        <div class="col-12 md:col-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">$</span>
-                <input  type="number" 
-                        pInputText placeholder="Precio"
-                        formControlName="price">        
-            </div>
-        </div>
-                
-        <div class="col-9 md:col-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
-                <input  type="text" pInputText 
-                        placeholder="Compañia"
-                        formControlName="companyId">         
-            </div>
-        </div>
+<!-- <div>
+    form:
+</div>
 
-        <div class="col-9 md:col-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
-                <input  type="text" pInputText 
-                        placeholder="Currency"
-                        formControlName="currency">         
-            </div>
-        </div>
-        <div class="col-9 md:col-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
-                <input  type="text" pInputText 
-                        placeholder="Description"
-                        formControlName="description">         
-            </div>
-        </div>
+<pre class="ml-5">{{this.myForm.value | json}}</pre> -->
 
-        <div class="col-9 md:col-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
-                <input  type="text" pInputText 
-                        placeholder="AdministratorId"
-                        formControlName="AdministratorId">         
-            </div>
-        </div>
-
-        
-    </div>
-
-    
+<form [formGroup]="myForm" class="container mt-5">
+    <h1>Agregar Plan</h1>
+    <hr />
     <div class="row">
 
-        <div class="col-2 flex-auto" *ngFor="let item of company" >
-            <p-checkbox aria-selected="true" name="groupname" inputId="company" value="item.Id" ></p-checkbox>
-            <label for="company"> {{item.Name}}</label>
-        </div>
-
-    </div>
-
-    <!-- <pre>{{myForm.value | json}}</pre> -->
-
-    <div class="row mt-5">
         <div class="col">
-            <button (click)="agregar()" pButton label="Agregar" icon="pi pi-check"></button>
+
+            <!-- Title -->
+
+            <div class="mb-3">
+
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-briefcase"></i></span>
+                    <input type="text" pInputText placeholder="Titulo" formControlName="title">
+                </div>
+                <span *ngIf="this.isFieldInvalid('title')" class="text-danger"> El titulo es requerido </span>
+
+            </div>
+
+            <!-- Type of plan -->
+
+            <div class="mb-3">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">$</span>
+                    <input type="number" pInputText placeholder="Precio" formControlName="price">
+                </div>
+                <span *ngIf="this.isFieldInvalid('price')"  class="text-danger"> El precio es requerido y debe ser igual o mayor a 0. </span>
+            </div>
+
+            <div class="mb-3">
+                <h6 class="ml-2">Tipo de compañía:</h6>
+
+                <p-dropdown class="col" placeholder="-- Seleccione una compañía --" [options]="companies" formControlName="companyId" optionLabel="Name" optionValue="Id"></p-dropdown>
+
+                <div class="row">
+                    <span *ngIf="this.isFieldInvalid('companyId')"  class="text-danger"> La compañía es requerida. </span>
+                </div>
+            </div>
         </div>
+
+
+
+        <div class="col">
+
+            <div class="mb-3">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                    <input type="text" pInputText placeholder="Currency, Ex: DOP, USD..." formControlName="currency">
+                </div>
+                <span *ngIf="this.isFieldInvalid('currency')"  class="text-danger"> La moneda es requerida y debe tener 3 caracteres, ej: DOP. </span>
+            </div>
+
+
+            <div class="mb-3">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                    <input type="text" pInputText placeholder="Description" formControlName="description">
+                </div>
+                <span *ngIf="this.isFieldInvalid('description')"  class="text-danger"> La descripción es requerida. </span>
+            </div>
+
+            <div class="mb-3">
+
+                <h6 class="ml-2">Tipo de plan:</h6>
+
+                <p-dropdown class="col" placeholder="-- Seleccione un tipo de plan --" [options]="typeOfPlans" formControlName="typeOfPlan" optionLabel="label" optionValue="value"></p-dropdown>
+
+                <div class="row">
+                    <span *ngIf="this.isFieldInvalid('typeOfPlan')" class="text-danger"> El tipo de plan es requerido </span>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <!-- Uncomment this line to know the current value of the form -->
+
+        <!-- <pre>{{this.myForm.value | json}}</pre> -->
+
+
+        <div class="row mt-5">
+            <div class="col-offset-11">
+                <button (click)="add()" pButton label="Agregar" class="float-right" icon="pi pi-check"></button>
+                
+            </div>
+        </div>
+
     </div>
 </form>
-
