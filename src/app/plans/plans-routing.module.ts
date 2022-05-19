@@ -5,6 +5,7 @@ import { AddPlanComponent } from './pages/add-plan/add-plan.component';
 import { PlanComparisonComponent } from './pages/plan-comparison/plan-comparison.component';
 import { ViewPlanComponent } from './pages/view-plan/view-plan.component';
 import { CompanyComponent } from './pages/company/company.component';
+import { AboutComponent } from './pages/about/about.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path:'company',
         component: CompanyComponent
+      },
+      {
+        path:'about',
+        component: AboutComponent
       },
       {
         path: '**',

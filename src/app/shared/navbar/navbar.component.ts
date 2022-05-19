@@ -43,12 +43,9 @@ export class NavbarComponent implements OnInit {
                 routerLink: '/plans/comparison'
             },
             {
-                label: 'Detalles de proyecto',
-                icon: 'pi pi-briefcase'
-            },
-            {
                 label: 'Acerca de',
-                icon: 'pi pi-users'
+                icon: 'pi pi-users',
+                routerLink: '/plans/about'
             },
             {
                 label: 'Compañias',

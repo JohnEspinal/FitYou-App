@@ -43,6 +43,8 @@ export class AddPlanComponent implements OnInit {
     }
   ]
 
+  typeOfPlan: string = '';
+
 
   myForm: FormGroup = this.fb.group({
     title: [
@@ -88,6 +90,26 @@ export class AddPlanComponent implements OnInit {
         }
       )
 
+    this.Planservice.getPlanById(1)
+        .subscribe(
+          (plan) => {
+            switch(plan.TypeOfPlan){
+              case 'I':
+                this.Planservice.getInternetPlanById(plan.Id)
+                break;
+              
+              case 'C':
+                this.Planservice.getTelecablePlanById(plan.Id)
+                break;
+
+              case 'T':
+                this.Planservice.getTelephonePlanById(plan.Id)
+                break;
+              
+            }
+          }
+        )
+
   }
 
   isFieldInvalid( fieldName: string ){
@@ -122,12 +144,6 @@ export class AddPlanComponent implements OnInit {
     });
 
     console.log(this.myForm.value);
-
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('foo');
-      }, 300);
-    });
 
     this.Planservice.addPlan(newPlan)
       .subscribe(

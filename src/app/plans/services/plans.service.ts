@@ -20,7 +20,17 @@ export class PlanService {
     return this.http.get<Plan>(`https://localhost:44384/api/GetPlanById/${id}`);
   }
 
+  getInternetPlanById(id: number): Observable<Plan>{
+    return this.http.get<Plan>(`https://localhost:44384/api/GetInternetById/${id}`);
+  }
 
+  getTelecablePlanById(id: number): Observable<Plan>{
+    return this.http.get<Plan>(`https://localhost:44384/api/GetTelecableById/${id}`);
+  }
+
+  getTelephonePlanById(id: number): Observable<Plan>{
+    return this.http.get<Plan>(`https://localhost:44384/api/GetTelephoneById/${id}`);
+  }
 
   getCompany(): Observable<Company[]>{
     return this.http.get<Company[]>("https://localhost:44384/api/getCompanies");
@@ -34,5 +44,7 @@ export class PlanService {
   deleteCompany(id : number) : Observable<string>{
     return this.http.delete<string>(`https://localhost:44384/api/deleteCompany/${id}`);
   }
+
+  
 
 }

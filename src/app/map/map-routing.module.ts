@@ -6,7 +6,7 @@ import { MapScreenComponent } from './screens/map-screen/map-screen.component';
 const routes: Routes = [
   {
     path: '',
-    children: [ { path: 'map' , component: ListaSucursalesComponent } , { path: '**' , redirectTo : 'map' } ]
+    children: [ { path: 'map' , component: MapScreenComponent } , { path: '**' , redirectTo : 'map' } ]
   }
 ];
 

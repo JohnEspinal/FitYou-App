@@ -9,6 +9,7 @@ import { PlanComparisonComponent } from './pages/plan-comparison/plan-comparison
 import { PlansRoutingModule } from './plans-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyComponent } from './pages/company/company.component';
+import { AboutComponent } from './pages/about/about.component';
 
 
 
@@ -19,7 +20,8 @@ import { CompanyComponent } from './pages/company/company.component';
     AddPlanComponent,
     ListComponent,
     PlanComparisonComponent,
-    CompanyComponent
+    CompanyComponent,
+    AboutComponent
    
   ],
   imports: [
