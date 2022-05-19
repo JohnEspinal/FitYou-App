@@ -1,0 +1,8 @@
+<app-loading *ngIf="!isUserLocationReady; else divMap"></app-loading>
+
+<ng-template #divMap>
+    
+    <app-map-view></app-map-view>
+
+</ng-template>
+

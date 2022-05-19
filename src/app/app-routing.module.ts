@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./plans/plans.module').then( m => m.PlansModule)
   },
   {
+    path: 'map',
+    loadChildren: () => import('./map/map.module').then(m => m.MapModule)
+  },
+  {
     path: '**',
     component: ErrorComponent
   }
