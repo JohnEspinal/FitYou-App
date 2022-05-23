@@ -1,85 +1,105 @@
+<div class="grid">
+  <div style="background-color: #023e8a" class="background col p-0 m-0">
+    <div class="grid">
+      <div
+        class="col"
+        style="
+          color: whitesmoke;
+          margin-top: 150px;
+          font-size: larger;
+          text-align: center;
+        "
+      >
+        <h1>Lista de planes</h1>
+        <p class="mb-8" style="font-size: larger">
+          La mejor solución para tí, está en tus manos, está en FitYou.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="m-5">
-  <h1>Lista de planes</h1>
-
-
-<div class="card">
-  <p-dataView
-    #dv
-    [value]="products"
-    [paginator]="true"
-    [rows]="3"
-    filterBy="name"
-    [sortField]="sortField"
-    [sortOrder]="sortOrder"
-    layout="grid"
-  >
-    <ng-template pTemplate="header">
-      <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-        <p-dropdown
-          [options]="sortOptions"
-          placeholder="Sort By Price"
-          (onChange)="onSortChange($event)"
-          styleClass="p-mb-2 p-mb-md-0"
-        ></p-dropdown>
-        <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-          <i class="pi pi-search"></i>
-          <input type="search" pInputText placeholder="Search by Name" />
-        </span>
-        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-      </div>
-    </ng-template>
-    <ng-template let-product pTemplate="listItem">
-      <div class="p-col-12  p-md-4">
-        <p-card>
-          <div class="product-list-item">
-            <div class="product-list-detail">
-              <div class="product-name">{{ product.Title }}</div>
-              <div class="product-description">{{ product.Description }}</div>
-              <i class="pi pi-tag product-category-icon"></i
-              ><span class="product-category">{{ product.Title }}</span>
+  <div class="card">
+    <p-dataView
+      #dv
+      [value]="products"
+      [paginator]="true"
+      [rows]="3"
+      filterBy="name"
+      [sortField]="sortField"
+      [sortOrder]="sortOrder"
+      layout="grid"
+    >
+      <ng-template pTemplate="header">
+        <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+          <p-dropdown
+            class="m-2"
+            [options]="sortOptions"
+            placeholder="Sort By Price"
+            (onChange)="onSortChange($event)"
+            styleClass="p-mb-2 p-mb-md-0"
+          ></p-dropdown>
+          <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+            <i class="pi pi-search"></i>
+            <input type="search" pInputText placeholder="Search by Name" />
+          </span>
+          <p-dataViewLayoutOptions class="m-2"></p-dataViewLayoutOptions>
+        </div>
+      </ng-template>
+      <ng-template let-product pTemplate="listItem">
+        <div class="p-col-12 p-md-4">
+          <p-card>
+            <div class="product-list-item">
+              <div class="product-list-detail">
+                <div class="product-name">{{ product.Title }}</div>
+                <div class="product-description">{{ product.Description }}</div>
+                <i class="pi pi-tag product-category-icon"></i
+                ><span class="product-category">{{ product.Title }}</span>
+              </div>
+              <div class="product-list-action">
+                <span class="product-price">{{ product.Title }}</span>
+                <p-button
+                  icon="pi pi-phone"
+                  label="Planes"
+                  [disabled]="product.Title === 'OUTOFSTOCK'"
+                ></p-button>
+                <span
+                  [class]="
+                    'product-badge status-' + product.Title.toLowerCase()
+                  "
+                  >{{ product.Title }}</span
+                >
+              </div>
             </div>
-            <div class="product-list-action">
-              <span class="product-price">{{ product.Title }}</span>
-              <p-button
-                icon="pi pi-phone"
-                label="Planes"
-                [disabled]="product.Title === 'OUTOFSTOCK'"
-              ></p-button>
-              <span
-                [class]="
-                  'product-badge status-' +
-                  product.Title.toLowerCase()
-                "
-                >{{ product.Title }}</span
-              >
-            </div>
-          </div>
-        </p-card>
-      </div>
-    </ng-template>
-    <ng-template let-product pTemplate="gridItem">
-      <div class="p-col-12 p-md-4">
-        <div class="product-grid-item card">
-          <div class="product-grid-item-top">
-            <!-- <div>
+          </p-card>
+        </div>
+      </ng-template>
+      <ng-template let-product pTemplate="gridItem">
+        <div class="p-col-12 p-md-4">
+          <div class="product-grid-item card">
+            <div class="product-grid-item-top">
+              <!-- <div>
               
               <span class="product-category">{{ product.Title }}</span>
             </div> -->
-            <!-- <span
+              <!-- <span
               [class]="
                 'product-badge status-' + product.Title.toLowerCase()
               "
               >{{ product.Title }}</span> -->
-          </div>
-          <div  class="product-grid-item-content">
-            <div class="product-name"><i class="pi pi-phone p-md-4"></i>{{ product.Title }}</div>
-            <div class="m-5"> <h4>{{ product.Price | currency:'RD$ ' }}</h4> </div>
-            <div class="product-description">{{ product.Description }}</div>
+            </div>
+            <div class="product-grid-item-content">
+              <div class="product-name">
+                <i class="pi pi-phone p-md-4"></i>{{ product.Title }}
+              </div>
+              <div class="m-5">
+                <h4>{{ product.Price | currency: "RD$ " }}</h4>
+              </div>
+              <div class="product-description">{{ product.Description }}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </ng-template>
-  </p-dataView>
-</div>
-
+      </ng-template>
+    </p-dataView>
+  </div>
 </div>
