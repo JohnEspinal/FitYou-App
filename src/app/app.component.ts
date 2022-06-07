@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
+import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,13 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent implements OnInit {
   title = 'FitYouApp';
 
-  constructor( private primengConfig: PrimeNGConfig){
+  get isInAuth(): boolean{
+
+    return this.router.url.includes('auth');
+  }
+
+  constructor(  private primengConfig: PrimeNGConfig,
+                private router: Router){
 
   }
 

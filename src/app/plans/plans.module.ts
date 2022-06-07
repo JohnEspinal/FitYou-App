@@ -10,6 +10,7 @@ import { PlansRoutingModule } from './plans-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyComponent } from './pages/company/company.component';
 import { AboutComponent } from './pages/about/about.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -22,13 +23,13 @@ import { AboutComponent } from './pages/about/about.component';
     PlanComparisonComponent,
     CompanyComponent,
     AboutComponent
-   
   ],
   imports: [
     CommonModule,
     PrimeNgModule,
     PlansRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class PlansModule { }

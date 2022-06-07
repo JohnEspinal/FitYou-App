@@ -1,6 +1,12 @@
-<form action="" autocomplete="off" >
+<form [formGroup]="myForm" autocomplete="off" >
     <main class="login-design">
-        <div class="image"></div>
+        <div class="image">
+            <div style="margin-left: 45%; margin-top: 50%; color: aliceblue;" >
+            
+                <!-- <p-button label="Ir a inicio" className="p-button-success"></p-button> -->
+                <button (click)="goHome()" pButton type="button" label="Ir a inicio" class="p-button-primary p-button-raised p-button-rounded"></button>
+            </div>
+        </div>
         <div class="login">
             <div class="login-data">
                 <img src="assets/FitYou LOGO.png" alt="">
@@ -8,20 +14,23 @@
                 <form action="#" class="login-form">
                     <div class="input-group">
                         <label class="input-fill">
-                            <input type="email" name="email" placeholder="Correo Electrónico" id="email" required>
+                            <input formControlName="username" name="email" placeholder="Nombre de usuario" id="email" required>
                             <i class="fa-solid fa-envelope"></i>
                         </label>
                     </div>
                     <div class="input-group">
                         <label class="input-fill">
-                            <input type="password" name="password" placeholder="contraseña" id="password" required>
+                            <input formControlName="password" name="password" type="password" placeholder="Contraseña" id="password" required>
                             <i class="fa-solid fa-lock"></i>
                         </label>                        
                     </div>
-                    <a href="#">¿Necesitas una Cuenta?</a>
-                    <input type="submit" value="Iniciar Sesión" class="btn-login"/>
+                    <!-- <a href="#">¿Necesitas una Cuenta?</a> -->
+                    <p-button (click)="login()" >Iniciar Sesión</p-button> 
                 </form>
             </div>
         </div>
+
+        <!-- <pre>{{ this.myForm.value | json }}</pre> -->
+
     </main>
 </form>
