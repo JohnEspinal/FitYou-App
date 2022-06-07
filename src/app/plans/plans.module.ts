@@ -11,8 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyComponent } from './pages/company/company.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SharedModule } from '../shared/shared.module';
-
-
+import { NgForm } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,14 +21,14 @@ import { SharedModule } from '../shared/shared.module';
     ListComponent,
     PlanComparisonComponent,
     CompanyComponent,
-    AboutComponent
+    AboutComponent,
   ],
   imports: [
     CommonModule,
     PrimeNgModule,
     PlansRoutingModule,
     ReactiveFormsModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class PlansModule { }
+export class PlansModule {}

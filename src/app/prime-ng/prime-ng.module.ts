@@ -15,6 +15,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { DividerModule } from 'primeng/divider';
+import { FormsModule } from '@angular/forms';
+
 // import {MenuItem} from 'primeng/api';
 
 @NgModule({
@@ -36,6 +38,7 @@ import { DividerModule } from 'primeng/divider';
     CardModule,
     TableModule,
     DividerModule,
+    FormsModule,
   ],
 })
 export class PrimeNgModule {}
