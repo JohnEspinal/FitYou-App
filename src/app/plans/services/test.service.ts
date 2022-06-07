@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Product } from '../interfaces/product.interface';
+// import { Product } from '../interfaces/product.interface';
 
 @Injectable()
 export class ProductService {
@@ -50,12 +50,12 @@ export class ProductService {
     //     .then(data => { return data; });
     // }
 
-    getProducts() {
-        return this.http.get<any>('assets/products.json')
-        .toPromise()
-        .then(res => <Product[]>res.data)
-        .then(data => { return data; });
-    }
+    // getProducts() {
+    //     return this.http.get<any>('assets/products.json')
+    //     .toPromise()
+    //     .then(res => <Product[]>res.data)
+    //     .then(data => { return data; });
+    // }
 
     // getProductsWithOrdersSmall() {
     //     return this.http.get<any>('assets/products-orders-small.json')

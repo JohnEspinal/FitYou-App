@@ -6,6 +6,7 @@ import { PlanComparisonComponent } from './pages/plan-comparison/plan-comparison
 import { ViewPlanComponent } from './pages/view-plan/view-plan.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { AboutComponent } from './pages/about/about.component';
+import { AuthTokenGuard } from '../guards/auth-token.guard';
 
 
 const routes: Routes = [
@@ -18,7 +19,9 @@ const routes: Routes = [
       },
       {
         path: 'add',
-        component: AddPlanComponent
+        component: AddPlanComponent,
+        canActivate: [AuthTokenGuard],
+        canLoad: [AuthTokenGuard]
       },
       {
         path: 'comparison',
@@ -26,7 +29,9 @@ const routes: Routes = [
       },
       {
         path: 'edit/:id',
-        component: AddPlanComponent
+        component: AddPlanComponent,
+        canActivate: [AuthTokenGuard],
+        canLoad: [AuthTokenGuard]
       },
       {
         path: 'detail/:id',

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthTokenGuard } from './guards/auth-token.guard';
 import { HomeComponent } from './plans/pages/home/home.component';
 import { ErrorComponent } from './shared/error/error.component';
 
@@ -23,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: ErrorComponent
+    redirectTo: ''
   }
 ];
 
