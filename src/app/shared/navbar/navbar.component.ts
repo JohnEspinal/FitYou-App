@@ -55,8 +55,31 @@ export class NavbarComponent implements OnInit {
             {
                 label:'Mapa',
                 icon: 'pi pi-map',
-                routerLink:'map/map'
-            }
+                items: [
+                    {
+                        label: 'Buscar',
+                        icon : 'pi pi-search',
+                        routerLink:'map/map'
+                    },
+                    {
+                        label: 'Listado de Sucursales',
+                        icon : 'pi pi-list',
+                        routerLink: 'map/sucursal'
+                    }
+                ]
+                
+            },
+            {
+                label: 'Excel',
+                icon: 'pi pi-file',
+                items: [
+                    {
+                        label: 'Internet',
+                        icon: 'pi pi-bars',
+                        routerLink: '/excel/internet'
+                    }
+                ]
+            },
         ];
   }
 

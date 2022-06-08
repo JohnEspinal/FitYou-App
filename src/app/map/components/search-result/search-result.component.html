@@ -4,7 +4,7 @@
     <span>Espere por favor...</span>
 </div>
 
-<ul class="list-group mt-2" *ngIf="this.places.length > 0">
+<ul class="list-group mt-2 overflow-y-scroll" *ngIf="this.places.length > 0">
 
     <li class="list-group-item list-group-item-action pointer" 
         *ngFor="let item of places"
@@ -17,6 +17,7 @@
             {{ item.place_name }}
         </p>
         <button class="btn btn-sm"
+                (click)="getDirection(item)"
                 [ngClass]="(item.id === selectedid) ? 'btn-outline-light' : 'btn-outline-primary'"   >
             Direcciones
         </button>
