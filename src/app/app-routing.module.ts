@@ -8,28 +8,29 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    pathMatch: 'prefix'
+    pathMatch: 'prefix',
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'plans',
-    loadChildren: () => import('./plans/plans.module').then( m => m.PlansModule)
+    loadChildren: () =>
+      import('./plans/plans.module').then((m) => m.PlansModule),
   },
   {
     path: 'map',
-    loadChildren: () => import('./map/map.module').then(m => m.MapModule)
+    loadChildren: () => import('./map/map.module').then((m) => m.MapModule),
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -8,58 +8,53 @@ import { CompanyComponent } from './pages/company/company.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AuthTokenGuard } from '../guards/auth-token.guard';
 
-
 const routes: Routes = [
   {
     path: '',
     children: [
       {
         path: 'all',
-        component: ListComponent
+        component: ListComponent,
       },
       {
         path: 'add',
         component: AddPlanComponent,
         canActivate: [AuthTokenGuard],
-        canLoad: [AuthTokenGuard]
+        canLoad: [AuthTokenGuard],
       },
       {
-        path: 'comparison',
-        component: PlanComparisonComponent
+        path: 'comparison/:planId',
+        component: PlanComparisonComponent,
       },
       {
         path: 'edit/:id',
         component: AddPlanComponent,
         canActivate: [AuthTokenGuard],
-        canLoad: [AuthTokenGuard]
+        canLoad: [AuthTokenGuard],
       },
       {
         path: 'detail/:id',
-        component: ViewPlanComponent
+        component: ViewPlanComponent,
       },
       {
-        path:'company',
-        component: CompanyComponent
+        path: 'company',
+        component: CompanyComponent,
       },
       {
-        path:'about',
-        component: AboutComponent
+        path: 'about',
+        component: AboutComponent,
       },
       {
         path: '**',
-        redirectTo: 'all'
-      }
-    ]
-  }
-]
+        redirectTo: 'all',
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    RouterModule.forChild( routes )
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class PlansRoutingModule { }
+export class PlansRoutingModule {}

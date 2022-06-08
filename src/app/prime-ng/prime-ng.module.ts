@@ -16,6 +16,9 @@ import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { DividerModule } from 'primeng/divider';
 import { FormsModule } from '@angular/forms';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ToastModule } from 'primeng/toast';
+import { SplitterModule } from 'primeng/splitter';
 
 // import {MenuItem} from 'primeng/api';
 
@@ -39,6 +42,9 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     DividerModule,
     FormsModule,
+    DynamicDialogModule,
+    ToastModule,
+    SplitterModule,
   ],
 })
 export class PrimeNgModule {}

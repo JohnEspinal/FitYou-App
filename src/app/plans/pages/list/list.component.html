@@ -24,11 +24,13 @@
       #dv
       [value]="products"
       [paginator]="true"
-      [rows]="9"
+      [rows]="3"
       filterBy="name"
       [sortField]="sortField"
       [sortOrder]="sortOrder"
       layout="grid"
+      (onLazyLoad)="onSortChange($event)"
+      filterBy="Title"
     >
       <ng-template pTemplate="header">
         <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
@@ -40,7 +42,12 @@
           ></p-dropdown>
           <span class="p-input-icon-left p-mb-2 p-mb-md-0">
             <i class="pi pi-search"></i>
-            <input type="search" pInputText placeholder="Search by Name" />
+            <input
+              type="search"
+              pInputText
+              placeholder="Search by Name"
+              (input)="dv.filter($any($event.target).value, 'contains')"
+            />
           </span>
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
         </div>
@@ -58,9 +65,9 @@
               <div class="product-list-action">
                 <span class="product-price">{{ product.Title }}</span>
                 <p-button
-                  icon="pi pi-phone"
-                  label="Planes"
-                  [disabled]="product.Title === 'OUTOFSTOCK'"
+                  icon="pi pi-search"
+                  label="Comparar"
+                  (click)="planByID(product.Id)"
                 ></p-button>
                 <span
                   [class]="
@@ -77,15 +84,13 @@
         <div class="p-col-12 p-md-4">
           <div class="product-grid-item card">
             <div class="product-grid-item-top">
-              <!-- <div>
-              
-              <span class="product-category">{{ product.Title }}</span>
-            </div> -->
-              <!-- <span
-              [class]="
-                'product-badge status-' + product.Title.toLowerCase()
-              "
-              >{{ product.Title }}</span> -->
+              <div>
+                <span class="product-category">{{ product.Title }}</span>
+              </div>
+              <span
+                [class]="'product-badge status-' + product.Title.toLowerCase()"
+                >{{ product.Title }}</span
+              >
             </div>
             <div class="product-grid-item-content">
               <div class="product-name">
