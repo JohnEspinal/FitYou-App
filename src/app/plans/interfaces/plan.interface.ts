@@ -37,7 +37,7 @@ export interface Plan {
 
 
 export interface PlanPost {
-    Title:           string;
+    title:           string;
     Description:     string;
     TypeOfPlan:      string;
     CreateDate:      Date;

@@ -137,21 +137,12 @@ export class AddPlanComponent implements OnInit {
 
     const newPlan: PlanPost = {...this.myForm.value, createDate: new Date().toLocaleDateString('en-CA')}
 
-    console.log(newPlan);
-
-    this.myForm.reset({
-      Title: ''
-    });
-
-    console.log(this.myForm.value);
-
     this.Planservice.addPlan(newPlan)
       .subscribe(
         resp => {
           
-          console.log(resp)
           Swal.fire("Creado!", `
-          <h2>${this.myForm.value['title']}</h2>
+          <h2>${newPlan.title}</h2>
           <p>Su plan fue creado satisfactoriamente!</p>
           `, 'success',)
             .then(
