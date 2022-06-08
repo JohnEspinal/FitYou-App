@@ -67,6 +67,7 @@ export class PlacesService {
         proximity : this.userLocation.join(",")
       }
     }).subscribe( resp => {
+        console.log(resp);
         this.isLoadingPlaces = false;
         this.places = resp.features;
         this.mapservice.createMarkersfromplaces(this.places,this.userLocation!);
@@ -85,5 +86,11 @@ export class PlacesService {
   getCompanyByID(id : number) : Observable<Company[]>{
     return this.http.get<Company[]>(`https://localhost:44384/api/getCompanyById/${id}`);
   }
+
+  // getPlacesByQuery(query : string){
+  //   this.http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?country=do&proximity=-70.61676567160748%2C19.029725132227398&language=es%2Cen&access_token=pk.eyJ1Ijoid2FsYXNlIiwiYSI6ImNrenBycXV6ZjBkbW4ydm9heGZrd2E2eWwifQ.96ILgOttK0FZpDYURkGsrQ`)
+  //                 .subscribe(console.log);
+    
+  // }
 
 }

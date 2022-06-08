@@ -139,8 +139,8 @@ export class MapService {
         "line-join" : 'round'
       },
       paint : {
-        "line-color" : 'black',
-        "line-width" : 3
+        "line-color" : '#63CDF2',
+        "line-width" : 5
       }
     });
 

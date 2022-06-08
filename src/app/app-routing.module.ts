@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./map/map.module').then((m) => m.MapModule),
   },
   {
+    path: 'excel',
+    loadChildren: () => import('./excelplans/excelplans.module').then(m => m.ExcelplansModule)
+  },
+  {
     path: '**',
     redirectTo: '',
   },
