@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { PlanService } from '../../services/plans.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -22,22 +23,17 @@ import { PlanService } from '../../services/plans.service';
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private plansService: PlanService) {
+    constructor(private plansService: PlanService,
+                private router: Router) {
     }
 
     goToAboutUs() {
-        this.plansService.getPlans()
-            .subscribe(
-                resp => {
-                    console.log(resp);
-                }
-            )
-            this.plansService.getCompany()
-            .subscribe(
-                resp => {
-                    console.log(resp);
-                }
-            )
+        console.log("Click")
+        this.router.navigate(['plans/about']);
+    }
+    gotocompare() {
+        console.log("Click")
+        this.router.navigate(['plans/all']);
     }
 
     ngOnInit() {

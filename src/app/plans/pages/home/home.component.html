@@ -19,6 +19,7 @@
           pButton
           class="p-button-raised p-button-secondary"
           label="Leer más..."
+          (click)="goToAboutUs()"
         ></button>
 
         <span style="margin: 15px"></span>
@@ -28,6 +29,7 @@
           icon="pi pi-clone"
           class="p-button-raised p-button-secondary"
           label="Comparar"
+          (click)="gotocompare()"
         ></button>
       </div>
     </div>
@@ -102,6 +104,7 @@
         pRipple
         class="p-button-raised p-button-secondary"
         label="Quiero ver!"
+        (click)="gotocompare()"
       ></button>
     </div>
   </div>
@@ -120,6 +123,7 @@
         pRipple
         class="p-button-raised p-button-primary"
         label="Quiero ver!"
+        (click)="gotocompare()"
       ></button>
     </div>
   </div>
@@ -149,6 +153,7 @@
         pRipple
         class="p-button-raised p-button-secondary"
         label="Quiero ver!"
+        (click)="gotocompare()"
       ></button>
     </div>
   </div>

@@ -84,17 +84,17 @@ export class NavbarComponent implements OnInit {
                             icon: 'pi pi-map',
                             routerLink:'map/map'
                         }]: []),
-                        {
-                            label: 'Excel',
-                            icon: 'pi pi-file',
-                            items: [
-                                {
-                                    label: 'Internet',
-                                    icon: 'pi pi-bars',
-                                    routerLink: '/excel/internet'
-                                }
-                            ]
-                        },
+                        // {
+                        //     label: 'Excel',
+                        //     icon: 'pi pi-file',
+                        //     items: [
+                        //         {
+                        //             label: 'Internet',
+                        //             icon: 'pi pi-bars',
+                        //             routerLink: '/excel/internet'
+                        //         }
+                        //     ]
+                        // },
                     ];
                 }
             )

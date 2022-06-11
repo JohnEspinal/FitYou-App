@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanService } from '../../services/plans.service';
 import { Company } from '../../interfaces/plan.interface';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-company',
@@ -9,16 +10,26 @@ import { Company } from '../../interfaces/plan.interface';
 })
 export class CompanyComponent implements OnInit {
 
-  Company : Company[];
+  Company!: Company[];
+
+  isUserLoggedIn!: boolean;
 
   constructor(
-    private planservice : PlanService
+    private planservice : PlanService,
+    private authService : AuthService
   ) { }
 
   ngOnInit(): void {
     this.planservice.getCompany().subscribe( response => {
       this.Company = response;
-    } )
+    } );
+
+    this.authService.validateToken()
+      .subscribe(
+        resp => this.isUserLoggedIn = resp
+      )
+
+    
   }
 
   eliminar(id : number){

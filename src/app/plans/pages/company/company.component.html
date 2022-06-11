@@ -32,6 +32,7 @@
         {{ item.Name }}
         <P class="float-end">
           <button
+            *ngIf="isUserLoggedIn"
             (click)="eliminar(item.Id)"
             pButton
             type="button"
