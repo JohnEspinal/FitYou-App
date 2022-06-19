@@ -12,6 +12,9 @@ import { CompanyComponent } from './pages/company/company.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SharedModule } from '../shared/shared.module';
 import { NgForm } from '@angular/forms';
+import { AddInternetComponent } from './pages/add-internet/add-internet.component';
+import { AddTelephoneComponent } from './pages/add-telephone/add-telephone.component';
+import { AddTelecableComponent } from './pages/add-telecable/add-telecable.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { NgForm } from '@angular/forms';
     PlanComparisonComponent,
     CompanyComponent,
     AboutComponent,
+    AddInternetComponent,
+    AddTelephoneComponent,
+    AddTelecableComponent,
   ],
   imports: [
     CommonModule,

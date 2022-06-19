@@ -27,38 +27,71 @@
   icon="pi pi-info-circle"
   label="Show"
 ></button> -->
-<div class="card">
-  <h5>Horizontal</h5>
-  <p-splitter [style]="{ height: '300px' }" styleClass="p-mb-5">
-    <ng-template pTemplate> Panel 1 </ng-template>
+<div class="m-5 p-3">
+  <h5>Planes: </h5>
+  <p-splitter [style]="{ height: '600px' }" styleClass="p-mb-5">
+    <ng-template pTemplate> 
+    
+      <div class="card">
+
+        
+        <p-dataView #dv [value]="plan1" filterBy="name" layout="grid">
+          <ng-template let-plan pTemplate="gridItem">
+            <div class="p-col-12 p-md-4">
+              <div class="plan-grid-item card p-3">
+                <div class="plan-grid-item-top">
+                  <span [class]="'plan-badge status-' + plan.Title.toLowerCase()">{{
+                    plan.Title
+                  }}</span>
+                </div>
+                <div class="plan-grid-item-content">
+                  <div class="plan-name">
+                    <i class="pi pi-phone p-md-4"></i>{{ plan.Title }}
+                  </div>
+                  <div class="m-5">
+                    <h4>{{ plan.price | currency: "RD$ " }}</h4>
+                  </div>
+                  <div class="plan-description">{{ plan.Description }}</div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-dataView>
+
+
+      </div>
+    
+    </ng-template>
     <ng-template pTemplate>
-      <div class="p-col p-d-flex p-ai-center p-jc-center">Panel 2</div>
+
+      <div class="card">
+        <p-dataView #dv [value]="plan2" filterBy="name" layout="grid">
+          <ng-template let-plan pTemplate="gridItem">
+            <div class="p-col-12 p-md-4">
+              <div class="plan-grid-item card p-3">
+                <div class="plan-grid-item-top">
+                  <span [class]="'plan-badge status-' + plan.Title.toLowerCase()">{{
+                    plan.Title
+                  }}</span>
+                </div>
+                <div class="plan-grid-item-content">
+                  <div class="plan-name">
+                    <i class="pi pi-phone p-md-4"></i>{{ plan.Title }}
+                  </div>
+                  <div class="m-5">
+                    <h4>{{ plan.price | currency: "RD$ " }}</h4>
+                  </div>
+                  <div class="plan-description">{{ plan.Description }}</div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-dataView>
+      </div>
+      
     </ng-template>
   </p-splitter>
 </div>
 <div class="m-5">
-  <div class="card">
-    <p-dataView #dv [value]="plan" filterBy="name" layout="grid">
-      <ng-template let-plan pTemplate="gridItem">
-        <div class="p-col-12 p-md-4">
-          <div class="plan-grid-item card">
-            <div class="plan-grid-item-top">
-              <span [class]="'plan-badge status-' + plan.Title.toLowerCase()">{{
-                plan.Title
-              }}</span>
-            </div>
-            <div class="plan-grid-item-content">
-              <div class="plan-name">
-                <i class="pi pi-phone p-md-4"></i>{{ plan.Title }}
-              </div>
-              <div class="m-5">
-                <h4>{{ plan.price | currency: "RD$ " }}</h4>
-              </div>
-              <div class="plan-description">{{ plan.Description }}</div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-    </p-dataView>
-  </div>
+  
 </div>

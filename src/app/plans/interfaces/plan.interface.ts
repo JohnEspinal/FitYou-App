@@ -36,7 +36,7 @@ export interface Plan {
 }
 
 export interface PlanPost {
-    title:           string;
+    Title:           string;
     Description:     string;
     TypeOfPlan:      string;
     CreateDate:      Date;
@@ -62,4 +62,31 @@ export interface Product {
   category?: string;
   image?: string;
   rating?: number;
+}
+
+
+export interface Internet{
+  Id?: number;
+  Uploadspeed: string;
+  Loweringspeed: string;
+  Speed: string;
+  Typeofnet: string;
+  Description: string;
+}
+
+export interface PlanSpecificPostResponse{
+  message: string;
+  id: number;
+}
+
+export interface Telecable{
+  Channels: string;
+  TypeOfTelecable: string;
+  Description: string;
+}
+
+export interface Telephone{
+  Minutes: string;
+  Service: string;
+  Description: string;
 }

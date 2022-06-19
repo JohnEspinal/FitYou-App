@@ -5,6 +5,7 @@ import { SelectItem } from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
 import { PlanService } from '../../services/plans.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, AbstractControl, FormControl, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -12,8 +13,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./list.cpmponent.css'],
 })
 export class ListComponent implements OnInit {
-  products: Plan[] = [];
-  // [
+  
+  plans: Plan[] = [];
+
+  loading: boolean = true;
+
   //   {
   //     Id: 12,
   //     Title: 'Internet Movil 50GB',
@@ -30,76 +34,7 @@ export class ListComponent implements OnInit {
   //     InternetId: 2,
   //     TelecableId: 3,
   //     TelephoneId: 4,
-  //   },
-  //   {
-  //     Id: 1,
-  //     Title: 'Internet Movil 20GB',
-  //     Description:
-  //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
-  //     CreateDate: '2022-01-15T00:00:00',
-  //     ActiveTime: 'Un mes',
-  //     price: 1300.0,
-  //     Currency: 'DOP',
-  //     Administrator: null,
-  //     AdministratorId: 1,
-  //     CompanyId: 1,
-  //     InternetId: 2,
-  //     TelecableId: 3,
-  //     TelephoneId: 4,
-  //   },
-  //   {
-  //     Id: 3,
-  //     Title: 'Internet Movil 200GB',
-  //     Description:
-  //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
-  //     CreateDate: '2022-01-15T00:00:00',
-  //     ActiveTime: 'Un mes',
-  //     price: 1000.0,
-  //     Currency: 'DOP',
-  //     Administrator: null,
-  //     AdministratorId: 1,
-  //     CompanyId: 1,
-  //     InternetId: 2,
-  //     TelecableId: 3,
-  //     TelephoneId: 4,
-  //   },
-  //   {
-  //     Id: 34,
-  //     Title: 'casa Movil 290GB',
-  //     Description:
-  //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
-  //     CreateDate: '2022-01-15T00:00:00',
-  //     ActiveTime: 'Un mes',
-  //     price: 2000.0,
-  //     Currency: 'DOP',
-  //     Administrator: null,
-  //     AdministratorId: 1,
-  //     CompanyId: 1,
-  //     InternetId: 2,
-  //     TelecableId: 3,
-  //     TelephoneId: 4,
-  //   },
-  //   {
-  //     Id: 15,
-  //     Title: 'Movil 140GB',
-  //     Description:
-  //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
-  //     CreateDate: '2022-01-15T00:00:00',
-  //     ActiveTime: 'Un mes',
-  //     price: 1100.0,
-  //     Currency: 'DOP',
-  //     Administrator: null,
-  //     AdministratorId: 1,
-  //     CompanyId: 1,
-  //     InternetId: 2,
-  //     TelecableId: 3,
-  //     TelephoneId: 4,
-  //   },
-  // ];
+  //   }
 
   sortOptions: SelectItem[] = [];
 
@@ -112,24 +47,49 @@ export class ListComponent implements OnInit {
   productID: any; //Getting Product id from URL
   productData: any; //Getting Product details
 
+  plansToCompare: string[] = [];
+
+  plansForm: FormGroup = this.fb.group({
+
+    plansToCompare: [this.plansToCompare, [Validators.required, Validators.maxLength(2), Validators.minLength(2)]],
+
+  });
+
   constructor(
     private primengConfig: PrimeNGConfig,
     private plansService: PlanService,
     private router: Router,
+    private fb: FormBuilder,
     private actRoute: ActivatedRoute
   ) {}
 
+  changeValue(id: string) {
+
+    let srtingId: string = id.toString();
+
+    console.log('id', id)
+    console.log("test", this.plansToCompare.indexOf(srtingId));
+
+    if(this.plansToCompare.includes(srtingId)){
+
+
+      this.plansToCompare.splice(this.plansToCompare.indexOf(srtingId), 1)
+    }else{
+      this.plansToCompare.push(srtingId);
+    }
+
+    this.plansForm.controls['plansToCompare'].setValue(this.plansToCompare);
+
+    console.log("plans to Compare:", this.plansToCompare)
+  }
+
   ngOnInit() {
-    // this.productService.getProducts().then(data => this.products = data);
 
     this.plansService.getPlans().subscribe((resp) => {
-      this.products = resp;
+      this.loading=false;
+      this.plans = resp;
       console.log(resp);
     });
-
-    // this.plansService.getPlanById(this.productID).subscribe((resp) => {
-    //   console.log(resp);
-    // });
 
     this.sortOptions = [
       { label: 'Price High to Low', value: '!price' },
@@ -151,7 +111,19 @@ export class ListComponent implements OnInit {
     }
   }
 
-  planByID(id: string) {
-    this.router.navigate([`/plans/comparison/${id}`]);
+  comparePlans() {
+
+    this.router.navigate(
+      ['/plans/comparison'],
+      {
+        queryParams: {
+          plan1: this.plansToCompare[0],
+          plan2: this.plansToCompare[1]
+        },
+        queryParamsHandling: 'merge'
+      }
+
+      // [`/plans/comparison?plan1=${this.plansToCompare[0]}&plan2=${this.plansToCompare[1]}`]
+      );
   }
 }

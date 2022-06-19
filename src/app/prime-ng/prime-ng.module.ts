@@ -19,6 +19,9 @@ import { FormsModule } from '@angular/forms';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
 import { SplitterModule } from 'primeng/splitter';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 // import {MenuItem} from 'primeng/api';
 
@@ -45,6 +48,9 @@ import { SplitterModule } from 'primeng/splitter';
     DynamicDialogModule,
     ToastModule,
     SplitterModule,
+    MessageModule,
+    MessagesModule,
+    ProgressSpinnerModule
   ],
 })
 export class PrimeNgModule {}

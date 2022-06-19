@@ -18,11 +18,27 @@
     </div>
   </div>
 </div>
-<div class="m-5">
-  <div class="card">
+
+
+
+<div style="display:flex; justify-content: end; margin: 5px;">
+  <span class="m-5">Compara tus planes aquí!</span>
+  <button [disabled]="this.plansForm.invalid" pButton class="ml-5 mr-5" (click)="comparePlans()">Comparar</button>
+</div>
+
+<div *ngIf="this.loading; else plansList" style="display: flex; justify-content: center;">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+
+<ng-template #plansList class="m-5">
+
+  
+
+
+  <form [formGroup]="this.plansForm" class="card">
     <p-dataView
       #dv
-      [value]="products"
+      [value]="plans"
       [paginator]="true"
       [rows]="3"
       filterBy="name"
@@ -32,6 +48,8 @@
       (onLazyLoad)="onSortChange($event)"
       filterBy="Title"
     >
+
+
       <ng-template pTemplate="header">
         <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
           <p-dropdown
@@ -52,10 +70,18 @@
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
         </div>
       </ng-template>
+
+      
+
+
       <ng-template let-product pTemplate="listItem">
+
         <div class="p-col-12 p-md-4">
           <p-card>
             <div class="product-list-item">
+
+
+
               <div class="product-list-detail">
                 <div class="product-name">{{ product.Title }}</div>
                 <div class="product-description">{{ product.Description }}</div>
@@ -64,11 +90,18 @@
               </div>
               <div class="product-list-action">
                 <span class="product-price">{{ product.Title }}</span>
-                <p-button
+                <!-- <p-button
                   icon="pi pi-search"
                   label="Comparar"
                   (click)="planByID(product.Id)"
-                ></p-button>
+                ></p-button> -->
+
+                <!-- <p-checkbox name="groupname" [value]="product.Title"  formControlName="plansToCompare"></p-checkbox> -->
+                <br/>
+                <span style="display: flex; justify-content:end;">
+                  <p-checkbox name="{{product.Id}}" (click)="changeValue(product.Id)" value="{{ product.Id }}" formControlName="plansToCompare"></p-checkbox>
+                  <label class="ml-3" for="{{product.Id}}">Seleccione para comparar</label>
+                </span>
                 <span
                   [class]="
                     'product-badge status-' + product.Title.toLowerCase()
@@ -88,10 +121,24 @@
                 <span class="product-category">{{ product.Title }}</span>
               </div>
               <span
-                [class]="'product-badge status-' + product.Title.toLowerCase()"
-                >{{ product.Title }}</span
+              [class]="'product-badge status-' + product.Title.toLowerCase()"
+              >{{ product.Title }}</span
               >
+
+              
+            
+              <!-- <p-button
+                icon="pi pi-search"
+                label="Comparar"
+                (click)="planByID(product.Id)"
+              ></p-button> -->
             </div>
+            <br/>
+            <span style="display: flex; justify-content:end;">
+              <p-checkbox name="{{product.Id}}" (click)="changeValue(product.Id)" value="{{ product.Id }}" formControlName="plansToCompare"></p-checkbox>
+              <label class="ml-3" for="{{product.Id}}">Seleccione para comparar</label>
+            </span>
+
             <div class="product-grid-item-content">
               <div class="product-name">
                 <i class="pi pi-phone p-md-4"></i>{{ product.Title }}
@@ -105,5 +152,7 @@
         </div>
       </ng-template>
     </p-dataView>
-  </div>
-</div>
+  </form>
+</ng-template>
+
+

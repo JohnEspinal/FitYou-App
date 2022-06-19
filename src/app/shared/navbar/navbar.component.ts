@@ -79,11 +79,11 @@ export class NavbarComponent implements OnInit {
                             ]
                             
                         },
-                        ...( this.userLoggedIn ? [{
-                            label:'logout',
-                            icon: 'pi pi-map',
-                            routerLink:'map/map'
-                        }]: []),
+                        // ...( this.userLoggedIn ? [{
+                        //     label:'logout',
+                        //     icon: 'pi pi-map',
+                        //     routerLink:'map/map'
+                        // }]: []),
                         // {
                         //     label: 'Excel',
                         //     icon: 'pi pi-file',

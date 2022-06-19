@@ -23,7 +23,8 @@ const routes: Routes = [
         canLoad: [AuthTokenGuard],
       },
       {
-        path: 'comparison/:planId',
+        // [`/plans/comparison?plan1=${this.plansToCompare[0]}&plan2=${this.plansToCompare[1]}`]
+        path: 'comparison',
         component: PlanComparisonComponent,
       },
       {

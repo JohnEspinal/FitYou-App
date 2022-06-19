@@ -57,6 +57,7 @@ body{
 .input-fill input:focus{
     outline: none;
     border-color: #023E8A;
+    
 }
 
 .input-fill input:hover{
@@ -70,6 +71,7 @@ body{
 }
 
 .input-fill input:focus ~ i{
+    
     color: #023E8A;
 }
 
@@ -85,7 +87,7 @@ body{
 
 .input-fill i{
     position: absolute;
-    top: 14px;
+    top: 8px;
     left: -30px;
     color: #848f9a;
     font-size: 1.5rem;

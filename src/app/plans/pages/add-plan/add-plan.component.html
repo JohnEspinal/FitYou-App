@@ -41,10 +41,10 @@
             type="text"
             pInputText
             placeholder="Titulo"
-            formControlName="title"
+            formControlName="Title"
           />
         </div>
-        <span *ngIf="this.isFieldInvalid('title')" class="text-danger">
+        <span *ngIf="this.isFieldInvalid('Title')" class="text-danger">
           El titulo es requerido
         </span>
       </div>
@@ -124,24 +124,21 @@
           class="col"
           placeholder="-- Seleccione un tipo de plan --"
           [options]="typeOfPlans"
-          formControlName="typeOfPlan"
+          formControlName="TypeOfPlan"
+          (onChange)="typeOfPlanChange( $event )"
           optionLabel="label"
           optionValue="value"
         ></p-dropdown>
 
         <div class="row">
-          <span *ngIf="this.isFieldInvalid('typeOfPlan')" class="text-danger">
+          <span *ngIf="this.isFieldInvalid('TypeOfPlan')" class="text-danger">
             El tipo de plan es requerido
           </span>
         </div>
       </div>
     </div>
 
-    <!-- Uncomment this line to know the current value of the form -->
-
-    <!-- <pre>{{this.myForm.value | json}}</pre> -->
-
-    <div class="row mt-5">
+    <!-- <div class="row mt-5" *ngIf="this.myForm.controls['typeOfPlans']?.value === ''">
       <div class="col-offset-11">
         <button
           (click)="add()"
@@ -151,6 +148,27 @@
           icon="pi pi-check"
         ></button>
       </div>
+    </div> -->
+
+    <div [ngSwitch]="this.typeOfPlan">
+      <div *ngSwitchCase="'I'">
+        <app-add-internet
+        (onNewInternet)="add( $event )"
+        ></app-add-internet>
+      </div>
+      <div *ngSwitchCase="'T'">
+        <app-add-telephone
+        (onNewTelephone)="add( $event )"></app-add-telephone>
+      </div>
+      <div *ngSwitchCase="'C'">
+        <app-add-telecable
+        (onNewTelecable)="add( $event )"></app-add-telecable>
+      </div>
+      <div *ngSwitchDefault></div>
     </div>
   </div>
 </form>
+
+<!-- Uncomment this line to know the current value of the form -->
+
+<pre>{{this.myForm.value | json}}</pre>
