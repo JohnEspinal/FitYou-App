@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
                         {
                             label: 'Comparar',
                             icon: 'pi pi-briefcase',
-                            routerLink: '/plans/comparison'
+                            routerLink: '/plans/all'
                         },
                         {
                             label: 'Acerca de',

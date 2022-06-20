@@ -83,17 +83,23 @@ export class ListComponent implements OnInit {
     console.log("plans to Compare:", this.plansToCompare)
   }
 
-  ngOnInit() {
+  getAllPlans(){
 
     this.plansService.getPlans().subscribe((resp) => {
       this.loading=false;
       this.plans = resp;
       console.log(resp);
     });
+  }
+
+
+  ngOnInit() {
+
+    this.getAllPlans();
 
     this.sortOptions = [
-      { label: 'Price High to Low', value: '!price' },
-      { label: 'Price Low to High', value: 'price' },
+      { label: 'Price High to Low', value: '!Price' },
+      { label: 'Price Low to High', value: 'Price' },
     ];
 
     this.primengConfig.ripple = true;
@@ -109,6 +115,15 @@ export class ListComponent implements OnInit {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  deletePlan( planId: number ){
+    this.plansService.deletePlan(planId)
+      .subscribe(
+        message => {
+          this.getAllPlans();
+        }
+      )
   }
 
   comparePlans() {

@@ -26,6 +26,8 @@ export class PlanComparisonComponent implements OnInit {
     private plansService: PlanService
   ) {}
 
+  
+
   ngOnInit(): void {
     this.actRoute.queryParams
       .pipe(
@@ -34,7 +36,13 @@ export class PlanComparisonComponent implements OnInit {
           )
         )
       .subscribe(
-        result => this.plan1 = [result]
+        result => 
+        {
+          this.plan1 = [result]
+          console.log("plan1", this.plan1);
+
+        }
+
       )
 
       this.actRoute.queryParams
@@ -44,7 +52,11 @@ export class PlanComparisonComponent implements OnInit {
           )
         )
       .subscribe(
-        result => this.plan2 = [result]
+        result => {
+          this.plan2 = [result];
+
+          console.log("plan2", this.plan2)
+        }
       )
 
     // this.loadProductDetails(this.planId);

@@ -52,6 +52,27 @@
                     <h4>{{ plan.price | currency: "RD$ " }}</h4>
                   </div>
                   <div class="plan-description">{{ plan.Description }}</div>
+
+                  <div *ngIf="this.plan1[0].TypeOfPlan === 'I'">
+
+                    <label> Velocidad de bajada: </label>
+                    <span>{{ plan.Internet?.Loweringspeed }}</span>
+
+                  </div>
+                  <div *ngIf="this.plan1[0].TypeOfPlan === 'C'">
+
+                    <label> Canales: </label>
+                    <span>{{ plan.Telecable?.Chanels }}</span>
+
+                  </div>
+                  <div *ngIf="this.plan1[0].TypeOfPlan === 'T'">
+
+                    <label> Minutos: </label>
+                    <span>{{ plan.Telephone?.Minutes }}</span>
+
+                  </div>
+
+
                 </div>
               </div>
             </div>
@@ -82,6 +103,26 @@
                     <h4>{{ plan.price | currency: "RD$ " }}</h4>
                   </div>
                   <div class="plan-description">{{ plan.Description }}</div>
+
+                  <div *ngIf="this.plan2[0].TypeOfPlan === 'I'">
+
+                    <label> Velocidad de bajada: </label>
+                    <span>{{ plan.Internet?.Loweringspeed }}</span>
+
+                  </div>
+                  <div *ngIf="this.plan2[0].TypeOfPlan === 'C'">
+
+                    <label> Canales: </label>
+                    <span>{{ plan.Telecable?.Chanels }}</span>
+
+                  </div>
+                  <div *ngIf="this.plan2[0].TypeOfPlan === 'T'">
+
+                    <label> Minutos: </label>
+                    <span>{{ plan.Telephone?.Minutes }}</span>
+
+                  </div>
+
                 </div>
               </div>
             </div>

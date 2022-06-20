@@ -80,6 +80,13 @@ export class PlanService {
     );
   }
 
+  deletePlan(planId: number): Observable<string> {
+    return this.http.delete<string>(
+      `https://localhost:44384/api/DeletePlan/${planId}`,
+      { headers: this.headers }
+    );
+  }
+
   postInternet(internet: Internet): Observable<PlanSpecificPostResponse> {
 
     return this.http.post<PlanSpecificPostResponse>(`${this.baseUrl}/postInternet`, internet, {

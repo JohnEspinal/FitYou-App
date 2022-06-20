@@ -30,6 +30,9 @@ export interface Plan {
   Administrator: null;
   AdministratorId: number;
   CompanyId: number;
+  Internet: Internet;
+  Telephone: Telephone;
+  Telecable: Telecable;
   InternetId: number;
   TelecableId: number;
   TelephoneId: number;

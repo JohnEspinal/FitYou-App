@@ -211,7 +211,7 @@ export class AddPlanComponent implements OnInit {
         'success'
         ).then(
           
-          // () => this.myForm.reset()
+          () => this.myForm.reset()
         
         );
         }
