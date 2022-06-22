@@ -6,6 +6,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { PlanService } from '../../services/plans.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, AbstractControl, FormControl, FormArray, Validators } from '@angular/forms';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -55,12 +56,15 @@ export class ListComponent implements OnInit {
 
   });
 
+  isUserLoggedIn: boolean = false;
+
   constructor(
     private primengConfig: PrimeNGConfig,
     private plansService: PlanService,
     private router: Router,
     private fb: FormBuilder,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   changeValue(id: string) {
@@ -96,6 +100,11 @@ export class ListComponent implements OnInit {
   ngOnInit() {
 
     this.getAllPlans();
+
+    this.authService.validateToken()
+      .subscribe(
+        resp => this.isUserLoggedIn = resp
+      )
 
     this.sortOptions = [
       { label: 'Price High to Low', value: '!Price' },

@@ -90,11 +90,12 @@
               </div>
               <div class="product-list-action">
                 <span class="product-price">{{ product.Title }}</span>
-                <!-- <p-button
-                  icon="pi pi-search"
-                  label="Comparar"
-                  (click)="planByID(product.Id)"
-                ></p-button> -->
+                <p-button
+                *ngIf="this.isUserLoggedIn"
+                icon="pi pi-search"
+                label="Borrar"
+                (click)="deletePlan(product.Id)"
+              ></p-button>
 
                 <!-- <p-checkbox name="groupname" [value]="product.Title"  formControlName="plansToCompare"></p-checkbox> -->
                 <br/>
@@ -128,6 +129,7 @@
               
             
               <p-button
+              *ngIf="this.isUserLoggedIn"
                 icon="pi pi-search"
                 label="Borrar"
                 (click)="deletePlan(product.Id)"
