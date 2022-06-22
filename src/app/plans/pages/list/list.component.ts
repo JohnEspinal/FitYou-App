@@ -231,7 +231,7 @@ export class ListComponent implements OnInit {
   //Get All Plans
   getAllPlans() {
     this.plansService.getPlans().subscribe((resp) => {
-      // this.loading = false;
+      this.loading = false;
       this.plans = resp;
       console.log(resp);
     });

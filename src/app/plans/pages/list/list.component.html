@@ -31,8 +31,8 @@
   </button>
 </div>
 
-<!-- <p-checkbox name="groupname" [value]="product.Title"  formControlName="plansToCompare"></p-checkbox> -->
-<!-- <br />
+<!-- <p-checkbox name="groupname" [value]="product.Title"  formControlName="plansToCompare"></p-checkbox> 
+<br />
           <span style="display: flex; justify-content: end">
             <p-checkbox
               name="{{ product.Id }}"
@@ -55,14 +55,14 @@
           <label class="ml-3" for="{{ product.Id }}"
             >Seleccione para comparar</label
           >
-        </span>
+        </span>  -->
 
-<!-- <div
+<div
   *ngIf="this.loading; else plansList"
   style="display: flex; justify-content: center"
 >
   <p-progressSpinner></p-progressSpinner>
-</div> -->
+</div> 
 
 <ng-template #plansList class="m-5">
   <form [formGroup]="this.plansForm" class="card">
@@ -113,7 +113,7 @@
                 ><span class="product-category">{{ product.category }}</span>
               </div>
               <div class="product-list-action">
-                <span class="product-price">${{ product.price }}</span>
+                <span class="product-price">${{ product.Price }}</span>
                 <button
                   *ngIf="isUserLoggedIn"
                   (click)="deletePlanById(product.Id)"
@@ -155,14 +155,14 @@
               <div class="product-grid-item-content">
                 <div class="product-name">{{ product.Title }}</div>
                 <br />
-                <!-- <img
+                 <img
               [src]="'assets/showcase/images/demo/product/' + product.image"
               [alt]="product.name"
-            /> -->
+            /> 
                 <div class="product-description">{{ product.description }}</div>
               </div>
               <div class="product-grid-item-bottom">
-                <span class="product-price">${{ product.price }}</span>
+                <span class="product-price">${{ product.Price }}</span>
 
                 <p-button
                   icon="pi pi-globe"
