@@ -25,11 +25,34 @@ export class ListComponent implements OnInit {
 
   displayModal: boolean;
 
+  displayModalDelete: boolean;
+
   sortOrder: number = 0;
 
   sortKey: string;
 
   sortField: string = '';
+
+  planDescription: any;
+  planId: any;
+  planTypeOf: string;
+
+  //Cable
+  CableChannels: any;
+  CableTypeOfTelecable: any;
+  CableDescription: any;
+
+  //Phone
+  PhoneMinutes: any;
+  PhoneService: any;
+  PhoneDescription: any;
+
+  //Internet
+  InternetUploadspeed: any;
+  InternetLoweringspeed: any;
+  InternetSpeed: any;
+  InternetTypeOfNet: any;
+  InternetDescription: any;
 
   productID: any; //Getting Product id from URL
 
@@ -41,17 +64,18 @@ export class ListComponent implements OnInit {
 
   loading: boolean = true;
 
-  plans: Plan[] = [];
-  //[
+  plan: any;
+
+  plans!: Plan[];
   //   {
   //     Id: 1,
   //     Title: 'Internet Movil 50GB',
   //     Description:
-  //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
+  //       'Soy el 1of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+  //     TypeOfPlan: 'I',
   //     CreateDate: '2022-01-15T00:00:00',
   //     ActiveTime: 'Un mes',
-  //     price: 1400.0,
+  //     Price: 1200.0,
   //     Currency: 'DOP',
   //     Administrator: null,
   //     AdministratorId: 1,
@@ -64,11 +88,11 @@ export class ListComponent implements OnInit {
   //     Id: 2,
   //     Title: 'Internet Movil 50GB',
   //     Description:
-  //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
+  //       'LSoy el 2ummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+  //     TypeOfPlan: 'C',
   //     CreateDate: '2022-01-15T00:00:00',
   //     ActiveTime: 'Un mes',
-  //     price: 1400.0,
+  //     Price: 1400.0,
   //     Currency: 'DOP',
   //     Administrator: null,
   //     AdministratorId: 1,
@@ -82,10 +106,10 @@ export class ListComponent implements OnInit {
   //     Title: 'Internet Movil 50GB',
   //     Description:
   //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
+  //     TypeOfPlan: 'C',
   //     CreateDate: '2022-01-15T00:00:00',
   //     ActiveTime: 'Un mes',
-  //     price: 1900.0,
+  //     Price: 1900.0,
   //     Currency: 'DOP',
   //     Administrator: null,
   //     AdministratorId: 1,
@@ -99,10 +123,10 @@ export class ListComponent implements OnInit {
   //     Title: 'Internet Movil 50GB',
   //     Description:
   //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
+  //     TypeOfPlan: 'C',
   //     CreateDate: '2022-01-15T00:00:00',
   //     ActiveTime: 'Un mes',
-  //     price: 800.0,
+  //     Price: 800.0,
   //     Currency: 'DOP',
   //     Administrator: null,
   //     AdministratorId: 1,
@@ -116,10 +140,10 @@ export class ListComponent implements OnInit {
   //     Title: 'Internet Movil 50GB',
   //     Description:
   //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
+  //     TypeOfPlan: 'T',
   //     CreateDate: '2022-01-15T00:00:00',
   //     ActiveTime: 'Un mes',
-  //     price: 2400.0,
+  //     Price: 2400.0,
   //     Currency: 'DOP',
   //     Administrator: null,
   //     AdministratorId: 1,
@@ -133,15 +157,24 @@ export class ListComponent implements OnInit {
   //     Title: 'Internet Movil 50GB',
   //     Description:
   //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
+  //     TypeOfPlan: 'I',
   //     CreateDate: '2022-01-15T00:00:00',
   //     ActiveTime: 'Un mes',
-  //     price: 700.0,
+  //     Price: 700.0,
   //     Currency: 'DOP',
   //     Administrator: null,
   //     AdministratorId: 1,
   //     CompanyId: 1,
   //     InternetId: 2,
+  //     Internet: {
+  //       DetailPlans: [],
+  //       Id: 5,
+  //       Uploadspeed: 60,
+  //       Loweringspeed: 20,
+  //       Speed: 60,
+  //       TypeOfNet: 'Full',
+  //       Description: 'Esta es la descripcion del internet full',
+  //     },
   //     TelecableId: 3,
   //     TelephoneId: 4,
   //   },
@@ -150,13 +183,20 @@ export class ListComponent implements OnInit {
   //     Title: 'Internet Movil 50GB',
   //     Description:
   //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
+  //     TypeOfPlan: 'T',
   //     CreateDate: '2022-01-15T00:00:00',
   //     ActiveTime: 'Un mes',
-  //     price: 400.0,
+  //     Price: 400.0,
   //     Currency: 'DOP',
   //     Administrator: null,
   //     AdministratorId: 1,
+  //     Telephone: {
+  //       DetailPlans: [],
+  //       Id: 1,
+  //       Minutes: '50',
+  //       Service: 'ASDASD',
+  //       Description: 'ASDASDASD',
+  //     },
   //     CompanyId: 1,
   //     InternetId: 2,
   //     TelecableId: 3,
@@ -164,22 +204,29 @@ export class ListComponent implements OnInit {
   //   },
   //   {
   //     Id: 8,
-  //     Title: 'Internet Movil 50GB',
+  //     Title: 'Casa Movil 50GB',
   //     Description:
   //       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-  //     TypeOfPlan: 'M',
+  //     TypeOfPlan: 'C',
   //     CreateDate: '2022-01-15T00:00:00',
   //     ActiveTime: 'Un mes',
-  //     price: 1200.0,
+  //     Price: 1200.0,
   //     Currency: 'DOP',
   //     Administrator: null,
   //     AdministratorId: 1,
   //     CompanyId: 1,
   //     InternetId: 2,
   //     TelecableId: 3,
+  //     Telecable: {
+  //       DetailPlans: [],
+  //       TelecablePackages: [],
+  //       Id: 3,
+  //       Chanels: '40',
+  //       TypeOfTelecable: 'Full',
+  //       Description: 'Esta es la descripcion del telecable',
+  //     },
   //     TelephoneId: 4,
   //   },
-  // ];
 
   plansForm: FormGroup = this.fb.group({
     plansToCompare: [
@@ -221,8 +268,8 @@ export class ListComponent implements OnInit {
       .subscribe((resp) => (this.isUserLoggedIn = resp));
 
     this.sortOptions = [
-      { label: 'Price High to Low', value: '!price' },
-      { label: 'Price Low to High', value: 'price' },
+      { label: 'Price High to Low', value: '!Price' },
+      { label: 'Price Low to High', value: 'Price' },
     ];
 
     this.primengConfig.ripple = true;
@@ -255,6 +302,7 @@ export class ListComponent implements OnInit {
     this.plansService.deletePlan(planId).subscribe((res) => {
       this.getAllPlans();
     });
+    this.displayModalDelete = false;
   }
 
   //Grap Plans for compare and navigate to the compare page
@@ -274,9 +322,33 @@ export class ListComponent implements OnInit {
   }
 
   //Show Modal
-  showModalDialog(id: string) {
-    console.log(id);
+  showModalDialog(id: number) {
+    this.plan = this.plans[id - 1];
+    this.planTypeOf = this.plan.TypeOfPlan;
+    this.planDescription = this.plan.Description;
+    this.planId = this.plan.Id;
+    if (this.planTypeOf === 'I') {
+      this.InternetDescription = this.plan.Internet.Description;
+      this.InternetLoweringspeed = this.plan.Internet.Loweringspeed;
+      this.InternetSpeed = this.plan.Internet.Speed;
+      this.InternetTypeOfNet = this.plan.Internet.TypeOfNet;
+      this.InternetUploadspeed = this.plan.Internet.Uploadspeed;
+    }
+    if (this.planTypeOf === 'T') {
+      this.PhoneMinutes = this.plan.Telephone.Minutes;
+      this.PhoneService = this.plan.Telephone.Service;
+      this.PhoneDescription = this.plan.Telephone.Description;
+    }
+    if (this.planTypeOf === 'C') {
+      this.CableChannels = this.plan.Telecable.Chanels;
+      this.CableDescription = this.plan.Telecable.Description;
+      this.CableTypeOfTelecable = this.plan.Telecable.TypeOfTelecable;
+    }
 
     this.displayModal = true;
+  }
+  //Show Delete Modal
+  showModalDialogDelete(id: number) {
+    this.displayModalDelete = true;
   }
 }

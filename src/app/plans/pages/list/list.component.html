@@ -26,9 +26,8 @@
     pButton
     class="ml-5 mr-5"
     (click)="comparePlans()"
-  >
-    Comparar
-  </button>
+    label="Comparar"
+  ></button>
 </div>
 
 <div
@@ -36,7 +35,7 @@
   style="display: flex; justify-content: center"
 >
   <p-progressSpinner></p-progressSpinner>
-</div> 
+</div>
 
 <ng-template #plansList class="m-5">
   <form [formGroup]="this.plansForm" class="card">
@@ -83,7 +82,18 @@
               <div class="product-list-detail">
                 <div class="product-name">{{ product.Title }}</div>
                 <div class="product-description">{{ product.Description }}</div>
-                <i class="pi pi-globe product-category-icon"></i
+                <i
+                  *ngIf="product.TypeOfPlan === 'I'"
+                  class="pi pi-globe product-category-icon"
+                ></i>
+                <i
+                  *ngIf="product.TypeOfPlan === 'C'"
+                  class="pi pi-globe product-category-icon"
+                ></i>
+                <i
+                  *ngIf="product.TypeOfPlan === 'T'"
+                  class="pi pi-phone product-category-icon"
+                ></i
                 ><span class="product-category">{{ product.category }}</span>
               </div>
               <div class="product-list-action">
@@ -122,27 +132,52 @@
             <div class="product-grid-item card">
               <div class="product-grid-item-top">
                 <div>
-                  <i class="pi pi-globe product-category-icon"></i>
-                  <span class="product-category">{{ product.Title }}</span>
+                  <i
+                    *ngIf="product.TypeOfPlan === 'I'"
+                    class="pi pi-tablet product-category-icon"
+                  ></i>
+                  <i
+                    *ngIf="product.TypeOfPlan === 'C'"
+                    class="pi pi-globe product-category-icon"
+                  ></i>
+                  <i
+                    *ngIf="product.TypeOfPlan === 'T'"
+                    class="pi pi-phone product-category-icon"
+                  ></i>
                 </div>
               </div>
               <div class="product-grid-item-content">
                 <div class="product-name">{{ product.Title }}</div>
                 <br />
-                 <img
-              [src]="'assets/showcase/images/demo/product/' + product.image"
-              [alt]="product.name"
-            /> 
+                <br />
+                <br />
                 <div class="product-description">{{ product.description }}</div>
               </div>
               <div class="product-grid-item-bottom">
                 <span class="product-price">${{ product.Price }}</span>
+                <span style="display: flex; justify-content: end">
+                  <p-checkbox
+                    name="{{ product.Id }}"
+                    (click)="changeValue(product.Id)"
+                    value="{{ product.Id }}"
+                    formControlName="plansToCompare"
+                  ></p-checkbox>
+                  <label class="ml-3" for="{{ product.Id }}"
+                    >Seleccione para comparar</label
+                  >
+                </span>
 
                 <p-button
                   icon="pi pi-globe"
                   (click)="showModalDialog(product.Id)"
-                  label="Ver detalles"
                 ></p-button>
+                <button
+                  *ngIf="isUserLoggedIn"
+                  (click)="showModalDialogDelete(product.Id)"
+                  pButton
+                  icon="pi pi-trash"
+                  class="p-button-danger"
+                ></button>
               </div>
             </div>
           </div>
@@ -157,15 +192,26 @@
         [draggable]="false"
         [resizable]="false"
       >
-        <p class="p-m-0">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <p class="p-m-0">{{ planDescription }}</p>
+        <br />
+        <br />
+        <div class="p-m-0" *ngIf="planTypeOf === 'I'">
+          Description Internte: {{ InternetDescription }}
+          <p class="p-m-0">Velocidad de subida: {{ InternetUploadspeed }}</p>
+          <p class="p-m-0">Velocidad de Bajada: {{ InternetLoweringspeed }}</p>
+          <p class="p-m-0">Velocidad: {{ InternetSpeed }}</p>
+          <p class="p-m-0">Tipo de internet: {{ InternetTypeOfNet }}</p>
+        </div>
+        <div class="p-m-0" *ngIf="planTypeOf === 'C'">
+          Description de telecable: {{ CableDescription }}
+          <p class="p-m-0">Tip de telecable: {{ CableTypeOfTelecable }}</p>
+        </div>
+        <div class="p-m-0" *ngIf="planTypeOf === 'T'">
+          Descripcion: {{ PhoneDescription }}
+          <p class="p-m-0">Cantidad de Minutos: {{ PhoneMinutes }}</p>
+          <p class="p-m-0">Servicio: {{ PhoneService }}</p>
+        </div>
+
         <ng-template pTemplate="footer">
           <p-button
             icon="pi pi-times"
@@ -174,7 +220,24 @@
           ></p-button>
         </ng-template>
       </p-dialog>
-      
-    </div>
-  </form>
-</ng-template>
+      <p-dialog
+        header="Estas seguro?"
+        [(visible)]="displayModalDelete"
+        [modal]="true"
+        [style]="{ width: '20vw' }"
+        [baseZIndex]="10000"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <p class="p-m-0">Al borrar esto no hay vuelta atras</p>
+        <ng-template pTemplate="footer">
+          <p-button icon="pi pi-times" label="Borrar"></p-button>
+          <p-button
+            icon="pi pi-times"
+            (click)="displayModalDelete = false"
+            label="Salir"
+          ></p-button>
+        </ng-template>
+      </p-dialog>
+    </div></form
+></ng-template>
