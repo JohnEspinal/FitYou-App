@@ -22,6 +22,7 @@ import { SplitterModule } from 'primeng/splitter';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {FileUploadModule} from 'primeng/fileupload';
 
 // import {MenuItem} from 'primeng/api';
 
@@ -50,7 +51,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     SplitterModule,
     MessageModule,
     MessagesModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    FileUploadModule
   ],
 })
 export class PrimeNgModule {}

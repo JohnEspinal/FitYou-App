@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
                 private router: Router ) { }
 
   ngOnInit(): void {
-      
+
         this.authService.validateToken()
             .subscribe(
                 resp => {
@@ -77,29 +77,29 @@ export class NavbarComponent implements OnInit {
                                     routerLink: 'map/sucursal'
                                 }
                             ]
-                            
+
                         },
                         // ...( this.userLoggedIn ? [{
                         //     label:'logout',
                         //     icon: 'pi pi-map',
                         //     routerLink:'map/map'
                         // }]: []),
-                        // {
-                        //     label: 'Excel',
-                        //     icon: 'pi pi-file',
-                        //     items: [
-                        //         {
-                        //             label: 'Internet',
-                        //             icon: 'pi pi-bars',
-                        //             routerLink: '/excel/internet'
-                        //         }
-                        //     ]
-                        // },
+                        {
+                            label: 'Excel',
+                            icon: 'pi pi-file',
+                            items: [
+                                {
+                                    label: 'Internet',
+                                    icon: 'pi pi-bars',
+                                    routerLink: '/excel/internet'
+                                }
+                            ]
+                        },
                     ];
                 }
             )
-    
-        
+
+
   }
 
   logout(){

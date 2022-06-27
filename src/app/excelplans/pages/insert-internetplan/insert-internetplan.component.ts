@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Console } from 'console';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ServiceInternetService } from '../../service/service-internet.service';
 
 @Component({
   selector: 'app-insert-internetplan',
@@ -7,16 +7,21 @@ import { Console } from 'console';
   styleUrls: ['./insert-internetplan.component.css']
 })
 export class InsertInternetplanComponent implements OnInit {
+  @ViewChild('fileInput') el: ElementRef;
+  //fileToUpload : File | null = null;
+  apenddata : FormData;
 
-  fileToUpload : File | null = null;
-
-  constructor() { }
+  constructor(
+    private serviceExcel : ServiceInternetService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  onFileSelect(event : Event){
-    console.log( (event.target as HTMLInputElement).files );
+  onFileSelect(){
+    var data = this.el.nativeElement.files[0];
+    if(data != null){;
+      this.serviceExcel.ImportDataFromExcel(data!);
+    }
   }
-
 }
