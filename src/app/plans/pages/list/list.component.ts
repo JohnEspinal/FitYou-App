@@ -35,6 +35,7 @@ export class ListComponent implements OnInit {
 
   planDescription: any;
   planId: any;
+  deletePlanId: any;
   planTypeOf: string;
 
   //Cable
@@ -66,7 +67,7 @@ export class ListComponent implements OnInit {
 
   plan: any;
 
-  plans!: Plan[];
+  plans: Plan[] = [];
   //   {
   //     Id: 1,
   //     Title: 'Internet Movil 50GB',
@@ -227,6 +228,7 @@ export class ListComponent implements OnInit {
   //     },
   //     TelephoneId: 4,
   //   },
+  // ];
 
   plansForm: FormGroup = this.fb.group({
     plansToCompare: [
@@ -349,6 +351,9 @@ export class ListComponent implements OnInit {
   }
   //Show Delete Modal
   showModalDialogDelete(id: number) {
+    this.deletePlanId = this.plans[id - 1].Id;
+    console.log(this.deletePlanId);
     this.displayModalDelete = true;
+    // this.deletePlanById(id);
   }
 }

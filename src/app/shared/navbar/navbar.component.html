@@ -1,7 +1,25 @@
-<div id="navbar" class="grid">
-  <p-menubar [model]="items" class="col p-0">
-    <img src="assets/photos/fityou-removebg.png" height="40" />
-    <p-button (onClick)="login()" *ngIf="!userLoggedIn">Login</p-button>
-    <p-button (onClick)="logout()" *ngIf="userLoggedIn">Logout</p-button>
-  </p-menubar>
-</div>
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <a href="/">
+      <img
+        src="assets/photos/fityou-removebg.png"
+        height="60"
+        class="p-mr-2"
+        alt="brand logo"
+      />
+    </a>
+  </ng-template>
+  <ng-template pTemplate="end">
+    <p-button
+      pButton
+      (onClick)="login()"
+      *ngIf="!userLoggedIn"
+      icon="pi pi-user"
+      type="button"
+      class="p-button-rounded"
+    ></p-button>
+    <p-button (onClick)="logout()" *ngIf="userLoggedIn" icon="pi pi-user"
+      >Logout</p-button
+    >
+  </ng-template>
+</p-menubar>

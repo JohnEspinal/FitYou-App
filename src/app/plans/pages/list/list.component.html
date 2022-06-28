@@ -19,12 +19,12 @@
   </div>
 </div>
 
-<div style="display: flex; justify-content: end; margin: 5px">
+<div style="display: flex; justify-content: end">
   <span class="m-5">Compara tus planes aquí!</span>
   <button
     [disabled]="this.plansForm.invalid"
     pButton
-    class="ml-5 mr-5"
+    class="m-3 p-3"
     (click)="comparePlans()"
     label="Comparar"
   ></button>
@@ -100,10 +100,9 @@
                 <span class="product-price">${{ product.Price }}</span>
                 <button
                   *ngIf="isUserLoggedIn"
-                  (click)="deletePlanById(product.Id)"
+                  (click)="showModalDialogDelete(product.Id)"
                   pButton
-                  type="button"
-                  label="Eliminar"
+                  icon="pi pi-trash"
                   class="p-button-danger"
                 ></button>
                 <span style="display: flex; justify-content: end">
@@ -155,7 +154,9 @@
               </div>
               <div class="product-grid-item-bottom">
                 <span class="product-price">${{ product.Price }}</span>
-                <span style="display: flex; justify-content: end">
+              </div>
+              <div class="product-grid-item-bottom">
+                <span>
                   <p-checkbox
                     name="{{ product.Id }}"
                     (click)="changeValue(product.Id)"
@@ -166,7 +167,6 @@
                     >Seleccione para comparar</label
                   >
                 </span>
-
                 <p-button
                   icon="pi pi-globe"
                   (click)="showModalDialog(product.Id)"
@@ -187,29 +187,38 @@
         header="Detalle"
         [(visible)]="displayModal"
         [modal]="true"
-        [style]="{ width: '40vw' }"
+        [style]="{ width: '50vw' }"
         [baseZIndex]="10000"
         [draggable]="false"
         [resizable]="false"
       >
         <p class="p-m-0">{{ planDescription }}</p>
         <br />
+        <hr />
         <br />
-        <div class="p-m-0" *ngIf="planTypeOf === 'I'">
+        <div class="p-m-0 font-bold" *ngIf="planTypeOf === 'I'">
           Description Internte: {{ InternetDescription }}
-          <p class="p-m-0">Velocidad de subida: {{ InternetUploadspeed }}</p>
-          <p class="p-m-0">Velocidad de Bajada: {{ InternetLoweringspeed }}</p>
-          <p class="p-m-0">Velocidad: {{ InternetSpeed }}</p>
-          <p class="p-m-0">Tipo de internet: {{ InternetTypeOfNet }}</p>
+          <p class="p-m-0 font-bold">
+            Velocidad de subida: {{ InternetUploadspeed }}
+          </p>
+          <p class="p-m-0 font-bold">
+            Velocidad de Bajada: {{ InternetLoweringspeed }}
+          </p>
+          <p class="p-m-0 font-bold">Velocidad: {{ InternetSpeed }}</p>
+          <p class="p-m-0 font-bold">
+            Tipo de internet: {{ InternetTypeOfNet }}
+          </p>
         </div>
-        <div class="p-m-0" *ngIf="planTypeOf === 'C'">
+        <div class="p-m-0 font-bold" *ngIf="planTypeOf === 'C'">
           Description de telecable: {{ CableDescription }}
-          <p class="p-m-0">Tip de telecable: {{ CableTypeOfTelecable }}</p>
+          <p class="p-m-0 font-bold">
+            Tip de telecable: {{ CableTypeOfTelecable }}
+          </p>
         </div>
-        <div class="p-m-0" *ngIf="planTypeOf === 'T'">
+        <div class="p-m-0 font-bold" *ngIf="planTypeOf === 'T'">
           Descripcion: {{ PhoneDescription }}
-          <p class="p-m-0">Cantidad de Minutos: {{ PhoneMinutes }}</p>
-          <p class="p-m-0">Servicio: {{ PhoneService }}</p>
+          <p class="p-m-0 font-bold">Cantidad de Minutos: {{ PhoneMinutes }}</p>
+          <p class="p-m-0 font-bold">Servicio: {{ PhoneService }}</p>
         </div>
 
         <ng-template pTemplate="footer">
@@ -231,12 +240,12 @@
       >
         <p class="p-m-0">Al borrar esto no hay vuelta atras</p>
         <ng-template pTemplate="footer">
-          <p-button icon="pi pi-times" label="Borrar"></p-button>
-          <p-button
-            icon="pi pi-times"
-            (click)="displayModalDelete = false"
-            label="Salir"
-          ></p-button>
+          <button
+            (click)="deletePlanById(deletePlanId)"
+            pButton
+            icon="pi pi-trash"
+            class="p-button-danger w-1"
+          ></button>
         </ng-template>
       </p-dialog>
     </div></form
