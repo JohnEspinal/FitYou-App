@@ -7,14 +7,19 @@ import { HttpClient } from '@angular/common/http';
 
 export class ServiceInternetService {
 
+  filetoUpload : File;
+
   constructor(
     private http : HttpClient
   ) { }
 
-  ImportDataFromExcel(file : FileList){
+  ImportDataFromExcel(file : File){
     console.log("file");
     console.log(file);
-    return this.http.post(`https://localhost:44384/api/office/Importar`, file);
+    let fomdata = new FormData();
+    fomdata.append("file",file,file.name);
+    console.log(fomdata);
+    return this.http.post(`https://localhost:44384/api/office/Importar`, fomdata);
   }
 
 }

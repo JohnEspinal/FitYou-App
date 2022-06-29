@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceInternetService } from '../../service/service-internet.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-insert-internetplan',
@@ -9,7 +10,7 @@ import { ServiceInternetService } from '../../service/service-internet.service';
 export class InsertInternetplanComponent implements OnInit {
   @ViewChild('fileInput') el: ElementRef;
   //fileToUpload : File | null = null;
-  apenddata : FormData;
+  apenddata : File;
 
   constructor(
     private serviceExcel : ServiceInternetService
@@ -19,9 +20,20 @@ export class InsertInternetplanComponent implements OnInit {
   }
 
   onFileSelect(){
-    var data = this.el.nativeElement.files[0];
-    if(data != null){;
-      this.serviceExcel.ImportDataFromExcel(data!);
+    this.apenddata = this.el.nativeElement.files[0];
+
+    if(this.apenddata != null){
+
+      this.serviceExcel.ImportDataFromExcel(this.apenddata!).subscribe( response => {
+        Swal.fire("Creado!", `
+          <h2>${response}</h2>
+          <p>Su plan fue creado satisfactoriamente!</p>
+          `,
+        'success'
+        ).then(
+          this.el.nativeElement.reset()
+        );
+      });
     }
   }
 }

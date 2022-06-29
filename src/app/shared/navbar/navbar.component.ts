@@ -95,6 +95,11 @@ export class NavbarComponent implements OnInit {
                                 }
                             ]
                         },
+                        {
+                          label: 'Manual de Ayuda',
+                          icon: 'pi pi-info-circle',
+                          routerLink: '/help'
+                        }
                     ];
                 }
             )

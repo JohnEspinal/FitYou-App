@@ -1,18 +1,22 @@
 
-<div class="row">
 
-  <div class="col-12">
-    <input
-    type="file"
-    accept=".xlsx,.xls"
-    class="custom-file-input"
-    id="customFile"
-    name="myfile"
-    #fileInput
->
-  </div>
-  <div class="col-12">
-    <button (click)="onFileSelect()" pButton >Importar</button>
+<div class="container mt-5 mb-5">
+  <div class="row">
+
+    <div class="col-12 mb-3">
+      <input
+      type="file"
+      accept=".xlsx,.xls"
+      class="form-control"
+      id="formFile"
+      name="myfile"
+      #fileInput
+  >
+    </div>
+    <div class="col-12">
+      <button (click)="onFileSelect()" pButton >Importar</button>
+
+    </div>
 
   </div>
 
