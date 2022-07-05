@@ -8,16 +8,18 @@ import { DirectionsResponse, Route } from '../interfaces/directions.interface';
   providedIn: 'root'
 })
 export class MapService {
-  
+
   private map? : Map;
   private Markers : Marker[] = [];
-  
+
+  public endlocation : [number,number];
+
   get isMapReady(){
     return !!this.map;
   }
 
   constructor(
-    private directiosnApi : DirectionsApiClients 
+    private directiosnApi : DirectionsApiClients
   ) { }
 
   setMap( map : Map ){
@@ -29,7 +31,7 @@ export class MapService {
     if(!this.isMapReady){
       throw new Error("El mapa no ha sido inicializado");
     }
-  
+
     this.map?.flyTo({
       zoom : 14,
       center : coords
@@ -66,7 +68,7 @@ export class MapService {
     }
 
     this.Markers = newMarkers;
-    
+
     if( places.length === 0 ) return;
 
     const bounds = new LngLatBounds();
