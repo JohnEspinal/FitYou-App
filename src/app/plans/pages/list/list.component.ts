@@ -65,7 +65,7 @@ export class ListComponent implements OnInit {
 
   loading: boolean = true;
 
-  plan: any;
+  plan!: Plan;
 
   plans: Plan[] = [];
   //   {
@@ -248,8 +248,8 @@ export class ListComponent implements OnInit {
   changeValue(id: string) {
     let srtingId: string = id.toString();
 
-    console.log('id', id);
-    console.log('test', this.plansToCompare.indexOf(srtingId));
+    // console.log('id', id);
+    // console.log('test', this.plansToCompare.indexOf(srtingId));
 
     if (this.plansToCompare.includes(srtingId)) {
       this.plansToCompare.splice(this.plansToCompare.indexOf(srtingId), 1);
@@ -259,7 +259,7 @@ export class ListComponent implements OnInit {
 
     this.plansForm.controls['plansToCompare'].setValue(this.plansToCompare);
 
-    console.log('plans to Compare:', this.plansToCompare);
+    // console.log('plans to Compare:', this.plansToCompare);
   }
 
   ngOnInit() {
@@ -282,7 +282,7 @@ export class ListComponent implements OnInit {
     this.plansService.getPlans().subscribe((resp) => {
       this.loading = false;
       this.plans = resp;
-      console.log(resp);
+      // console.log(resp);
     });
   }
 
@@ -325,7 +325,16 @@ export class ListComponent implements OnInit {
 
   //Show Modal
   showModalDialog(id: number) {
-    this.plan = this.plans[id - 1];
+
+    const currentPlan = this.plans.find( (plan) => plan.Id === id );
+
+    if(currentPlan == undefined){
+      return;
+    }
+
+    this.plan = currentPlan;
+    console.log("Boton")
+    
     this.planTypeOf = this.plan.TypeOfPlan;
     this.planDescription = this.plan.Description;
     this.planId = this.plan.Id;
@@ -333,7 +342,7 @@ export class ListComponent implements OnInit {
       this.InternetDescription = this.plan.Internet.Description;
       this.InternetLoweringspeed = this.plan.Internet.Loweringspeed;
       this.InternetSpeed = this.plan.Internet.Speed;
-      this.InternetTypeOfNet = this.plan.Internet.TypeOfNet;
+      this.InternetTypeOfNet = this.plan.Internet.Typeofnet;
       this.InternetUploadspeed = this.plan.Internet.Uploadspeed;
     }
     if (this.planTypeOf === 'T') {
@@ -342,7 +351,7 @@ export class ListComponent implements OnInit {
       this.PhoneDescription = this.plan.Telephone.Description;
     }
     if (this.planTypeOf === 'C') {
-      this.CableChannels = this.plan.Telecable.Chanels;
+      this.CableChannels = this.plan.Telecable.Channels;
       this.CableDescription = this.plan.Telecable.Description;
       this.CableTypeOfTelecable = this.plan.Telecable.TypeOfTelecable;
     }

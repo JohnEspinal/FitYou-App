@@ -29,154 +29,215 @@
 ></button> -->
 <div class="grid m-5 justify-content-center">
   <!-- <p-splitter [style]="{ height: '600px' }" styleClass="p-mb-5"> -->
-  <p-card
-    header="Titulo Card"
-    subheader="Subtitulo Card"
-    [style]="{ width: '360px', margin: '40px' }"
+    <p-card
+    [header]="plan1[0]?.Title || ''"
+    [subheader]="plan1[0]?.Description || ''"
+    style="width: 40%;"
+    class="m-4"
     styleClass="card"
   >
-    <p-dataView #dv [value]="plan1" layout="grid">
+    <p-dataView #dv [value]="plan1" filterBy="name" layout="grid">
       <ng-template let-plan pTemplate="gridItem">
-        <div class="p-col-12 p-md-2">
-          <div class="plan-grid-item p-3">
-            <div class="product-grid-item-top">
-              <div class="product-list-detail">
-                <div class="product-name">{{ plan.Title }}</div>
-                <i
-                  *ngIf="plan.TypeOfPlan === 'I'"
-                  class="pi pi-globe product-category-icon"
-                ></i>
-                <i
-                  *ngIf="plan.TypeOfPlan === 'C'"
-                  class="pi pi-globe product-category-icon"
-                ></i>
-                <i
-                  *ngIf="plan.TypeOfPlan === 'T'"
-                  class="pi pi-phone product-category-icon"
-                ></i>
-              </div>
-            </div>
-            <div class="plan-grid-item-content">
-              <div class="m-5">
-                <h4>{{ plan.price | currency: "RD$ " }}</h4>
-              </div>
-              <div class="plan-description">
-                {{ plan.Description }}
-              </div>
-              <br />
 
-              <div *ngIf="this.plan1[0].TypeOfPlan === 'I'">
-                <label> Velocidad de subida : </label>
-                <span>{{ plan.Internet?.Uploadspeed }}</span>
-                <br />
-                <label> Velocidad de bajada : </label>
-                <span>{{ plan.Internet?.Loweringspeed }}</span>
-                <br />
-                <label> Velocidad : </label>
-                <span>{{ plan.Internet?.Speed }}</span>
-                <br />
-                <label> Tipo de Internet : </label>
-                <span>{{ plan.Internet?.TypeOfNet }}</span>
-                <br />
-                <label> Descripcion : </label>
-                <span>{{ plan.Internet?.Description }}</span>
-              </div>
-              <div *ngIf="this.plan1[0].TypeOfPlan === 'C'">
-                <label> Canales : </label>
-                <span>{{ plan.Telecable?.Chanels }}</span>
-                <label> Tipo de cable : </label>
-                <span>{{ plan.Telecable?.TypeOfTelecable }}</span>
-                <label> Descripcion : </label>
-                <span>{{ plan.Telecable?.Description }}</span>
-              </div>
-              <div *ngIf="this.plan1[0].TypeOfPlan === 'T'">
-                <label> Minutos : </label>
-                <span>{{ plan.Telephone?.Minutes }}</span>
-                <label> Servicio : </label>
-                <span>{{ plan.Telephone?.Service }}</span>
-                <label> Descripcion : </label>
-                <span>{{ plan.Telephone?.Description }}</span>
-              </div>
+        <dl class="row" style="font-size: 18px;">
+
+          <hr />
+          <div class="row" *ngIf="this.plan1[0].TypeOfPlan === 'I'">
+
+            <h5>Plan de internet <i
+              class="pi pi-globe product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Internet.Description }}</dd>
             </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de subida:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Internet.Uploadspeed }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de bajada:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Internet.Loweringspeed}}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad promedio:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Internet.Speed }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de bajada:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Internet.Loweringspeed}}</dd>
+            </div>
+          
           </div>
-        </div>
+
+
+          <div class="row" *ngIf="this.plan1[0].TypeOfPlan === 'C'">
+
+            <h5>Plan de Telecable <i
+              class="pi pi-tablet product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Telecable.Description }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Canales disponibles:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Telecable.Channels }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Tipo de Telecable:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Telecable.TypeOfTelecable}}</dd>
+            </div>
+          
+          </div>
+
+          <div class="row" *ngIf="this.plan1[0].TypeOfPlan === 'T'">
+
+            <h5>Plan de Telefono <i
+              class="pi pi-phone product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Telephone.Description }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Canales disponibles:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Telephone.Minutes }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Tipo de Servicio telefonico:</dt>
+              <dd class="col-sm-7">{{ this.plan1[0].Telephone.Service }}</dd>
+            </div>
+          
+          </div>
+
+        </dl>
+
+
       </ng-template>
     </p-dataView>
   </p-card>
 
+  <!-- [style]="{ width: '100px', margin: '40px' }" -->
   <p-card
-    header="Titulo Card"
-    subheader="Subtitulo Card"
-    [style]="{ width: '360px', margin: '40px' }"
+    [header]="plan2[0]?.Title || ''"
+    [subheader]="plan2[0]?.Description || ''"
+    style="width: 40%;"
+    class="m-4"
     styleClass="card"
   >
     <p-dataView #dv [value]="plan2" filterBy="name" layout="grid">
       <ng-template let-plan pTemplate="gridItem">
-        <div class="p-col-12 p-md-2">
-          <div class="plan-grid-item p-3">
-            <div class="product-grid-item-top">
-              <div class="product-list-detail">
-                <div class="product-name">{{ plan.Title }}</div>
-                <i
-                  *ngIf="plan.TypeOfPlan === 'I'"
-                  class="pi pi-globe product-category-icon"
-                ></i>
-                <i
-                  *ngIf="plan.TypeOfPlan === 'C'"
-                  class="pi pi-globe product-category-icon"
-                ></i>
-                <i
-                  *ngIf="plan.TypeOfPlan === 'T'"
-                  class="pi pi-phone product-category-icon"
-                ></i>
-              </div>
-            </div>
-            <div class="plan-grid-item-content">
-              <div class="m-5">
-                <h4>{{ plan.price | currency: "RD$ " }}</h4>
-              </div>
-              <div class="plan-description">{{ plan.Description }}</div>
-              <br />
 
-              <div *ngIf="this.plan2[0].TypeOfPlan === 'I'">
-                <label> Velocidad de bajada : </label>
-                <span>{{ plan.Internet?.Uploadspeed }}</span>
-                <br />
-                <label> Velocidad de bajada : </label>
-                <span>{{ plan.Internet?.Loweringspeed }}</span>
-                <br />
-                <label> Velocidad de bajada : </label>
-                <span>{{ plan.Internet?.Speed }}</span>
-                <br />
-                <label> Velocidad de bajada : </label>
-                <span>{{ plan.Internet?.TypeOfNet }}</span>
-                <br />
-                <label> Velocidad de bajada : </label>
-                <span>{{ plan.Internet?.Description }}</span>
-              </div>
-              <div *ngIf="this.plan2[0].TypeOfPlan === 'C'">
-                <label> Canales : </label>
-                <span>{{ plan.Telecable?.Chanels }}</span>
-                <br />
-                <label> Tipo de cable : </label>
-                <span>{{ plan.Telecable?.TypeOfTelecable }}</span>
-                <br />
-                <label> Descripcion : </label>
-                <span>{{ plan.Telecable?.Description }}</span>
-              </div>
-              <div *ngIf="this.plan2[0].TypeOfPlan === 'T'">
-                <label> Minutos : </label>
-                <span>{{ plan.Telephone?.Minutes }}</span>
-                <br />
-                <label> Servicio : </label>
-                <span>{{ plan.Telephone?.Service }}</span>
-                <br />
-                <label> Descripcion : </label>
-                <span>{{ plan.Telephone?.Description }}</span>
-              </div>
+        <dl class="row" style="font-size: 18px;">
+
+          <hr />
+          <div class="row" *ngIf="this.plan2[0].TypeOfPlan === 'I'">
+
+            <h5>Plan de internet <i
+              class="pi pi-globe product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Internet.Description }}</dd>
             </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de subida:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Internet.Uploadspeed }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de bajada:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Internet.Loweringspeed}}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad promedio:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Internet.Speed }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de bajada:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Internet.Loweringspeed}}</dd>
+            </div>
+          
           </div>
-        </div>
+
+
+          <div class="row" *ngIf="this.plan2[0].TypeOfPlan === 'C'">
+
+            <h5>Plan de Telecable <i
+              class="pi pi-tablet product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Telecable.Description }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Canales disponibles:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Telecable.Channels }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Tipo de Telecable:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Telecable.TypeOfTelecable}}</dd>
+            </div>
+          
+          </div>
+
+          <div class="row" *ngIf="this.plan2[0].TypeOfPlan === 'T'">
+
+            <h5>Plan de Telefono <i
+              class="pi pi-phone product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Telephone.Description }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Canales disponibles:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Telephone.Minutes }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Tipo de Servicio telefonico:</dt>
+              <dd class="col-sm-7">{{ this.plan2[0].Telephone.Service }}</dd>
+            </div>
+          
+          </div>
+
+        </dl>
+
+
       </ng-template>
     </p-dataView>
   </p-card>
