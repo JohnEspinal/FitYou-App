@@ -10,7 +10,7 @@ import { AuthResponse } from '../interfaces/AuthResponse';
 })
 export class AuthService {
 
-  baseUrl: string = 'https://localhost:44384';
+  baseUrl: string = 'https://fityoubackend.azurewebsites.net';
 
   // private baseUrl: string = environment.baseUrl;
 
@@ -91,12 +91,15 @@ export class AuthService {
 
     const url: string = `${this.baseUrl}/api/validate`;
 
-    const headers = new HttpHeaders()
-      .set('Authorization', ('Bearer ' + localStorage.getItem('token')) || '');
+    let headers;
+
+    if(localStorage.getItem('token')){
+      headers = new HttpHeaders().set('Authorization', ('Bearer ' + localStorage.getItem('token')) || '');
+    }
     
-    return this.http.get<AuthResponse>(url, {
+    return this.http.get<AuthResponse>(url, headers ? {
       headers
-    }).pipe(
+    } : {}).pipe(
       map(
         resp => {
 

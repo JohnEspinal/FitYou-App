@@ -6,6 +6,7 @@ import { ErrorComponent } from './error/error.component';
 import { FooterComponent } from './footer/footer.component';
 import { InfoComponent } from './appinfo/info.component';
 
+
 @NgModule({
   declarations: [
     NavbarComponent,

@@ -68,6 +68,13 @@ export interface Product {
 }
 
 
+export interface Ticket{
+  id: string;
+  title: string;
+  description: string;
+  status: string;
+}
+
 export interface Internet{
   Id?: number;
   Uploadspeed: string;

@@ -6,20 +6,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styles: [
-        `
-        .background{
-            width: 100%;
-            height: 600px;
-        }
-
-        .par{
-            line-height: 20px; 
-            font-stretch: extra-expanded;
-        }
-
-        `
-    ]
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 

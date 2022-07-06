@@ -55,7 +55,7 @@
           <div class="flex flex-column md:flex-row md:justify-content-between">
             <p-dropdown
               [options]="sortOptions"
-              [(ngModel)]="sortKey"
+              
               placeholder="Sort By Price"
               (onChange)="onSortChange($event)"
               styleClass="mb-2 md:mb-0"
@@ -73,22 +73,26 @@
           </div>
         </ng-template>
         <ng-template let-product pTemplate="listItem">
+
+        
+          
           <div class="col-12">
             <div class="product-list-item">
-              <img
+              <!-- <img
                 [src]="'assets/showcase/images/demo/product/' + product.image"
                 [alt]="product.name"
-              />
+              /> -->
               <div class="product-list-detail">
                 <div class="product-name">{{ product.Title }}</div>
                 <div class="product-description">{{ product.Description }}</div>
                 <i
                   *ngIf="product.TypeOfPlan === 'I'"
                   class="pi pi-globe product-category-icon"
+                  style="font-size: 30px;"
                 ></i>
                 <i
                   *ngIf="product.TypeOfPlan === 'C'"
-                  class="pi pi-globe product-category-icon"
+                  class="pi pi-tablet product-category-icon"
                 ></i>
                 <i
                   *ngIf="product.TypeOfPlan === 'T'"
@@ -124,37 +128,54 @@
                 >
               </div>
             </div>
+
           </div>
+
+
+
+
         </ng-template>
+
+
+        <!-- Grid LIST -->
+
         <ng-template let-product pTemplate="gridItem">
+
+
           <div class="col-12 md:col-4">
             <div class="product-grid-item card">
               <div class="product-grid-item-top">
                 <div>
                   <i
                     *ngIf="product.TypeOfPlan === 'I'"
-                    class="pi pi-tablet product-category-icon"
+                    class="pi pi-globe product-category-icon"
+                    style="font-size: 40px;"
                   ></i>
                   <i
                     *ngIf="product.TypeOfPlan === 'C'"
-                    class="pi pi-globe product-category-icon"
+                    class="pi pi-tablet product-category-icon"
+                    style="font-size: 40px;"
                   ></i>
                   <i
                     *ngIf="product.TypeOfPlan === 'T'"
                     class="pi pi-phone product-category-icon"
+                    style="font-size: 40px;"
                   ></i>
                 </div>
               </div>
+
               <div class="product-grid-item-content">
                 <div class="product-name">{{ product.Title }}</div>
                 <br />
                 <br />
-                <br />
-                <div class="product-description">{{ product.description }}</div>
+                <div class="product-description">{{ product.Description }}</div>
               </div>
+              
               <div class="product-grid-item-bottom">
                 <span class="product-price">${{ product.Price }}</span>
               </div>
+
+              
               <div class="product-grid-item-bottom">
                 <span>
                   <p-checkbox
@@ -168,7 +189,7 @@
                   >
                 </span>
                 <p-button
-                  icon="pi pi-globe"
+                  icon="pi pi-list"
                   (click)="showModalDialog(product.Id)"
                 ></p-button>
                 <button
@@ -183,8 +204,11 @@
           </div>
         </ng-template>
       </p-dataView>
+
+      <!-- Modal with plan details -->
+
       <p-dialog
-        header="Detalle"
+        header="Detalle de: {{ this.plan?.Title }}"
         [(visible)]="displayModal"
         [modal]="true"
         [style]="{ width: '50vw' }"
@@ -192,43 +216,112 @@
         [draggable]="false"
         [resizable]="false"
       >
-        <p class="p-m-0">{{ planDescription }}</p>
-        <br />
-        <hr />
-        <br />
-        <div class="p-m-0 font-bold" *ngIf="planTypeOf === 'I'">
-          Description Internte: {{ InternetDescription }}
-          <p class="p-m-0 font-bold">
-            Velocidad de subida: {{ InternetUploadspeed }}
-          </p>
-          <p class="p-m-0 font-bold">
-            Velocidad de Bajada: {{ InternetLoweringspeed }}
-          </p>
-          <p class="p-m-0 font-bold">Velocidad: {{ InternetSpeed }}</p>
-          <p class="p-m-0 font-bold">
-            Tipo de internet: {{ InternetTypeOfNet }}
-          </p>
-        </div>
-        <div class="p-m-0 font-bold" *ngIf="planTypeOf === 'C'">
-          Description de telecable: {{ CableDescription }}
-          <p class="p-m-0 font-bold">
-            Tip de telecable: {{ CableTypeOfTelecable }}
-          </p>
-        </div>
-        <div class="p-m-0 font-bold" *ngIf="planTypeOf === 'T'">
-          Descripcion: {{ PhoneDescription }}
-          <p class="p-m-0 font-bold">Cantidad de Minutos: {{ PhoneMinutes }}</p>
-          <p class="p-m-0 font-bold">Servicio: {{ PhoneService }}</p>
-        </div>
+    
+        <dl class="row" style="font-size: 30px;">
+          <dt class="col-sm-3">Descripción General:</dt>
+          <dd class="col-sm-9">{{ this.plan?.Description }}</dd>
+
+          <hr />
+          <div class="row" *ngIf="planTypeOf === 'I'">
+
+            <h5>Plan de internet <i
+              class="pi pi-globe product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan.Internet.Description }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de subida:</dt>
+              <dd class="col-sm-7">{{ this.plan.Internet.Uploadspeed }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de bajada:</dt>
+              <dd class="col-sm-7">{{ this.plan.Internet.Loweringspeed}}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad promedio:</dt>
+              <dd class="col-sm-7">{{ this.plan.Internet.Speed }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Velocidad de bajada:</dt>
+              <dd class="col-sm-7">{{ this.plan.Internet.Loweringspeed}}</dd>
+            </div>
+          
+          </div>
+
+
+          <div class="row" *ngIf="planTypeOf === 'C'">
+
+            <h5>Plan de Telecable <i
+              class="pi pi-tablet product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan.Telecable.Description }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Canales disponibles:</dt>
+              <dd class="col-sm-7">{{ this.plan.Telecable.Channels }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Tipo de Telecable:</dt>
+              <dd class="col-sm-7">{{ this.plan.Telecable.TypeOfTelecable}}</dd>
+            </div>
+          
+          </div>
+
+          <div class="row" *ngIf="planTypeOf === 'T'">
+
+            <h5>Plan de Telefono <i
+              class="pi pi-phone product-category-icon"
+            ></i></h5>
+
+            <br/>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Más acerca del plan:</dt>
+              <dd class="col-sm-7">{{ this.plan.Telephone.Description }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Canales disponibles:</dt>
+              <dd class="col-sm-7">{{ this.plan.Telephone.Minutes }}</dd>
+            </div>
+          
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Tipo de Servicio telefonico:</dt>
+              <dd class="col-sm-7">{{ this.plan.Telephone.Service }}</dd>
+            </div>
+          
+          </div>
+
+        </dl>
 
         <ng-template pTemplate="footer">
           <p-button
             icon="pi pi-times"
             (click)="displayModal = false"
-            label="Salir"
+            label="Ok"
           ></p-button>
         </ng-template>
+
       </p-dialog>
+
+
+
       <p-dialog
         header="Estas seguro?"
         [(visible)]="displayModalDelete"

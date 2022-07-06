@@ -39,6 +39,10 @@ const routes: Routes = [
     component: InfoComponent,
   },
   {
+    path: 'help',
+    component: InfoComponent
+  },
+  {
     path: '**',
     redirectTo: '',
   },

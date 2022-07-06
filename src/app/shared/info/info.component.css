@@ -1,0 +1,190 @@
+
+/*
+Home
+*/
+
+.accordian {
+  border: 1px solid grey;
+}
+input {
+  display: none;
+}
+label {
+  font-size: 20px;
+  background-color: lightblue;
+  display: block;
+  cursor: pointer;
+  padding: 10px 10px 10px 30px;
+  position: relative;
+  user-select: none;
+}
+label:before {
+  content: " ";
+  height:0;
+  font-size: 0;
+  position: absolute;
+  top: 18px;
+  left: 10px;
+  transition: transform 0.5s;
+  transform-origin: 3px center;
+}
+.accordian div {
+  font-size: 18px;
+  height:0;
+  overflow:hidden;
+  opacity:0;
+}
+input:checked ~ label:before {
+  transform: rotate(90deg)
+}
+input:checked ~ div {
+  padding: 10px;
+  opacity: 1;
+  height: auto;
+}
+
+/*
+Planes
+*/
+
+.accordiana {
+  border: 1px solid grey;
+}
+
+.accordiana div {
+  font-size: 18px;
+  height:0;
+  overflow:hidden;
+  opacity:0;
+}
+h3 {
+  font-size: 20px;
+  background-color: lightblue;
+  display: block;
+  cursor: pointer;
+  padding: 10px 10px 10px 30px;
+  position: relative;
+  user-select: none;
+}
+h3:before {
+  content: " ";
+  height:0;
+  font-size: 0;
+  position: absolute;
+  top: 18px;
+  left: 10px;
+  transition: transform 0.5s;
+  transform-origin: 3px center;
+}
+h3:checked ~ h3:before {
+  transform: rotate(90deg)
+}
+h3:checked ~ div {
+  padding: 10px;
+  opacity: 1;
+  height: auto;
+}
+
+
+/*
+Comparar
+*/
+
+.accordianaa {
+  border: 1px solid grey;
+}
+
+.accordianaa div {
+  font-size: 18px;
+  height:0;
+  overflow:hidden;
+  opacity:0;
+}
+h3 {
+  font-size: 20px;
+  background-color: lightblue;
+  display: block;
+  cursor: pointer;
+  padding: 10px 10px 10px 30px;
+  position: relative;
+  user-select: none;
+}
+h3:before {
+  content: " ";
+  height:0;
+  font-size: 0;
+  position: absolute;
+  top: 18px;
+  left: 10px;
+  transition: transform 0.5s;
+  transform-origin: 3px center;
+}
+h3:checked ~ h3:before {
+  transform: rotate(90deg)
+}
+h3:checked ~ div {
+  padding: 10px;
+  opacity: 1;
+  height: auto;
+}
+
+
+/*
+Comparar
+*/
+
+.acerca {
+  border: 1px solid grey;
+}
+
+.acerca div {
+  font-size: 18px;
+  height:0;
+  overflow:hidden;
+  opacity:0;
+}
+
+/*
+Compañia
+*/
+
+.compania {
+  border: 1px solid grey;
+}
+
+.compania div {
+  font-size: 18px;
+  height:0;
+  overflow:hidden;
+  opacity:0;
+}
+
+/*
+Excel
+*/
+
+.exce {
+  border: 1px solid grey;
+}
+
+.exce div {
+  font-size: 18px;
+  height:0;
+  overflow:hidden;
+  opacity:0;
+}
+
+/*
+Mapa
+*/
+
+.map {
+  border: 1px solid grey;
+}
+
+.map div {
+  font-size: 18px;
+  height:0;
+  overflow:hidden;
+  opacity:0;
+}
