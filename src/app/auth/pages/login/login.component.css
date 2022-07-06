@@ -194,7 +194,8 @@ Code for help user
 
 .more-info:hover .tooltiptext {
   display: block;
-  
+}
+
 .btn-login:hover {
   cursor: pointer;
   background-color: white;

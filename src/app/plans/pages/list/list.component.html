@@ -196,6 +196,13 @@
                   *ngIf="isUserLoggedIn"
                   (click)="showModalDialogDelete(product.Id)"
                   pButton
+                  icon="pi pi-pencil"
+                  class="p-button-info"
+                ></button>
+                <button
+                  *ngIf="isUserLoggedIn"
+                  (click)="showModalDialogDelete(product.Id)"
+                  pButton
                   icon="pi pi-trash"
                   class="p-button-danger"
                 ></button>
