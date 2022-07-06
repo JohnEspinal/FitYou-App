@@ -72,6 +72,27 @@ export class NavbarComponent implements OnInit {
             },
           ],
         },
+        {
+          label: 'Soporte',
+          icon: 'pi pi-ticket',
+          items: [
+            {
+              label: 'Ticket',
+              icon: 'pi pi-ticket',
+              routerLink: 'tickets/add-tickets',
+            },
+            {
+              label: 'Listado de Tickets',
+              icon: 'pi pi-table',
+              routerLink: 'tickets/tickets',
+            },
+            {
+              label: 'Manual de Usuario',
+              icon: 'pi pi-info-circle',
+              routerLink: 'info',
+            },
+          ],
+        },
         // ...( this.userLoggedIn ? [{
         //     label:'logout',
         //     icon: 'pi pi-map',

@@ -12,7 +12,11 @@ import {
   Validators,
 } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { Internet, Telecable, Telephone } from '../../interfaces/plan.interface';
+import {
+  Internet,
+  Telecable,
+  Telephone,
+} from '../../interfaces/plan.interface';
 import { of, switchMap, tap, Observable } from 'rxjs';
 
 @Component({
@@ -28,7 +32,6 @@ import { of, switchMap, tap, Observable } from 'rxjs';
   ],
 })
 export class AddPlanComponent implements OnInit {
-
   plan!: PlanPost;
 
   companies!: Company[];
@@ -95,96 +98,78 @@ export class AddPlanComponent implements OnInit {
     //       }
     //     )
   }
-  
+
   isFieldInvalid(fieldName: string) {
     const control: AbstractControl = this.myForm.controls[fieldName];
-    
+
     return control.invalid && control.touched;
   }
-  
 
   ngOnInit(): void {
     console.log(this.myForm);
 
-    this.myForm.get('typeOfPlans')?.valueChanges
-      .subscribe(
-        (typeOfPlan) => {
-          console.log("first")
-          this.typeOfPlan = typeOfPlan
-        }
-      )
+    this.myForm.get('typeOfPlans')?.valueChanges.subscribe((typeOfPlan) => {
+      console.log('first');
+      this.typeOfPlan = typeOfPlan;
+    });
   }
 
-  typeOfPlanChange( event: any ){
-    
+  typeOfPlanChange(event: any) {
     this.typeOfPlan = event.value;
     console.log(event.value);
   }
 
-
-
-
-  postPlanSpecific(planSpecific: any, newPlan: PlanPost): Observable<Object>{
+  postPlanSpecific(planSpecific: any, newPlan: PlanPost): Observable<Object> {
     console.log('plan', newPlan);
 
-   if(newPlan.TypeOfPlan === 'I'){
-    return this.Planservice.postInternet(planSpecific)
-    .pipe(
-      switchMap(
-        result => {
-          console.log({result})
-          newPlan =  {
+    if (newPlan.TypeOfPlan === 'I') {
+      return this.Planservice.postInternet(planSpecific).pipe(
+        switchMap((result) => {
+          console.log({ result });
+          newPlan = {
             ...newPlan,
             InternetId: result.id,
-          }
-          console.log({newPlan});
+          };
+          console.log({ newPlan });
           return this.Planservice.addPlan(newPlan);
-        }
-      )
-    )
-   }
+        })
+      );
+    }
 
-   if(newPlan.TypeOfPlan === 'C'){
-    return this.Planservice.postTelecable(planSpecific)
-    .pipe(
-      switchMap(
-        result => {
-          console.log({result})
-          newPlan =  {
+    if (newPlan.TypeOfPlan === 'C') {
+      return this.Planservice.postTelecable(planSpecific).pipe(
+        switchMap((result) => {
+          console.log({ result });
+          newPlan = {
             ...newPlan,
-            TelecableId: result.id
-          }
-          console.log({newPlan});
+            TelecableId: result.id,
+          };
+          console.log({ newPlan });
           return this.Planservice.addPlan(newPlan);
-        }
-      )
-    )
-   }
+        })
+      );
+    }
 
-   if(newPlan.TypeOfPlan === 'T'){
-    return this.Planservice.postTelephone(planSpecific)
-    .pipe(
-      switchMap(
-        result => {
-          console.log({result})
-          newPlan =  {
+    if (newPlan.TypeOfPlan === 'T') {
+      return this.Planservice.postTelephone(planSpecific).pipe(
+        switchMap((result) => {
+          console.log({ result });
+          newPlan = {
             ...newPlan,
             TelephoneId: result.id,
-          }
-          console.log({newPlan});
+          };
+          console.log({ newPlan });
           return this.Planservice.addPlan(newPlan);
-        }
-      )
-    )
-   }
+        })
+      );
+    }
 
-   return of({});
+    return of({});
   }
 
   // Add a new Plan
 
-  add( newSpecificPlan: Internet | Telecable | Telephone ) {
-
+  add(newSpecificPlan: Internet | Telecable | Telephone) {
     console.log(newSpecificPlan);
 
     this.myForm.markAllAsTouched();
@@ -195,35 +180,26 @@ export class AddPlanComponent implements OnInit {
 
     let newPlan: PlanPost = {
       ...this.myForm.value,
-      createDate: new Date().toLocaleDateString('en-CA')
+      createDate: new Date().toLocaleDateString('en-CA'),
     };
 
-    this.postPlanSpecific(newSpecificPlan, newPlan).subscribe(
-          
-          resp => {
+    this.postPlanSpecific(newSpecificPlan, newPlan).subscribe((resp) => {
+      console.log(resp);
 
-            console.log(resp);
-
-          Swal.fire("Creado!", `
+      Swal.fire(
+        'Creado!',
+        `
           <h2>${newPlan.Title}</h2>
           <p>Su plan fue creado satisfactoriamente!</p>
           `,
         'success'
-        ).then(
-          
-          () => this.myForm.reset()
-        
-        );
-        }
-
-      )
-
-    
+      ).then(() => this.myForm.reset());
+    });
 
     // this.Planservice.addPlan(newPlan)
     //   .subscribe(
     //     resp => {
-          
+
     //       Swal.fire("Creado!", `
     //       <h2>${newPlan.title}</h2>
     //       <p>Su plan fue creado satisfactoriamente!</p>

@@ -22,13 +22,26 @@ import { SplitterModule } from 'primeng/splitter';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { AccordionModule } from 'primeng/accordion';
 
 // import {MenuItem} from 'primeng/api';
 
 @NgModule({
   exports: [
     ButtonModule,
+    RadioButtonModule,
+    InputNumberModule,
     MenubarModule,
+    ContextMenuModule,
     InputTextModule,
     ImageModule,
     CardModule,
@@ -51,6 +64,12 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     MessageModule,
     MessagesModule,
     ProgressSpinnerModule,
+    ToolbarModule,
+    ConfirmDialogModule,
+    InputTextareaModule,
+    MultiSelectModule,
+    AccordionModule,
   ],
+  providers: [MessageService, ConfirmationService],
 })
 export class PrimeNgModule {}
