@@ -17,55 +17,54 @@ import { MessageService } from 'primeng/api';
     `,
   ],
   styleUrls: ['./tickets.component.scss'],
-  providers: [MessageService, ConfirmationService],
 })
 export class TicketsComponent implements OnInit {
   ticketDialog: boolean;
 
-  tickets: Ticket[] = [
-    {
-      Id: 1,
-      Title: 'per',
-      Description: 'hello',
-      Status: 's1',
-    },
-    {
-      Id: 2,
-      Title: 'Problema en HomePage',
-      Description: 'Hay un problema de interfaz en la paginal de inicio.',
-      Status: 'Abierto',
-    },
-    {
-      Id: 3,
-      Title: 'Problema en HomePage',
-      Description: 'Hay un problema de interfaz en la paginal de inicio.',
-      Status: 'Cerrado',
-    },
-    {
-      Id: 4,
-      Title: 'Problema en HomePage',
-      Description: 'Hay un problema de interfaz en la paginal de inicio.',
-      Status: 'Abierto',
-    },
-    {
-      Id: 5,
-      Title: 'Problema en HomePage',
-      Description: 'Hay un problema de interfaz en la paginal de inicio.',
-      Status: 'Cerrado',
-    },
-    {
-      Id: 6,
-      Title: 'Problema en HomePage',
-      Description: 'Hay un problema de interfaz en la paginal de inicio.',
-      Status: 'Proceso',
-    },
-    {
-      Id: 7,
-      Title: 'Problema en HomePage',
-      Description: 'Hay un problema de interfaz en la paginal de inicio.',
-      Status: 'Cerrado',
-    },
-  ];
+  tickets: Ticket[] = [];
+  //   {
+  //     Id: 1,
+  //     Title: 'per',
+  //     Description: 'hello',
+  //     Status: 's1',
+  //   },
+  //   {
+  //     Id: 2,
+  //     Title: 'Problema en HomePage',
+  //     Description: 'Hay un problema de interfaz en la paginal de inicio.',
+  //     Status: 'Abierto',
+  //   },
+  //   {
+  //     Id: 3,
+  //     Title: 'Problema en HomePage',
+  //     Description: 'Hay un problema de interfaz en la paginal de inicio.',
+  //     Status: 'Cerrado',
+  //   },
+  //   {
+  //     Id: 4,
+  //     Title: 'Problema en HomePage',
+  //     Description: 'Hay un problema de interfaz en la paginal de inicio.',
+  //     Status: 'Abierto',
+  //   },
+  //   {
+  //     Id: 5,
+  //     Title: 'Problema en HomePage',
+  //     Description: 'Hay un problema de interfaz en la paginal de inicio.',
+  //     Status: 'Cerrado',
+  //   },
+  //   {
+  //     Id: 6,
+  //     Title: 'Problema en HomePage',
+  //     Description: 'Hay un problema de interfaz en la paginal de inicio.',
+  //     Status: 'Proceso',
+  //   },
+  //   {
+  //     Id: 7,
+  //     Title: 'Problema en HomePage',
+  //     Description: 'Hay un problema de interfaz en la paginal de inicio.',
+  //     Status: 'Cerrado',
+  //   },
+  // ];
 
   ticket: Ticket;
 
@@ -91,7 +90,16 @@ export class TicketsComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAlltickets();
+  }
+
+  getAlltickets() {
+    this.TicketsService.getTickets().subscribe((resp) => {
+      this.tickets = resp;
+      console.log(resp);
+    });
+  }
 
   deleteSelectedTicket() {
     this.confirmationService.confirm({
@@ -113,20 +121,59 @@ export class TicketsComponent implements OnInit {
     });
   }
 
-  submit(ticket: Ticket) {
-    console.log(ticket);
-    this.hideDialog();
+  deleteTicket(Ticket: Ticket, Id: number) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + Ticket.Title + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.tickets = this.tickets.filter((val) => val.Id !== Ticket.Id);
+        this.TicketsService.deleteTicket(Id).subscribe((res: any) => {
+          console.log(res);
+        });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Ticket Deleted',
+          life: 3000,
+        });
+      },
+    });
   }
 
   newTicket() {
-    this.ticket = {};
     this.submitted = false;
     this.ticketDialog = true;
   }
 
-  editTicket(ticket: Ticket) {
+  editTicket(ticket: Ticket, Id: number) {
     this.ticket = { ...ticket };
     this.ticketDialog = true;
+
+    // console.log(this.ticket);
+    // console.log(Id);
+  }
+
+  saveEditTicket() {
+    this.submitted = true;
+
+    this.tickets[this.findIndexById(this.ticket.Id)] = this.ticket;
+    // console.log(this.ticket.Id);
+    // console.log(this.ticket);
+    this.TicketsService.UpdateTicket(this.ticket.Id, this.ticket).subscribe(
+      (res: any) => {
+        console.log(res);
+      }
+    );
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Successful',
+      detail: 'El ticket fue editado exitosamente',
+      life: 3000,
+    });
+
+    this.tickets = [...this.tickets];
+    this.ticketDialog = false;
   }
 
   hideDialog() {
@@ -134,15 +181,15 @@ export class TicketsComponent implements OnInit {
     this.submitted = false;
   }
 
-  // findIndexById(id: string): number {
-  //   let index = -1;
-  //   for (let i = 0; i < this.ticket; i++) {
-  //     if (this.tickets[i].Id === id) {
-  //       index = i;
-  //       break;
-  //     }
-  //   }
+  findIndexById(id: number): number {
+    let index = -1;
+    for (let i = 0; i < this.tickets.length; i++) {
+      if (this.tickets[i].Id === id) {
+        index = i;
+        break;
+      }
+    }
 
-  //   return index;
-  // }
+    return index;
+  }
 }

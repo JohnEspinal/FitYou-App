@@ -11,15 +11,23 @@ import { Ticket } from '../interfaces/ticket.interface';
   providedIn: 'root',
 })
 export class TicketsService {
-  baseUrl: string = 'https://localhost:44384/api';
+  baseUrl: string = 'https://fityoubackend.azurewebsites.net/api';
 
   constructor(private http: HttpClient) {}
 
-  getPlans(): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${this.baseUrl}/getTickets`);
+  getTickets(): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.baseUrl}/tickets`);
   }
 
   PostTicket(ticket: Ticket): any {
-    return this.http.post(`${this.baseUrl}/getTickets`, ticket);
+    return this.http.post(`${this.baseUrl}/tickets`, ticket);
+  }
+
+  deleteTicket(id: number): any {
+    return this.http.delete(`${this.baseUrl}/tickets/${id}`);
+  }
+
+  UpdateTicket(id: number, Ticket: Ticket): any {
+    return this.http.put(`${this.baseUrl}/tickets/${id}`, Ticket);
   }
 }

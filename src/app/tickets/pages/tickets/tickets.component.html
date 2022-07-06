@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="card">
   <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
@@ -78,13 +79,20 @@
         <td>{{ ticket.Title }}</td>
         <td>{{ ticket.Description }}</td>
         <td>{{ ticket.Status }}</td>
-        <td>
+        <td class="">
           <button
             pButton
             pRipple
             icon="pi pi-pencil"
             class="p-button-rounded p-mr-2"
-            (click)="editTicket(ticket)"
+            (click)="editTicket(ticket, ticket.Id)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning"
+            (click)="deleteTicket(ticket, ticket.Id)"
           ></button>
         </td>
       </tr>
@@ -152,7 +160,7 @@
       label="Save"
       icon="pi pi-check"
       class="p-button-text"
-      (click)="submit(ticket)"
+      (click)="saveEditTicket()"
     ></button>
   </ng-template>
 </p-dialog>
