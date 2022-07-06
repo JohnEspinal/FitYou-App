@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthTokenGuard } from './guards/auth-token.guard';
 import { HomeComponent } from './plans/pages/home/home.component';
 import { ErrorComponent } from './shared/error/error.component';
+import { InfoComponent } from './shared/info/info.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'excel',
     loadChildren: () => import('./excelplans/excelplans.module').then(m => m.ExcelplansModule)
+  },
+  {
+    path: 'help',
+    component: InfoComponent
   },
   {
     path: '**',

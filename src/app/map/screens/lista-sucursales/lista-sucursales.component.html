@@ -18,6 +18,9 @@
                      <app-mini-mapa [latlng]="item.lngLat" class="card-img-top" ></app-mini-mapa>
                     <h5 class="card-title">{{ item.titulo }}</h5>
                     <p class="card-text"> {{ item.descripcion }} </p>
+                    <div class="text-end">
+                     <button class="col-3 mb-2 mr-2 btn btn-primary" (click)="route(item.lngLat)" routerLink="map">Ir</button>
+                    </div>
                  </div>
             </div>
         </div>
