@@ -4,25 +4,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { ErrorComponent } from './error/error.component';
 import { FooterComponent } from './footer/footer.component';
-import { InfoComponent } from './info/info.component';
+import { InfoComponent } from './appinfo/info.component';
 
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     ErrorComponent,
     FooterComponent,
-    InfoComponent
+    InfoComponent,
   ],
-  exports:[
-    NavbarComponent,
-    FooterComponent
-  ],
-  imports: [
-    CommonModule,
-    PrimeNgModule,
-    BrowserModule
-  ]
+  exports: [NavbarComponent, FooterComponent],
+  imports: [CommonModule, PrimeNgModule],
 })
-export class SharedModule { }
+export class SharedModule {}

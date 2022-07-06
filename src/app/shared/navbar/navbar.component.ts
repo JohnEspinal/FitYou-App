@@ -97,7 +97,28 @@ export class NavbarComponent implements OnInit {
                           label: 'Manual de Ayuda',
                           icon: 'pi pi-info-circle',
                           routerLink: '/help'
-                        }
+                        },
+                        {
+                          label: 'Soporte',
+                          icon: 'pi pi-ticket',
+                          items: [
+                            {
+                              label: 'Ticket',
+                              icon: 'pi pi-ticket',
+                              routerLink: 'tickets/add-tickets',
+                            },
+                            {
+                              label: 'Listado de Tickets',
+                              icon: 'pi pi-table',
+                              routerLink: 'tickets/tickets',
+                            },
+                            {
+                              label: 'Manual de Usuario',
+                              icon: 'pi pi-info-circle',
+                              routerLink: 'info',
+                            },
+                          ],
+                        },
                     ];
                 }
             )
@@ -114,3 +135,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/auth/auth']);
   }
 }
+
