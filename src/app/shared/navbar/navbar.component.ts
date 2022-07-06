@@ -6,16 +6,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styles: []
+  styles: [],
 })
 export class NavbarComponent implements OnInit {
-
-    userLoggedIn: boolean = false;
+  userLoggedIn: boolean = false;
 
   items: MenuItem[] = [];
 
-  constructor(  private authService: AuthService,
-                private router: Router ) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
 
@@ -107,13 +105,12 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
-    this.router.navigate(['/auth/auth'])
+    this.router.navigate(['/auth/auth']);
   }
 
-  login(){
-    this.router.navigate(['/auth/auth'])
+  login() {
+    this.router.navigate(['/auth/auth']);
   }
-
 }

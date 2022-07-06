@@ -22,7 +22,7 @@ export class PlanService {
     );
   }
 
-  baseUrl: string = "https://localhost:44384/api";
+  baseUrl: string = "https://fityoubackend.azurewebsites.net/api";
 
   constructor(private http: HttpClient) {}
 

@@ -1,3 +1,89 @@
+<form [formGroup]="myForm" autocomplete="off">
+  <div style="position: relative">
+    <div
+      style="position: absolute; left: 90%; margin-left: 90px; padding: 10px"
+    >
+      <button
+        pButton
+        (click)="goHome()"
+        icon="pi pi-angle-left"
+        type="button"
+        class="p-button-rounded"
+      ></button>
+    </div>
+  </div>
+  <main class="login-design">
+    <div class="image">
+      <div style="margin-left: 45%; margin-top: 50%; color: aliceblue">
+
+      </div>
+    </div>
+    <div class="login">
+      <div class="login-data">
+        <img src="assets/FitYou LOGO.png" width="300" />
+        <h1>Inicio de Sesión</h1>
+        <div class="input-group">
+          <label class="input-fill">
+            <input
+              (keyup.enter)="login()"
+              formControlName="username"
+              name="email"
+              placeholder="Nombre de usuario"
+              id="email"
+              required
+            />
+            <i class="fa-solid fa-envelope"></i>
+          </label>
+        </div>
+        <div class="input-group">
+          <label class="input-fill">
+            <input
+              (keyup.enter)="login()"
+              formControlName="password"
+              name="password"
+              type="password"
+              placeholder="Contraseña"
+              id="password"
+              required
+            />
+            <i class="fa-solid fa-lock"></i>
+          </label>
+        </div>
+
+        <!-- <div class="alert alert-danger">
+                    Contraseña o nombre de usuario incorrecto
+                </div> -->
+
+        <!-- <a href="#">¿Necesitas una Cuenta?</a> -->
+        <p-button (click)="login()" class="mt-5">Iniciar Sesión</p-button>
+        <br />
+        <br />
+
+        <div style="width: 350px;">
+          <p-message
+            severity="error"
+            text="Contraseña o nombre de usuario incorrecto"
+            *ngIf="!loginSuccess"
+          ></p-message>
+
+          <div class="alert alert-info mt-5">
+            <span class="tooltiptext">
+              Esta pagina es para el inicio de seccion a la pagina de <strong><b>FITYOU</b></strong> en modo
+              <strong><b>Administrador</b></strong> en caso de no tener cuenta comunicarse
+              a algun administrador de <strong><b>FITYOU</b></strong> el cual con gusto estara dando solucion a
+              su problema.
+            </span>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+
+    <!-- <pre>{{ this.myForm.value | json }}</pre> -->
+  </main>
+</form>
+
+
 <form [formGroup]="myForm" autocomplete="off" >
     <main class="login-design">
         <div class="image">
@@ -24,7 +110,7 @@
                     </label>
                 </div>
 
-                <!-- <div class="alert alert-danger">
+        <!-- <div class="alert alert-danger">
                     Contraseña o nombre de usuario incorrecto
                 </div> -->
 
@@ -33,9 +119,11 @@
                 <br/>
                 <br/>
 
+                <p-message severity="error" text="Contraseña o nombre de usuario incorrecto" *ngIf="!loginSuccess"></p-message>
+                
                 <div class="row">
                   <div class="col">
-                    <div class="c">
+                    <div>
                       <aside class="more-info">
                         <span class="tooltiptext">
                           Esta pagina es para el inicio de seccion a la pagina de <strong><b>FITYOU</b></strong> en modo
@@ -48,13 +136,13 @@
                   </div>
                 </div>
 
-                <p-message severity="error" text="Contraseña o nombre de usuario incorrecto" *ngIf="!loginSuccess"></p-message>
             </div>
 
         </div>
 
-        <!-- <pre>{{ this.myForm.value | json }}</pre> -->
+        
+      
 
-
-    </main>
+    <!-- <pre>{{ this.myForm.value | json }}</pre> -->
+  </main>
 </form>
