@@ -3,6 +3,7 @@ import { Ticket } from '../../interfaces/ticket.interface';
 import { TicketsService } from '../../services/tickets.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-tickets',
@@ -78,10 +79,13 @@ export class TicketsComponent implements OnInit {
 
   select: any;
 
+  isUserLogged: boolean = false;
+
   constructor(
     private TicketsService: TicketsService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private authService: AuthService
   ) {
     this.ticketDropDown = [
       { name: 'Abierto', Status: 'Abierto' },
@@ -92,6 +96,11 @@ export class TicketsComponent implements OnInit {
 
   ngOnInit() {
     this.getAlltickets();
+
+    this.authService.validateToken()
+      .subscribe(
+        resp => this.isUserLogged = resp
+      )
   }
 
   getAlltickets() {

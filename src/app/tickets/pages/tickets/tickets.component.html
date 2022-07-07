@@ -13,6 +13,7 @@
     </ng-template>
     <ng-template pTemplate="right">
       <button
+        *ngIf="this.isUserLogged"
         pButton
         pRipple
         labe="Delete"
@@ -89,6 +90,7 @@
           ></button>
           <button
             pButton
+            *ngIf="this.isUserLogged"
             pRipple
             icon="pi pi-trash"
             class="p-button-rounded p-button-warning"
