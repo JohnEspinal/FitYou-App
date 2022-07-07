@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Telecable } from '../../interfaces/plan.interface';
 
@@ -12,6 +12,7 @@ export class AddTelecableComponent implements OnInit {
 
   @Output() onNewTelecable: EventEmitter<Telecable> = new EventEmitter()
 
+  @Input() telecable: Telecable | undefined;
 
   myTelecableForm: FormGroup = this.fb.group({
     Chanels: ['', [Validators.required, Validators.maxLength(4)]],
@@ -31,10 +32,36 @@ export class AddTelecableComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(this.telecable === undefined || this.telecable === null){
+      return;
+    }
+  
+    const { TypeOfTelecable, Chanels, Description } = this.telecable;
+
+      this.myTelecableForm.setValue({
+        Chanels,
+        TypeOfTelecable,
+        Description
+      });
   }
 
+
   add(){
-    this.onNewTelecable.emit( this.myTelecableForm.value )
+    let planToReturn;
+
+    if(this.telecable === undefined || this.telecable === null){
+      planToReturn = this.myTelecableForm.value
+    }else{
+      planToReturn = {
+        ...this.myTelecableForm.value,
+        Id: this.telecable.Id,
+      }
+    }
+
+    console.log('planToReturn', planToReturn);
+
+
+    this.onNewTelecable.emit( planToReturn )
   }
 
 }

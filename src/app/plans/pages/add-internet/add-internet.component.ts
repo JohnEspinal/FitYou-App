@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl, Validators } from '@angular/forms';
 import { Internet } from '../../interfaces/plan.interface';
 
@@ -8,14 +8,18 @@ import { Internet } from '../../interfaces/plan.interface';
 })
 export class AddInternetComponent implements OnInit {
 
+  @Input() internet: Internet | undefined;
+
+
   @Output() onNewInternet: EventEmitter<Internet> = new EventEmitter()
+
 
 
   myInternetForm: FormGroup = this.fb.group({
     Uploadspeed: ['', [Validators.required, Validators.min(1)]],
     Loweringspeed: ['', [Validators.required, Validators.min(1)]],
     Speed: ['', [Validators.required, Validators.min(1)]],
-    Typeofnet: ['', [Validators.required]],
+    TypeOfNet: ['', [Validators.required]],
     Description: ['', Validators.required]
   })
 
@@ -30,11 +34,41 @@ export class AddInternetComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log("Hola desde internet", this.internet)
+
+    if(this.internet === undefined || this.internet === null){
+      return;
+    }
+
+  
+    const { Uploadspeed, Loweringspeed,Speed,TypeOfNet, Description } = this.internet;
+
+      this.myInternetForm.setValue({
+        Uploadspeed,
+        Loweringspeed,
+        Speed,
+        TypeOfNet,
+        Description
+      });
   }
 
 
   add(){
-    this.onNewInternet.emit( this.myInternetForm.value )
+    let planToReturn;
+
+    if(this.internet === undefined || this.internet === null){
+      planToReturn = this.myInternetForm.value
+    }else{
+      planToReturn = {
+        ...this.myInternetForm.value,
+        Id: this.internet.Id,
+      }
+    }
+
+    console.log('planToReturn', planToReturn);
+
+
+    this.onNewInternet.emit( planToReturn )
   }
 
 }

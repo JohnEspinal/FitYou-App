@@ -38,7 +38,10 @@
 </div>
 
 <ng-template #plansList class="m-5">
-  <form [formGroup]="this.plansForm" class="card">
+  <form
+    [formGroup]="this.plansForm"
+    class="card animate__animated animate__fadeIn"
+  >
     <div class="card">
       <p-dataView
         #dv
@@ -55,7 +58,6 @@
           <div class="flex flex-column md:flex-row md:justify-content-between">
             <p-dropdown
               [options]="sortOptions"
-              
               placeholder="Sort By Price"
               (onChange)="onSortChange($event)"
               styleClass="mb-2 md:mb-0"
@@ -72,136 +74,122 @@
             <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
           </div>
         </ng-template>
-        <ng-template let-product pTemplate="listItem">
-
-        
-          
+        <ng-template let-plan pTemplate="listItem">
           <div class="col-12">
             <div class="product-list-item">
               <!-- <img
-                [src]="'assets/showcase/images/demo/product/' + product.image"
-                [alt]="product.name"
+                [src]="'assets/showcase/images/demo/plan/' + plan.image"
+                [alt]="plan.name"
               /> -->
               <div class="product-list-detail">
-                <div class="product-name">{{ product.Title }}</div>
-                <div class="product-description">{{ product.Description }}</div>
+                <div class="product-name">{{ plan.Title }}</div>
+                <div class="product-description">{{ plan.Description }}</div>
                 <i
-                  *ngIf="product.TypeOfPlan === 'I'"
+                  *ngIf="plan.TypeOfPlan === 'I'"
                   class="pi pi-globe product-category-icon"
-                  style="font-size: 30px;"
+                  style="font-size: 30px"
                 ></i>
                 <i
-                  *ngIf="product.TypeOfPlan === 'C'"
+                  *ngIf="plan.TypeOfPlan === 'C'"
                   class="pi pi-tablet product-category-icon"
                 ></i>
                 <i
-                  *ngIf="product.TypeOfPlan === 'T'"
+                  *ngIf="plan.TypeOfPlan === 'T'"
                   class="pi pi-phone product-category-icon"
                 ></i
-                ><span class="product-category">{{ product.category }}</span>
+                ><span class="product-category">{{ plan.category }}</span>
               </div>
               <div class="product-list-action">
-                <span class="product-price">${{ product.Price }}</span>
+                <span class="product-price">${{ plan.Price }}</span>
                 <button
                   *ngIf="isUserLoggedIn"
-                  (click)="showModalDialogDelete(product.Id)"
+                  (click)="showModalDialogDelete(plan.Id)"
                   pButton
                   icon="pi pi-trash"
                   class="p-button-danger"
                 ></button>
                 <span style="display: flex; justify-content: end">
                   <p-checkbox
-                    name="{{ product.Id }}"
-                    (click)="changeValue(product.Id)"
-                    value="{{ product.Id }}"
+                    name="{{ plan.Id }}"
+                    (click)="changeValue(plan.Id)"
+                    value="{{ plan.Id }}"
                     formControlName="plansToCompare"
                   ></p-checkbox>
-                  <label class="ml-3" for="{{ product.Id }}"
+                  <label class="ml-3" for="{{ plan.Id }}"
                     >Seleccione para comparar</label
                   >
                 </span>
                 <span
-                  [class]="
-                    'product-badge status-' + product.Title.toLowerCase()
-                  "
-                  >{{ product.Title }}</span
+                  [class]="'product-badge status-' + plan.Title.toLowerCase()"
+                  >{{ plan.Title }}</span
                 >
               </div>
             </div>
-
           </div>
-
-
-
-
         </ng-template>
-
 
         <!-- Grid LIST -->
 
-        <ng-template let-product pTemplate="gridItem">
-
-
+        <ng-template let-plan pTemplate="gridItem">
           <div class="col-12 md:col-4">
             <div class="product-grid-item card">
               <div class="product-grid-item-top">
                 <div>
                   <i
-                    *ngIf="product.TypeOfPlan === 'I'"
+                    *ngIf="plan.TypeOfPlan === 'I'"
                     class="pi pi-globe product-category-icon"
-                    style="font-size: 40px;"
+                    style="font-size: 40px"
                   ></i>
                   <i
-                    *ngIf="product.TypeOfPlan === 'C'"
+                    *ngIf="plan.TypeOfPlan === 'C'"
                     class="pi pi-tablet product-category-icon"
-                    style="font-size: 40px;"
+                    style="font-size: 40px"
                   ></i>
                   <i
-                    *ngIf="product.TypeOfPlan === 'T'"
+                    *ngIf="plan.TypeOfPlan === 'T'"
                     class="pi pi-phone product-category-icon"
-                    style="font-size: 40px;"
+                    style="font-size: 40px"
                   ></i>
                 </div>
               </div>
 
               <div class="product-grid-item-content">
-                <div class="product-name">{{ product.Title }}</div>
+                <div class="product-name">{{ plan.Title }}</div>
                 <br />
                 <br />
-                <div class="product-description">{{ product.Description }}</div>
-              </div>
-              
-              <div class="product-grid-item-bottom">
-                <span class="product-price">${{ product.Price }}</span>
+                <div class="product-description">{{ plan.Description }}</div>
               </div>
 
-              
+              <div class="product-grid-item-bottom">
+                <span class="product-price">${{ plan.Price }}</span>
+              </div>
+
               <div class="product-grid-item-bottom">
                 <span>
                   <p-checkbox
-                    name="{{ product.Id }}"
-                    (click)="changeValue(product.Id)"
-                    value="{{ product.Id }}"
+                    name="{{ plan.Id }}"
+                    (click)="changeValue(plan.Id)"
+                    value="{{ plan.Id }}"
                     formControlName="plansToCompare"
                   ></p-checkbox>
-                  <label class="ml-3" for="{{ product.Id }}"
+                  <label class="ml-3" for="{{ plan.Id }}"
                     >Seleccione para comparar</label
                   >
                 </span>
                 <p-button
                   icon="pi pi-list"
-                  (click)="showModalDialog(product.Id)"
+                  (click)="showModalDialog(plan.Id)"
                 ></p-button>
                 <button
                   *ngIf="isUserLoggedIn"
-                  (click)="showModalDialogDelete(product.Id)"
+                  (click)="showModalDialogEdit(plan.Id)"
                   pButton
                   icon="pi pi-pencil"
                   class="p-button-info"
                 ></button>
                 <button
                   *ngIf="isUserLoggedIn"
-                  (click)="showModalDialogDelete(product.Id)"
+                  (click)="showModalDialogDelete(plan.Id)"
                   pButton
                   icon="pi pi-trash"
                   class="p-button-danger"
@@ -215,7 +203,6 @@
       <!-- Modal with plan details -->
 
       <p-dialog
-        header="Detalle de: {{ this.plan?.Title }}"
         [(visible)]="displayModal"
         [modal]="true"
         [style]="{ width: '50vw' }"
@@ -223,98 +210,107 @@
         [draggable]="false"
         [resizable]="false"
       >
-    
-        <dl class="row" style="font-size: 30px;">
+        <h1>{{ this.plan?.Title }}</h1>
+
+        <hr />
+
+        <dl class="row" style="font-size: 20px; margin-top: 10px">
           <dt class="col-sm-3">Descripción General:</dt>
           <dd class="col-sm-9">{{ this.plan?.Description }}</dd>
 
           <hr />
-          <div class="row" *ngIf="planTypeOf === 'I'">
+          <div class="row" *ngIf="this.plan?.TypeOfPlan === 'I'">
+            <h2 style="color: darkblue">
+              Plan de internet
+              <i
+                style="font-size: 30px"
+                class="pi pi-globe product-category-icon"
+              ></i>
+            </h2>
 
-            <h5>Plan de internet <i
-              class="pi pi-globe product-category-icon"
-            ></i></h5>
-
-            <br/>
+            <br />
 
             <div class="mt-2 row">
               <dt class="col-sm-5">Más acerca del plan:</dt>
               <dd class="col-sm-7">{{ this.plan.Internet.Description }}</dd>
             </div>
-          
+
             <div class="mt-2 row">
               <dt class="col-sm-5">Velocidad de subida:</dt>
               <dd class="col-sm-7">{{ this.plan.Internet.Uploadspeed }}</dd>
             </div>
-          
+
             <div class="mt-2 row">
               <dt class="col-sm-5">Velocidad de bajada:</dt>
-              <dd class="col-sm-7">{{ this.plan.Internet.Loweringspeed}}</dd>
+              <dd class="col-sm-7">{{ this.plan.Internet.Loweringspeed }}</dd>
             </div>
-          
+
             <div class="mt-2 row">
               <dt class="col-sm-5">Velocidad promedio:</dt>
               <dd class="col-sm-7">{{ this.plan.Internet.Speed }}</dd>
             </div>
-          
+
             <div class="mt-2 row">
               <dt class="col-sm-5">Velocidad de bajada:</dt>
-              <dd class="col-sm-7">{{ this.plan.Internet.Loweringspeed}}</dd>
+              <dd class="col-sm-7">{{ this.plan.Internet.Loweringspeed }}</dd>
             </div>
-          
           </div>
 
+          <div class="row" *ngIf="this.plan?.TypeOfPlan === 'C'">
+            <h5 style="color: darkred">
+              Plan de Telecable
+              <i
+                style="font-size: 30px"
+                class="pi pi-tablet product-category-icon"
+              ></i>
+            </h5>
 
-          <div class="row" *ngIf="planTypeOf === 'C'">
-
-            <h5>Plan de Telecable <i
-              class="pi pi-tablet product-category-icon"
-            ></i></h5>
-
-            <br/>
+            <br />
 
             <div class="mt-2 row">
               <dt class="col-sm-5">Más acerca del plan:</dt>
               <dd class="col-sm-7">{{ this.plan.Telecable.Description }}</dd>
             </div>
-          
+
             <div class="mt-2 row">
               <dt class="col-sm-5">Canales disponibles:</dt>
-              <dd class="col-sm-7">{{ this.plan.Telecable.Channels }}</dd>
+              <dd class="col-sm-7">{{ this.plan.Telecable.Chanels }}</dd>
             </div>
-          
+
             <div class="mt-2 row">
               <dt class="col-sm-5">Tipo de Telecable:</dt>
-              <dd class="col-sm-7">{{ this.plan.Telecable.TypeOfTelecable}}</dd>
+              <dd class="col-sm-7">
+                {{ this.plan.Telecable.TypeOfTelecable }}
+              </dd>
             </div>
-          
           </div>
 
-          <div class="row" *ngIf="planTypeOf === 'T'">
+          <div class="row" *ngIf="this.plan?.TypeOfPlan === 'T'">
+            <h5 style="color: darkgreen">
+              Plan de Telefono
+              <i
+                style="font-size: 30px"
+                class="pi pi-phone product-category-icon"
+              ></i>
+            </h5>
 
-            <h5>Plan de Telefono <i
-              class="pi pi-phone product-category-icon"
-            ></i></h5>
-
-            <br/>
+            <br />
 
             <div class="mt-2 row">
               <dt class="col-sm-5">Más acerca del plan:</dt>
               <dd class="col-sm-7">{{ this.plan.Telephone.Description }}</dd>
             </div>
-          
+
             <div class="mt-2 row">
               <dt class="col-sm-5">Canales disponibles:</dt>
               <dd class="col-sm-7">{{ this.plan.Telephone.Minutes }}</dd>
             </div>
-          
+
             <div class="mt-2 row">
               <dt class="col-sm-5">Tipo de Servicio telefonico:</dt>
               <dd class="col-sm-7">{{ this.plan.Telephone.Service }}</dd>
             </div>
-          
           </div>
-
         </dl>
 
         <ng-template pTemplate="footer">
@@ -324,10 +320,7 @@
             label="Ok"
           ></p-button>
         </ng-template>
-
       </p-dialog>
-
-
 
       <p-dialog
         header="Estas seguro?"
@@ -341,12 +334,63 @@
         <p class="p-m-0">Al borrar esto no hay vuelta atras</p>
         <ng-template pTemplate="footer">
           <button
-            (click)="deletePlanById(deletePlanId)"
+            (click)="deletePlanById(this.plan.Id)"
             pButton
             icon="pi pi-trash"
-            class="p-button-danger w-1"
+            label="Borrar"
+            class="p-button-danger"
+          ></button>
+
+          <button
+            (click)="hideDeleteDialog()"
+            pButton
+            icon="pi pi-trash"
+            label="Cancelar"
+            class="p-button-info"
           ></button>
         </ng-template>
+      </p-dialog>
+
+      <p-dialog
+        header="Editar plan"
+        [(visible)]="displayModalDelete"
+        [modal]="true"
+        [style]="{ width: '20vw' }"
+        [baseZIndex]="10000"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <p class="p-m-0">Al borrar esto no hay vuelta atras</p>
+        <ng-template pTemplate="footer">
+          <button
+            (click)="deletePlanById(this.plan.Id)"
+            pButton
+            icon="pi pi-trash"
+            label="Borrar"
+            class="p-button-danger"
+          ></button>
+
+          <button
+            (click)="hideDeleteDialog()"
+            pButton
+            icon="pi pi-trash"
+            label="Cancelar"
+            class="p-button-info"
+          ></button>
+        </ng-template>
+      </p-dialog>
+
+      <p-dialog
+        header="Editar plan"
+        [(visible)]="displayModalEdit"
+        [modal]="true"
+        [style]="{ width: '60vw' }"
+        [baseZIndex]="10000"
+        [draggable]="false"
+        [resizable]="false"
+      >
+        <app-add-plan *ngIf="displayModalEdit" [isEditing]="true" [planToEdit]="this.plan"> </app-add-plan>
+
       </p-dialog>
     </div></form
 ></ng-template>

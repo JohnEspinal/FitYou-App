@@ -25,10 +25,10 @@ export interface Plan {
   TypeOfPlan: string;
   CreateDate: string;
   ActiveTime: string;
-  price: number;
+  Price: number;
   Currency: string;
   Administrator: null;
-  AdministratorId: number;
+  AdministratorId?: number;
   CompanyId: number;
   Internet: Internet;
   Telephone: Telephone;
@@ -39,18 +39,23 @@ export interface Plan {
 }
 
 export interface PlanPost {
+    Id: number;
     Title:           string;
     Description:     string;
     TypeOfPlan:      string;
-    CreateDate:      Date;
+    CreateDate:      string;
     ActiveTime:      string;
     Price:           number;
     Currency:        string;
     AdministratorId: number;
+    Administrator?: null;
     CompanyId:       number;
     InternetId?:     number;
     TelecableId?:     number;
     TelephoneId?:     number;
+    Internet?: Internet;
+    Telephone?: Telephone;
+    Telecable?: Telecable;
     
 }
 
@@ -80,7 +85,7 @@ export interface Internet{
   Uploadspeed: string;
   Loweringspeed: string;
   Speed: string;
-  Typeofnet: string;
+  TypeOfNet: string;
   Description: string;
 }
 
@@ -90,12 +95,14 @@ export interface PlanSpecificPostResponse{
 }
 
 export interface Telecable{
-  Channels: string;
+  Id?: number;
+  Chanels: string;
   TypeOfTelecable: string;
   Description: string;
 }
 
 export interface Telephone{
+  Id?: number;
   Minutes: string;
   Service: string;
   Description: string;

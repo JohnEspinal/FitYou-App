@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Telephone } from '../../interfaces/plan.interface';
 
@@ -9,6 +9,8 @@ import { Telephone } from '../../interfaces/plan.interface';
   ]
 })
 export class AddTelephoneComponent implements OnInit {
+
+  @Input() telephone: Telephone | undefined;
 
   @Output() onNewTelephone: EventEmitter<Telephone> = new EventEmitter()
 
@@ -27,14 +29,43 @@ export class AddTelephoneComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { 
+   
+  }
 
 
   ngOnInit(): void {
+
+    if(this.telephone === undefined || this.telephone === null){
+      return;
+    }
+  
+    const { Minutes, Service, Description } = this.telephone;
+
+      this.myTelephoneForm.setValue({
+        Minutes,
+        Service,
+        Description
+      });
+
   }
 
   add(){
-    this.onNewTelephone.emit( this.myTelephoneForm.value )
+    let planToReturn;
+
+    if(this.telephone === undefined || this.telephone === null){
+      planToReturn = this.myTelephoneForm.value
+    }else{
+      planToReturn = {
+        ...this.myTelephoneForm.value,
+        Id: this.telephone.Id,
+      }
+    }
+
+    console.log('planToReturn', planToReturn);
+
+
+    this.onNewTelephone.emit( planToReturn )
   }
 
 }

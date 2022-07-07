@@ -87,16 +87,11 @@ export class NavbarComponent implements OnInit {
                             icon: 'pi pi-file',
                             items: [
                                 {
-                                    label: 'Internet',
+                                    label: 'Importar',
                                     icon: 'pi pi-bars',
                                     routerLink: '/excel/internet'
                                 }
                             ]
-                        },
-                        {
-                          label: 'Manual de Ayuda',
-                          icon: 'pi pi-info-circle',
-                          routerLink: '/help'
                         },
                         {
                           label: 'Soporte',

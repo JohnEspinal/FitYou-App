@@ -27,6 +27,8 @@ export class ListComponent implements OnInit {
 
   displayModalDelete: boolean;
 
+  displayModalEdit: boolean = false;
+
   sortOrder: number = 0;
 
   sortKey: string;
@@ -36,24 +38,6 @@ export class ListComponent implements OnInit {
   planDescription: any;
   planId: any;
   deletePlanId: any;
-  planTypeOf: string;
-
-  //Cable
-  CableChannels: any;
-  CableTypeOfTelecable: any;
-  CableDescription: any;
-
-  //Phone
-  PhoneMinutes: any;
-  PhoneService: any;
-  PhoneDescription: any;
-
-  //Internet
-  InternetUploadspeed: any;
-  InternetLoweringspeed: any;
-  InternetSpeed: any;
-  InternetTypeOfNet: any;
-  InternetDescription: any;
 
   productID: any; //Getting Product id from URL
 
@@ -66,6 +50,8 @@ export class ListComponent implements OnInit {
   loading: boolean = true;
 
   plan!: Plan;
+
+
 
   plans: Plan[] = [];
   //   {
@@ -277,8 +263,13 @@ export class ListComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
+
+
   //Get All Plans
   getAllPlans() {
+
+    console.log("first")
+
     this.plansService.getPlans().subscribe((resp) => {
       this.loading = false;
       this.plans = resp;
@@ -333,36 +324,71 @@ export class ListComponent implements OnInit {
     }
 
     this.plan = currentPlan;
-    console.log("Boton")
-    
-    this.planTypeOf = this.plan.TypeOfPlan;
-    this.planDescription = this.plan.Description;
-    this.planId = this.plan.Id;
-    if (this.planTypeOf === 'I') {
-      this.InternetDescription = this.plan.Internet.Description;
-      this.InternetLoweringspeed = this.plan.Internet.Loweringspeed;
-      this.InternetSpeed = this.plan.Internet.Speed;
-      this.InternetTypeOfNet = this.plan.Internet.Typeofnet;
-      this.InternetUploadspeed = this.plan.Internet.Uploadspeed;
-    }
-    if (this.planTypeOf === 'T') {
-      this.PhoneMinutes = this.plan.Telephone.Minutes;
-      this.PhoneService = this.plan.Telephone.Service;
-      this.PhoneDescription = this.plan.Telephone.Description;
-    }
-    if (this.planTypeOf === 'C') {
-      this.CableChannels = this.plan.Telecable.Channels;
-      this.CableDescription = this.plan.Telecable.Description;
-      this.CableTypeOfTelecable = this.plan.Telecable.TypeOfTelecable;
-    }
 
     this.displayModal = true;
   }
   //Show Delete Modal
   showModalDialogDelete(id: number) {
-    this.deletePlanId = this.plans[id - 1].Id;
-    console.log(this.deletePlanId);
+
+    const currentPlan = this.plans.find( (plan) => plan.Id === id );
+
+    if( currentPlan === undefined ){
+      return;
+    }
+
+    this.plan = currentPlan;
+
     this.displayModalDelete = true;
-    // this.deletePlanById(id);
+
+   
+  }
+
+  
+
+  showModalDialogEdit(id: number){
+
+    const currentPlan = this.plans.find( (plan) => plan.Id === id );
+
+    if( currentPlan === undefined ){
+      return;
+    }
+
+    this.plan = currentPlan;
+
+
+    this.displayModalEdit= true;
+
+  }
+
+  hideDeleteDialog(){
+    this.displayModalDelete = false;
   }
 }
+
+
+// {
+//   "Id": 28,
+//   "Title": "Plan de hogar inalambrico fijo prepago",
+//   "Description": "Si vives en una localidad donde no cuentas con disponibilidad de facilidades alámbricas, este servicio de telefonía inalámbrica fija facilitará tu comunicación. Se ofrece a través de la red GSM y sus funciones son similares al servicio telefónico alámbrico. ",
+//   "TypeOfPlan": "T",
+//   "CreateDate": "2022-07-06T17:16:28.567",
+//   "ActiveTime": null,
+//   "Price": 500.00,
+//   "Currency": "DOP",
+//   "Administrator": null,
+//   "AdministratorId": 1,
+//   "Company": null,
+//   "CompanyId": 1,
+//   "Internet": null,
+//   "InternetId": null,
+//   "Telecable": null,
+//   "TelecableId": null,
+//   "Telephone": {
+//       "DetailPlans": [],
+//       "Id": 1,
+//       "Minutes": "80",
+//       "Service": "Hogar inalambrico fijo prepago",
+//       "Description": "Puedes recargar el servicio cuando quieras, a partir de sólo RD$25 a través de Bancatel y pines electrónicos."
+//   },
+//   "TelephoneId": 1
+// },

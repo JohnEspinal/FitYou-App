@@ -67,26 +67,26 @@ export class PlanService {
     );
   }
 
-  addPlan(plan: PlanPost) {
-    return this.http.post(`${this.baseUrl}/PostPlan`, plan, {
-      headers: this.headers,
-    });
-  }
-
+  
   deleteCompany(id: number): Observable<string> {
     return this.http.delete<string>(
-      `https://localhost:44384/api/deleteCompany/${id}`,
+      `${this.baseUrl}/deleteCompany/${id}`,
       { headers: this.headers }
-    );
-  }
-
-  deletePlan(planId: number): Observable<string> {
-    return this.http.delete<string>(
-      `https://localhost:44384/api/DeletePlan/${planId}`,
-      { headers: this.headers }
-    );
-  }
-
+      );
+    }
+    
+    deletePlan(planId: number): Observable<string> {
+      return this.http.delete<string>(
+        `${this.baseUrl}/DeletePlan/${planId}`,
+        { headers: this.headers }
+        );
+      }
+      
+      addPlan(plan: PlanPost | Plan) {
+        return this.http.post(`${this.baseUrl}/PostPlan`, plan, {
+          headers: this.headers,
+        });
+      }
   postInternet(internet: Internet): Observable<PlanSpecificPostResponse> {
 
     return this.http.post<PlanSpecificPostResponse>(`${this.baseUrl}/postInternet`, internet, {
@@ -104,6 +104,36 @@ export class PlanService {
   postTelephone(telephone: Telephone): Observable<PlanSpecificPostResponse> {
 
     return this.http.post<PlanSpecificPostResponse>(`${this.baseUrl}/PostTelephone`, telephone, {
+      headers: this.headers
+    });
+  }
+      
+  
+  editPlan(plan: Plan | PlanPost) {
+        return this.http.put(`${this.baseUrl}/PutPlan/${plan.Id}`, plan, {
+          headers: this.headers,
+        });
+      }
+
+  editInternet(internet: Internet): Observable<PlanSpecificPostResponse> {
+
+    console.log("internet", internet)
+
+    return this.http.put<PlanSpecificPostResponse>(`${this.baseUrl}/putInternet/${internet.Id}`, internet, {
+      headers: this.headers
+    });
+  }
+
+  editTelecable(telecable: Telecable): Observable<PlanSpecificPostResponse> {
+
+    return this.http.put<PlanSpecificPostResponse>(`${this.baseUrl}/putTelecable/${telecable.Id}`, telecable, {
+      headers: this.headers
+    });
+  }
+
+  editTelephone(telephone: Telephone): Observable<PlanSpecificPostResponse> {
+
+    return this.http.put<PlanSpecificPostResponse>(`${this.baseUrl}/putTelephone/${telephone.Id}`, telephone, {
       headers: this.headers
     });
   }
