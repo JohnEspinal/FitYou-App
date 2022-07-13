@@ -35,8 +35,7 @@ export class AddTicketsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private TicketsService: TicketsService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private messageService: MessageService
   ) {
     this.ticketDropDown = [
       { name: 'Selecciona', Status: '' },

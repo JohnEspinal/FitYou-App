@@ -2,27 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ServiceInternetService {
+  baseUrl: string = 'https://fityoubackend.azurewebsites.net/api';
 
-  filetoUpload : File;
+  filetoUpload: File;
 
 
-  baseUrl: string = "https://fityoubackend.azurewebsites.net/api";
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http : HttpClient
-  ) { }
 
-  ImportDataFromExcel(file : File){
-    console.log("file");
+  ImportDataFromExcel(file: File) {
+    console.log('file');
     console.log(file);
     let fomdata = new FormData();
-    fomdata.append("file",file,file.name);
+    fomdata.append('file', file, file.name);
     console.log(fomdata);
     return this.http.post(`${this.baseUrl}/office/Importar`, fomdata);
   }
-
 }
