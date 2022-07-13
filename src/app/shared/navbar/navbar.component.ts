@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit {
         this.authService.validateToken()
             .subscribe(
                 resp => {
-                    console.log("Im the RESPONSE:", resp);
                     this.userLoggedIn = resp
 
                     this.items = [
@@ -82,17 +81,17 @@ export class NavbarComponent implements OnInit {
                         //     icon: 'pi pi-map',
                         //     routerLink:'map/map'
                         // }]: []),
-                        {
-                            label: 'Excel',
-                            icon: 'pi pi-file',
-                            items: [
-                                {
-                                    label: 'Importar',
-                                    icon: 'pi pi-bars',
-                                    routerLink: '/excel/internet'
-                                }
-                            ]
-                        },
+                        // {
+                        //     label: 'Excel',
+                        //     icon: 'pi pi-file',
+                        //     items: [
+                        //         {
+                        //             label: 'Importar',
+                        //             icon: 'pi pi-bars',
+                        //             routerLink: '/excel/internet'
+                        //         }
+                        //     ]
+                        // },
                         {
                           label: 'Soporte',
                           icon: 'pi pi-ticket',

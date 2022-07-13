@@ -9,7 +9,9 @@ export class ServiceInternetService {
 
   filetoUpload: File;
 
+
   constructor(private http: HttpClient) {}
+
 
   ImportDataFromExcel(file: File) {
     console.log('file');

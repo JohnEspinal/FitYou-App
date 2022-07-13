@@ -43,11 +43,6 @@ export class LoginComponent implements OnInit {
     .subscribe(
       resp => {
 
-          // if(!resp){
-          //   console.log("No hay resp");
-          // }
-
-          // console.log('La respuesta es ',resp);
           if(resp){
             this.loginSuccess = true;
             this.router.navigate(['plans']);
