@@ -71,6 +71,9 @@ export class PlanComparisonComponent implements OnInit {
   //   },
   // ];
 
+  companyPlan1!: any;
+  companyPlan2!: any;
+
   constructor(
     public dialogService: DialogService,
     public messageService: MessageService,
@@ -80,13 +83,20 @@ export class PlanComparisonComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.actRoute.queryParams
       .pipe(
         switchMap((result) => this.plansService.getPlanById(result['plan1']))
       )
       .subscribe((result) => {
         this.plan1 = [result];
-        console.log('plan1', this.plan1);
+
+        this.plansService.getCompany()
+        .subscribe( (companies) => {
+          this.companyPlan1 = companies.find( (company) => company.Id === this.plan1[0]?.CompanyId)?.Name;
+          console.log('plan1', this.companyPlan1);
+        } )
+
       });
 
     this.actRoute.queryParams
@@ -96,8 +106,18 @@ export class PlanComparisonComponent implements OnInit {
       .subscribe((result) => {
         this.plan2 = [result];
 
-        console.log('plan2', this.plan2);
+        this.plansService.getCompany()
+        .subscribe( (companies) => {
+          this.companyPlan2 = companies.find( (company) => company.Id === this.plan2[0]?.CompanyId)?.Name;
+          console.log('plan1', this.companyPlan1);
+        } )
       });
+
+      // this.plansService.getCompany()
+      //   .subscribe( (companies) => {
+      //     this.companyPlan1 = companies.find( (company) => company.Id === this.plan1[0]?.CompanyId)?.Name;
+      //     this.companyPlan2 = companies.find( (company) => company.Id === this.plan2[0]?.CompanyId)?.Name;
+      //   } )
 
     // this.loadProductDetails(this.planId);
   }

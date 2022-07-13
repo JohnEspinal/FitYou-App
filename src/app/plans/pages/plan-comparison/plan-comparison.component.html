@@ -75,6 +75,11 @@
               <dt class="col-sm-5">Velocidad de bajada:</dt>
               <dd class="col-sm-7">{{ this.plan1[0].Internet.Loweringspeed}}</dd>
             </div>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.companyPlan1 }}</dd>
+            </div>
           
           </div>
 
@@ -102,6 +107,11 @@
               <dt class="col-sm-5">Tipo de Telecable:</dt>
               <dd class="col-sm-7">{{ this.plan1[0].Telecable.TypeOfTelecable}}</dd>
             </div>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.companyPlan1 }}</dd>
+            </div>
           
           </div>
 
@@ -128,6 +138,11 @@
               <dt class="col-sm-5">Tipo de Servicio telefonico:</dt>
               <dd class="col-sm-7">{{ this.plan1[0].Telephone.Service }}</dd>
             </div>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.companyPlan1 }}</dd>
+            </div>
           
           </div>
 
@@ -138,7 +153,7 @@
     </p-dataView>
   </p-card>
 
-  <!-- [style]="{ width: '100px', margin: '40px' }" -->
+  
   <p-card
     [header]="plan2[0]?.Title || ''"
     [subheader]="plan2[0]?.Description || ''"
@@ -185,6 +200,11 @@
               <dt class="col-sm-5">Velocidad de bajada:</dt>
               <dd class="col-sm-7">{{ this.plan2[0].Internet.Loweringspeed}}</dd>
             </div>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.companyPlan2 }}</dd>
+            </div>
           
           </div>
 
@@ -212,6 +232,11 @@
               <dt class="col-sm-5">Tipo de Telecable:</dt>
               <dd class="col-sm-7">{{ this.plan2[0].Telecable.TypeOfTelecable}}</dd>
             </div>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.companyPlan2 }}</dd>
+            </div>
           
           </div>
 
@@ -237,6 +262,11 @@
             <div class="mt-2 row">
               <dt class="col-sm-5">Tipo de Servicio telefonico:</dt>
               <dd class="col-sm-7">{{ this.plan2[0].Telephone.Service }}</dd>
+            </div>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.companyPlan2 }}</dd>
             </div>
           
           </div>
