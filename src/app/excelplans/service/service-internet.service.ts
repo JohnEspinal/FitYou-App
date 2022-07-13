@@ -14,11 +14,10 @@ export class ServiceInternetService {
 
 
   ImportDataFromExcel(file: File) {
-    console.log('file');
-    console.log(file);
+
     let fomdata = new FormData();
     fomdata.append('file', file, file.name);
-    console.log(fomdata);
+
     return this.http.post(`${this.baseUrl}/office/Importar`, fomdata);
   }
 }

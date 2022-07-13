@@ -24,10 +24,10 @@ export class InsertInternetplanComponent implements OnInit {
         .ImportDataFromExcel(this.apenddata!)
         .subscribe((response) => {
           Swal.fire(
-            'Creado!',
+            'Importación completada!',
             `
           <h2>${response}</h2>
-          <p>Su plan fue creado satisfactoriamente!</p>
+          <p>Importado satisfactoriamente!</p>
           `,
             'success'
           ).then(this.el.nativeElement.reset());
