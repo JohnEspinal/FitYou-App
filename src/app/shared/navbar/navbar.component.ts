@@ -76,22 +76,18 @@ export class NavbarComponent implements OnInit {
                             ]
 
                         },
-                        // ...( this.userLoggedIn ? [{
-                        //     label:'logout',
-                        //     icon: 'pi pi-map',
-                        //     routerLink:'map/map'
-                        // }]: []),
-                        // {
-                        //     label: 'Excel',
-                        //     icon: 'pi pi-file',
-                        //     items: [
-                        //         {
-                        //             label: 'Importar',
-                        //             icon: 'pi pi-bars',
-                        //             routerLink: '/excel/internet'
-                        //         }
-                        //     ]
-                        // },
+                        ...( this.userLoggedIn ? [
+                        {
+                          label: 'Excel',
+                          icon: 'pi pi-file',
+                          items: [
+                              {
+                                  label: 'Importar',
+                                  icon: 'pi pi-bars',
+                                  routerLink: '/excel/internet'
+                              }
+                          ]
+                        },]: []),
                         {
                           label: 'Soporte',
                           icon: 'pi pi-ticket',
