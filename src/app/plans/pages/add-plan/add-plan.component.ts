@@ -110,7 +110,6 @@ export class AddPlanComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.myForm);
 
     if(this.isEditing){
 
@@ -132,7 +131,6 @@ export class AddPlanComponent implements OnInit {
     }
 
     this.myForm.get('typeOfPlans')?.valueChanges.subscribe((typeOfPlan) => {
-      console.log('first');
       this.typeOfPlan = typeOfPlan;
     });
   }
@@ -146,7 +144,6 @@ export class AddPlanComponent implements OnInit {
 
   typeOfPlanChange(event: any) {
     this.typeOfPlan = event.value;
-    console.log(event.value);
   }
 
   postPlanSpecific(planSpecific: any, newPlan: PlanPost | Plan): Observable<Object> {
@@ -155,19 +152,16 @@ export class AddPlanComponent implements OnInit {
     if (newPlan.TypeOfPlan === 'I') {
       return !this.isEditing ? this.Planservice.postInternet(planSpecific).pipe(
         switchMap((result) => {
-          console.log({ result });
           newPlan = {
             ...newPlan,
             InternetId: result.id,
           };
-          console.log({ newPlan });
           return this.Planservice.addPlan(newPlan);
         })
       )
       :
       this.Planservice.editInternet(planSpecific).pipe(
         switchMap((result) => {
-          console.log("result", result)
           return this.Planservice.editPlan(newPlan);
         })
       );
@@ -176,19 +170,16 @@ export class AddPlanComponent implements OnInit {
     if (newPlan.TypeOfPlan === 'C') {
       return !this.isEditing ? this.Planservice.postTelecable(planSpecific).pipe(
         switchMap((result) => {
-          console.log({ result });
           newPlan = {
             ...newPlan,
             TelecableId: result.id,
           };
-          console.log({ newPlan });
           return this.Planservice.addPlan(newPlan);
         })
       )
       :
       this.Planservice.editTelecable(planSpecific).pipe(
         switchMap((result) => {
-          console.log("result", result)
           return this.Planservice.editPlan(newPlan);
         })
       );
@@ -197,18 +188,15 @@ export class AddPlanComponent implements OnInit {
     if (newPlan.TypeOfPlan === 'T') {
       return !this.isEditing ? this.Planservice.postTelephone(planSpecific).pipe(
         switchMap((result) => {
-          console.log({ result });
           newPlan = {
             ...newPlan,
             TelephoneId: result.id,
           };
-          console.log({ newPlan });
           return this.Planservice.addPlan(newPlan);
         })
       ):
       this.Planservice.editTelephone(planSpecific).pipe(
         switchMap((result) => {
-          console.log("result", result)
           return this.Planservice.editPlan(newPlan);
         })
       );
@@ -220,7 +208,6 @@ export class AddPlanComponent implements OnInit {
   // Add a new Plan
 
   add(newSpecificPlan: Internet | Telecable | Telephone) {
-    console.log(newSpecificPlan);
 
     this.myForm.markAllAsTouched();
 

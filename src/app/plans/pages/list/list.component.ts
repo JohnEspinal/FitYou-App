@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 
-import { Plan, Product } from '../../interfaces/plan.interface';
+import { Company, Plan, Product } from '../../interfaces/plan.interface';
 import { SelectItem } from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
 import { PlanService } from '../../services/plans.service';
@@ -223,6 +223,8 @@ export class ListComponent implements OnInit {
     ],
   });
 
+  // companiesOptions!: Company[]; 
+
   constructor(
     private primengConfig: PrimeNGConfig,
     private plansService: PlanService,
@@ -248,6 +250,41 @@ export class ListComponent implements OnInit {
     // console.log('plans to Compare:', this.plansToCompare);
   }
 
+  companiesOptions: SelectItem[] = [];
+  typesOptions: SelectItem[] = [
+    {
+      label: 'Seleccione un tipo de plan',
+      value: {
+        type: 'Type',
+        value: ''
+      }
+    },
+    {
+    label: 'Internet',
+    value: {
+      type: 'Type',
+      value: 'I'
+    }
+    },
+    {
+    label: 'Telecable',
+    value: {
+      type: 'Type',
+      value: 'C'
+    }
+    },
+    {
+    label: 'Telefono',
+    value: {
+      type: 'Type',
+      value: 'T'
+    }
+    }
+];
+companies:Company[] = [];
+
+planCompany: any = '';
+
   ngOnInit() {
     this.getAllPlans();
 
@@ -260,25 +297,102 @@ export class ListComponent implements OnInit {
       { label: 'Price Low to High', value: 'Price' },
     ];
 
+    
+
+    console.log(this.planCompany);
+
+
+    this.plansService.getCompany()
+      .subscribe( (resp) => {
+        this.companies = resp;
+        
+        this.companiesOptions = resp.map( (company: Company) => {
+          return {
+            label: company.Name,
+            value: {
+              type: 'company',
+              value: company.Id
+            }
+          }
+        } )
+
+        this.companiesOptions = [ {
+          label: 'Seleccione una compañia',
+          value: {
+            type: 'company',
+            value: ''
+          }
+        }, ...this.companiesOptions  ]
+      } )
+
     this.primengConfig.ripple = true;
   }
 
-
+  plansToFilter!: Plan[];
+  typeFilter: string = '';
+  companyFilter: any = '';
 
   //Get All Plans
   getAllPlans() {
 
-    console.log("first")
-
     this.plansService.getPlans().subscribe((resp) => {
       this.loading = false;
-      this.plans = resp;
-      // console.log(resp);
+
+      // console.log({params: {
+      //   companyId: this.companyFilter,
+      //   typeOfPlan: this.typeFilter
+      // }})
+
+      let plansFiltered: Plan[] = resp;
+
+      if(this.companyFilter !== ''){
+        plansFiltered = plansFiltered.filter( (plan) => plan.CompanyId === this.companyFilter );
+         
+      }
+
+      if(this.typeFilter !== ''){
+        plansFiltered = plansFiltered.filter( (plan) => plan.TypeOfPlan === this.typeFilter );
+      }
+      
+      if(this.typeFilter === '' && this.companyFilter === ''){
+        this.plans = resp
+      }else{
+        this.plans = plansFiltered;
+      }
+
+
     });
   }
 
+  
+
+  onFilter( { value:filterValue }: any ){
+    
+    if(filterValue.type === 'Type'){
+      this.typeFilter = filterValue.value;
+    }
+
+    if(filterValue.type === 'company'){
+        this.companyFilter = filterValue.value;
+    }
+
+    
+
+    
+
+    this.getAllPlans();
+
+  }
+
+  // onFilterPlanType( event: any ){
+
+  //   this.getAllPlans('', event.value );
+
+  // }
+
   //Sort function
   onSortChange(event: any) {
+
     let value = event.value;
 
     if (value.indexOf('!') === 0) {
@@ -317,8 +431,11 @@ export class ListComponent implements OnInit {
   //Show Modal
   showModalDialog(id: number) {
 
+    
     const currentPlan = this.plans.find( (plan) => plan.Id === id );
-
+    
+    this.planCompany = this.companies.find( (company) => company.Id === currentPlan?.CompanyId)?.Name;
+    
     if(currentPlan == undefined){
       return;
     }

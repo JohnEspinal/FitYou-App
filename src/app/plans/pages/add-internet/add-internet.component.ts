@@ -34,7 +34,6 @@ export class AddInternetComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log("Hola desde internet", this.internet)
 
     if(this.internet === undefined || this.internet === null){
       return;
@@ -64,8 +63,6 @@ export class AddInternetComponent implements OnInit {
         Id: this.internet.Id,
       }
     }
-
-    console.log('planToReturn', planToReturn);
 
 
     this.onNewInternet.emit( planToReturn )

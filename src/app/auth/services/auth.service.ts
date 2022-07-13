@@ -67,10 +67,7 @@ export class AuthService {
         tap(
           resp => {
 
-            console.log("THIS IS A RESPONSE");
-            console.log(resp);
             if(resp.token !== ""){
-              console.log(resp);
               localStorage.setItem('token', resp.token)
             }
           }

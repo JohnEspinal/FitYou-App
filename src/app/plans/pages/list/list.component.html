@@ -58,8 +58,21 @@
           <div class="flex flex-column md:flex-row md:justify-content-between">
             <p-dropdown
               [options]="sortOptions"
-              placeholder="Sort By Price"
+              placeholder="Ordenar por precio"
               (onChange)="onSortChange($event)"
+              styleClass="mb-2 md:mb-0"
+            ></p-dropdown>
+            <p-dropdown
+              id="rapapa"
+              [options]="companiesOptions"
+              placeholder="Filtrar por compañia"
+              (onChange)="onFilter($event)"
+              styleClass="mb-2 md:mb-0"
+            ></p-dropdown>
+            <p-dropdown
+              [options]="typesOptions"
+              placeholder="Filtrar por tipo de plan"
+              (onChange)="onFilter($event)"
               styleClass="mb-2 md:mb-0"
             ></p-dropdown>
             <span class="p-input-icon-left mb-2 md:mb-0">
@@ -251,8 +264,8 @@
             </div>
 
             <div class="mt-2 row">
-              <dt class="col-sm-5">Velocidad de bajada:</dt>
-              <dd class="col-sm-7">{{ this.plan.Internet.Loweringspeed }}</dd>
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.planCompany }}</dd>
             </div>
           </div>
 
@@ -283,6 +296,11 @@
                 {{ this.plan.Telecable.TypeOfTelecable }}
               </dd>
             </div>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.planCompany }}</dd>
+            </div>
           </div>
 
           <div class="row" *ngIf="this.plan?.TypeOfPlan === 'T'">
@@ -309,6 +327,11 @@
             <div class="mt-2 row">
               <dt class="col-sm-5">Tipo de Servicio telefonico:</dt>
               <dd class="col-sm-7">{{ this.plan.Telephone.Service }}</dd>
+            </div>
+
+            <div class="mt-2 row">
+              <dt class="col-sm-5">Compañia:</dt>
+              <dd class="col-sm-7">{{ this.planCompany }}</dd>
             </div>
           </div>
         </dl>

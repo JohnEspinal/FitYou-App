@@ -9,6 +9,9 @@ export class ServiceInternetService {
 
   filetoUpload : File;
 
+
+  baseUrl: string = "https://fityoubackend.azurewebsites.net/api";
+
   constructor(
     private http : HttpClient
   ) { }
@@ -19,7 +22,7 @@ export class ServiceInternetService {
     let fomdata = new FormData();
     fomdata.append("file",file,file.name);
     console.log(fomdata);
-    return this.http.post(`https://localhost:44384/api/office/Importar`, fomdata);
+    return this.http.post(`${this.baseUrl}/office/Importar`, fomdata);
   }
 
 }
